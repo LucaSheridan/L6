@@ -33,8 +33,9 @@
 
         <!-- <span class="font-semibold tracking-tight">ART</span>IFACTS</a>-->
 
-<!--         <span class="font-semibold tracking-tight">BSGE</span>ART</a>
- --> <span class="font-semibold tracking-tight"></span>arT.io</a>
+<span class="font-semibold tracking-tight">BSGE</span>ART</a>
+ 
+ <!-- <span class="font-semibold tracking-tight"></span>arT.io</a> -->
         </div>
         
         <div class="flex-shrink items-center p-2 text-md text-right">
