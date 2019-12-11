@@ -16,6 +16,6 @@
         @else
                     @include('partials.student.home')
                 
-        @endif
+        @endif 
             
 <!-- @endsection -->

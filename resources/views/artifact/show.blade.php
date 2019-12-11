@@ -2,10 +2,11 @@
 
 @section('content')
 
-       <div class="flex p-4 bg-white">
+       <div class="flex  p-0 bg-white justify-center">
 
-        <div class="w-2/3 relative">
-                                    <span class="float-right absolute top-0 right-0">
+       <div class="flex flex-col items-start relative">
+
+                                <span class="absolute top-0 right-0 pt-4 z-10">
                                     
                                     <form action="{{ action('ArtifactController@destroy', $artifact->id)}}" role="form" method="POST">
 
@@ -13,27 +14,36 @@
                                     <input type="hidden" name="_method" value="DELETE">
 
                                     <button class="" type="submit">
-                                    @icon('icon-trash', ['class' => 'float-right text-gray-100 border-0 hover:text-gray-700 mr-1 mt-2 w-8 h-8 fill-current'])
+                                    @icon('icon-trash', ['class' => 'text-gray-500 border-0 hover:text-gray-200 mr-1 mt-2 w-8 h-8 fill-current'])
                                     </button>
 
                                     </form>
+
+                                    <a href="{{action('ArtifactController@addToCollection', $artifact)}}
+                                    ">@icon('icon-briefcase', ['class' => ' text-gray-500 border-0 hover:text-gray-200 mr-1 mt-2 w-8 h-8 fill-current'])</a>
+
+                                    @icon('icon-comment', ['class' => ' text-gray-500 border-0 hover:text-gray-200 mr-1 mt-2 w-8 h-8 fill-current'])
+
                                 </span>
 
-                    <a href="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
+            <div class="">
+                <img class="w-full relative h-auto mt-4" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
+            </div>
 
-                         <img class="w-full" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
+                            
+       </div>
+       
+       
 
-                    </a>
+       <div class="flex-col w-1/3 p-4">
 
-        </div>
+            <div class="border-2 p-4">
 
-        <div class="w-1/3 pl-4 pt-2 text-sm leading-tight text-gray-700">
-        
             {{-- Artist--}}
             
-                <p class="font-semibold">Artist</p>
+            <p class="font-semibold">Artist</p>
 
-                <p class="mb-2">{{ $artifact->user->fullName }}</p>
+            <p class="mb-2">{{ $artifact->user->fullName }}</p>
 
             {{-- Teacher--}}
 
@@ -67,8 +77,8 @@
 
             <p class="font-semibold">Annotation
             </p>
-         <p class="mb-4">
-{{ $artifact->annotation }}
+            <p class="mb-4">
+            {{ $artifact->annotation }}
              </p>
 
             @if (is_null($artifact->component))
@@ -87,58 +97,51 @@
             {{ $artifact->created_at }}</p>
             @endif
 
+            
+
+
+
             @if (!is_null($artifact->collections))
             <p class="font-semibold">Collections</p>
             <p class="mb-2">
-            @foreach ($artifact->collections as $collection)
-            - {{ $collection->title }}|{{ $collection->curators->first()->fullName }} <br/>
-            @endforeach
-            </p>
-            @endif<br/><br/>
-            ADD TO COLLECTIONS + 
-
-            @foreach (Auth::User()->collections as $collection)
-
-            <form id="addToCollection" method="POST" action="{{ action('ArtifactController@addToCollection',['artifact' => $artifact ,'collection' => $collection ]) }}">
-                {{ csrf_field() }}
-
-            <!-- <label for="file" class="inline-block bg-red-200 p-2">
-            Select a collection to 
-            </label> -->
             
-            <input type="submit" class="mt-2 p-1 rounded-lg"value="+ {{$collection->title}}">
+                @foreach ($artifact->collections as $collection)
+            
+              
+                    <form id="removeFromCollection" method="POST" action="{{ action('CollectionController@removeArtifact',['artifact' => $artifact ,'collection' => $collection ]) }}">
+                    
+                    <input type="hidden" name="_method" value="DELETE">
 
-            </form>
-
-            @endforeach
-        
-            <br/><br/>
-            COLLECTED IN:
-
-            @foreach (Auth::User()->collections as $collection)
-
-                <form id="addToCollection" method="POST" action="{{ action('ArtifactController@addToCollection',['artifact' => $artifact ,'collection' => $collection ]) }}">
                     {{ csrf_field() }}
 
-                <!-- <label for="file" class="inline-block bg-red-200 p-2">
-                Select a collection to 
-                </label> -->
-                
-                <input type="submit" class="mt-2 p-1 rounded-lg"value="+ {{$collection->title}}">
+                        <span class="inline-block text-xs p-1 text-left rounded-lg mr-1 mb-1 bg-gray-200"><a href="{{action('ExploreController@test', $collection)}}">{{ $collection->title }}</a>
 
-                </form>
+                    <input type="submit" cloass="bg-gray-200" value="X">
 
-            @endforeach
+                    </form>
+
+                    </span>
+
+                @endforeach
+            </p>
+            
+            @endif<br/><br/>
+            
+            
 
 
-        </div>
-        
 
 
 
-       <!--  <img class="object-contain" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">-->
+            <div class="text-xs p-1 text-center rounded-lg bg-gray-200">
+            <a href="{{action('ArtifactController@addToCollection', $artifact->id)}}">ADD TO COLLECTION</a>
+            </div>
+    
+       </div>
+       </div>
+       </div>
 
-       </a>
+    </div>
  
     </div>
 

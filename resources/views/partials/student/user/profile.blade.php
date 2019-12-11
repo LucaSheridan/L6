@@ -24,12 +24,12 @@
 
         @else
 
-        {{ $user->profile_pic }}
+        {{-- {{ $user->profile_pic }}
 
             <img class="float-right hover:shadow-xl h-12 inline-block w-10 rounded-full bg-gray-700 p-2">LS</span>
 
             <img class="w-16 hover:shadow-xl" src="https://s3.amazonaws.com/artifacts-0.3/{{$user->profile_pic}}">
-
+ --}}
         @endif
 
         {{ $user->fullName}}</div>
@@ -89,7 +89,7 @@
         </tr>
 
 
-        @foreach ($sections as $section)
+        @foreach ($user->activeSections as $section)
 
         
         <tr class="border">

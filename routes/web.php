@@ -2,10 +2,12 @@
 
 // use App\Artifact;
 use App\Assignment;
-// use App\Collection;
-// use App\Course;
-// use App\Post;
+use App\Artifact;
+use App\Collection;
+//use App\Course;
+//use App\Post;
 use App\Section;
+use App\Site;
 use App\User;
 
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +26,22 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Index
+
+Route::get('/site', 'SiteController@index');
+Route::get('/user', 'UserController@index');
+Route::get('/section', 'SectionController@index');
+Route::get('/collection', 'CollectionController@index');
+Route::get('/assignment', 'AssignmentController@index');
+Route::get('/component', 'ComponentController@index');
+Route::get('/artifact', 'ArtifactController@index');
+
+//Explore 
+
+Route::get('/test/{collection}', 'ExploreController@test');
+
+// AXIOS UPLOAD
 
 Route::post('/single-file', 'UploadController@UploadSingleFile');
 Route::post('/multiple-files', 'UploadController@UploadMultipleFiles');
@@ -53,8 +71,11 @@ Auth::routes();
 	Route::get('/artifact/{artifact}', 'ArtifactController@show');
 	Route::delete('/artifact/{artifact}', 'ArtifactController@destroy');
 
-	Route::post('/artifact/{artifact}/collection/{collection}', 'ArtifactController@addToCollection');
-	Route::post('/artifact/{artifact}/collection/{collection}/remove', 'ArtifactController@removeFromCollection');
+	Route::get('/artifact/{artifact}/addToCollection', 'ArtifactController@addToCollection');
+	//Route::get('/artifact/{artifact}/removeFromCollection', 'ArtifactController@removeFromCollection');
+
+		//Route::post('/artifact/{artifact}/collection/{collection}', 'ArtifactController@addToCollection');
+		// Route::post('/artifact/{artifact}/collection/{collection}/remove', 'ArtifactController@removeFromCollection');
 
 	Route::get('/artifact/{artifact}/comment', 'ArtifactController@addComment');
 
@@ -66,6 +87,10 @@ Auth::routes();
 	Route::patch('/collection/{collection}/update', 'CollectionController@update');
 	Route::get('/collection/{collection}/delete', 'CollectionController@delete');
 	Route::delete('/collection/{collection}', 'CollectionController@destroy');
+	Route::post('/collection/addArtifact/{artifact}', 'CollectionController@addArtifact');
+	Route::delete('/collection/deleteArtifact/{artifact}', 'CollectionController@removeArtifact');
+
+
 
 // TEACHERS
 
@@ -129,6 +154,7 @@ Route::group(['middleware' => ['role:teacher']], function () {
 
 	Route::get('student/section/{section}/collection/{collection}', 'CollectionController@showStudent');
 
+	Route::get('collection/{collection}', 'CollectionController@slideshow');
 
 	
 

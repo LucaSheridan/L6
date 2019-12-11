@@ -1,6 +1,7 @@
 <!doctype html>
-<html lang="{{ app()->getLocale() }} class="w-screen">
+<html lang="{{ app()->getLocale() }}">
 <head>
+   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,14 +12,20 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/flickity-fullscreen@1/fullscreen.css">
 
 </head>
 
+<body class="antialiased leading-none">
 
-<body class="bg-gray-500 h-screen antialiased leading-none">
-    <div id="app" class="container max-w-4xl m-auto ">
+
+    
+    <!-- <div id="app" class="container max-w-5xl m-auto "> -->
+    <div id="app" class="bg-gray-300" style="height:90vh;margin:5vh; ">
+
               
-        <nav class="bg-gray-200 shadow mb-0 py-2 border-b-2 border-red-300">
+        <nav class="bg-gray-200 shadow mb-0 py-2 border-b-2 border-red-400">
   <!--  <nav class="bg-blue-900 shadow mb-8 py-6"> -->            
  
         <div class="mx-auto px-4">
@@ -100,6 +107,8 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script src="https://unpkg.com/flickity-fullscreen@1/fullscreen.js"></script>
 
 
 </body>

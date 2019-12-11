@@ -9,6 +9,7 @@ use App\Assignment;
 use App\Collection;
 use App\Component;
 use App\Section;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Image;
@@ -36,20 +37,53 @@ class ArtifactController extends Controller
         }
 
     /**
-     * Add artifact to the Collection
+     * Add artifact to a Collection
      *
      * @param  \App\Artifact  $artifact
      * @return \Illuminate\Http\Response
      */
-    public function addToCollection(Artifact $artifact, Collection $collection)
+    public function addToCollection(Artifact $artifact)
     
     {
         
-        $artifact->collections()->attach($collection->id); 
-        $collection->save();
+        //dd($artifact);
 
-        return redirect()->action('HomeController@index');
+        //create an array of the IDs of the artifacts collections. 
+        $isCollectedIn = $artifact->collections->pluck('id');
+        //dd($isCollectedIn); 
+
+        //get the user ID of the artifact.
+        $user = $artifact->user;
+        //dd($user);
+
+        //create an array of the IDs of all the users collections.
+        $couldBeCollectedIn = $user->collections->pluck('id');
+
+        // remove all current collections from all Possible Collections.
+        $diff = $couldBeCollectedIn->diff($isCollectedIn);
+
+        //get all collections that the artifact could be added to.
+        $addable = Collection::find($diff);
+
+        $dropable = Collection::find($isCollectedIn);
+
+
+        //dd($addable);
+        //dd($dropable);
+
+        return view('artifact.addToCollection')->with(['artifact' => $artifact, 'addable' => $addable, 'dropable' => $dropable ]);
     }
+
+    
+
+
+
+
+
+
+
+
+
 
      /**
      * remove artifact to the Collection
@@ -560,10 +594,6 @@ class ArtifactController extends Controller
 
             return redirect()->action('ArtifactController@show', $artifact->id);
     }
-
-
-
-
 
     //  /**
     //  * Add Comment to Artifact.

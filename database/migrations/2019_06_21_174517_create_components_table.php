@@ -16,7 +16,7 @@ class CreateComponentsTable extends Migration
         Schema::create('components', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->integer('section_id');
+            $table->integer('section_id')->nullable();
             $table->integer('assignment_id');
             $table->timestamp('date_due')->nullable();
             $table->timestamps();

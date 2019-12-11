@@ -71,6 +71,8 @@ class Artifact extends Model
         // ,'description','dimensions_height','dimensions_width','dimensions_depth','dimensions_units'
     }
 
+    
+
     /**
      * An artifact may have many comments posted to it. 
      *

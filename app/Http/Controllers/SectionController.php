@@ -155,7 +155,6 @@ class SectionController extends Controller
 
         flash('Section updated successfully!')->success();
 
-
         return redirect()->action('HomeController@index');
     }
 
@@ -232,7 +231,6 @@ class SectionController extends Controller
                       'assignments' => $assignments,
                       'checklist' => $checklist,
                       'user' => $user]);
-    
     }
 
 public function sectionProgress(Section $section)
@@ -240,8 +238,7 @@ public function sectionProgress(Section $section)
     {
          
         // get this section users and set to an array
-
-         $students = Section::with('students')->find($section->id)
+        $students = Section::with('students')->find($section->id)
          ->pluck('id')->toArray();
 
         // get this section assignments and set to an array
@@ -250,38 +247,45 @@ public function sectionProgress(Section $section)
                                  ->orderBy('created_at', 'asc')
                                  ->pluck('id')->toArray();
 
+        // set classChecklist array
+        $classChecklist = [];                         
 
-        $checklist = Artifact::with('assignment','user')
+            foreach ($students as $student)
 
-            ->rightjoin('components', function ($join) use ($students, $assignments) {
+                $studentChecklist = Artifact::with('assignment','user')
 
-            $join->on('components.id', '=', 'artifacts.component_id');
-                
-                 // ->where('artifacts.user_id', '=', $student->id);
+                ->rightjoin('components', function ($join) use ($students, $assignments) {
 
-                })
+                $join->on('components.id', '=', 'artifacts.component_id')
+                    ->where('artifacts.user_id', '=', $student->id);
 
-                ->whereIn('components.assignment_id', $assignments)
+                    })
 
-               
-                ->orderBy('components.assignment_id', 'asc')
-                ->orderBy('artifacts.user_id', 'asc')
+                    ->whereIn('components.assignment_id', $assignments)
 
-                ->orderBy('components.date_due', 'asc')
-               
-                ->select(
-                 'artifacts.id AS artifact_id',
-                 'artifacts.user_id AS artistID',
-                 'components.assignment_id AS assignment_id',
-                 'components.id AS component_id', 
-                 'components.title AS component_title',
-                 'components.date_due AS component_due',
-                 'artifacts.artifact_thumb AS artifact_thumb',
-                 'artifacts.artifact_path AS artifact_path',
-                 'artifacts.created_at AS artifact_created')
-                 ->get();
+                   
+                    ->orderBy('components.assignment_id', 'asc')
+                    ->orderBy('artifacts.user_id', 'asc')
 
-                 //dd($assignmentChecklist);                      
+                    ->orderBy('components.date_due', 'asc')
+                   
+                    ->select(
+                     'artifacts.id AS artifact_id',
+                     'artifacts.user_id AS artistID',
+                     'components.assignment_id AS assignment_id',
+                     'components.id AS component_id', 
+                     'components.title AS component_title',
+                     'components.date_due AS component_due',
+                     'artifacts.artifact_thumb AS artifact_thumb',
+                     'artifacts.artifact_path AS artifact_path',
+                     'artifacts.created_at AS artifact_created')
+                     ->get();
+
+        // add each studentChecklist to classChecklist array
+
+         
+
+        //dd($assignmentChecklist);                      
 
         return view('partials.teacher.section.progress')
                ->with(['section' => $section,

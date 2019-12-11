@@ -14,7 +14,7 @@
 
             <div class="flex">
            
-                <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-300">
+                <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-600">
                                 
                 {{ Auth::User()->sections()->count() > 1 ? 'CLASSES' : 'CLASS'}}
 
@@ -109,7 +109,7 @@
            
         {{-- Artifacts Title --}}
 
-            <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-300">ARTIFACTS</div>
+            <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-600">ARTIFACTS</div>
             
             <div class="flex">
                     
@@ -170,7 +170,7 @@
 
         <div class="flex border-0 border-yellow-600">
            
-            <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-300">COLLECTIONS</div>
+            <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-600">COLLECTIONS</div>
             
             <div class="flex">
                     
@@ -211,7 +211,7 @@
 
                     @if ( $loop->first )
                             <div class="relative w-full">
-                            <a href="{{action('CollectionController@showStudent', ['section' => $section , 'collection' => $collection ])}}">
+                            <a href="{{action('ExploreController@test', ['section' => $section , 'collection' => $collection ])}}">
                                 <img class="w-full rounded-t-lg opacity-75 hover:opacity-100 " src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_thumb}}">
 
                             </a>
@@ -226,7 +226,7 @@
             {{-- Empty Collection Placeholder--}}
 
             <div class="relative w-full">
-                            <a href="{{action('CollectionController@showStudent', ['section' => $section , 'collection' => $collection ])}}">
+                            <a href="{{action('ExploreController@test', ['section' => $section , 'collection' => $collection ])}}">
                                 <img class="w-full rounded-t-lg opacity-75 hover:opacity-100 " src="{{asset('storage/upload.png')}}">
 
                             </a>

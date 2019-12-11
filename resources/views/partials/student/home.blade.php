@@ -7,20 +7,20 @@
     <div class="w-full sm:w-1/3 md:w-1/4 bg-gray-600 p-4">
         
     {{-- CLASSES--}}
-
+    
         <div class="mb-2 text-2xl text-gray-300">CLASSES</div>
     
         {{-- Begin Class Select --}}
 
             <select class="px-2 py-1 pr-8 mb-4 bg-gray-300 form-select w-full text-xl rounded-lg text-red-500 rounded-none" onchange="location = this.value;">
 
-                <option class="" value="{{action('HomeController@index', $currentSection->id) }}">{{$currentSection->course->title}}</option>
+                <option class="" value="{{action('HomeController@index', $currentSection->id) }}">{{$currentSection->title}}</option>
 
                     @foreach ( Auth::User()->activeSections as $section)                         
                                    
                         @if ( $currentSection->id == $section->id )
                         @else
-                        <option value="{{action('HomeController@index', $section->id) }}">{{ $section->course->title}}</option>
+                        <option value="{{action('HomeController@index', $section->id) }}">{{ $section->title}}</option>
                         @endif
                     
                     @endforeach
@@ -201,9 +201,19 @@
 
                     @if ( $loop->first )
                             <div class="relative w-full">
-                            <a href="{{action('CollectionController@showStudent', ['section' => $section , 'collection' => $collection ])}}">
-                                <img class="w-full rounded-t-lg opacity-75 hover:opacity-100 " src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_thumb}}">
+                            
+                            <!-- Original Option -->
 
+                            <a href="{{action('CollectionController@showStudent', ['section' => $section , 'collection' => $collection ])}}">
+
+                            <!-- New Option-->
+
+                            <a href="{{action('ExploreController@test', $collection )}}">
+
+                            
+                            <img class="w-full rounded-t-lg opacity-75 hover:opacity-100 " src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_thumb}}">
+
+                            
                             </a>
                        </div>
                      @else

@@ -31,7 +31,6 @@ class HomeController extends Controller
         // show all users active classes
         $activeSections = Auth::User()->activeSections()->get();
         
-        
         // set default active class for user student home view dropdown menu
         if ($currentSection->id == null )
         $currentSection = Auth::User()->activeSections->first();

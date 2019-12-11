@@ -17,10 +17,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        
-        $sections = Section::with('site')->paginate(5);
+        $activeSections = Section::with('site','users')->paginate(10);
 
-        return view('partials.student.user.show')->with(['user' => $user, 'sections' => $sections]);
+        return view('user.profile')->with('user');
 
     }
 

@@ -20,7 +20,19 @@ class CreateArtifactsTable extends Migration
             $table->string('section_id')->nullable();
             $table->string('artifact_path');
             $table->string('artifact_thumb');
-            $table->text('annotation')->nullable();
+            $table->text('annotation', 750)->nullable();
+            $table->string('artist')->nullable();
+            $table->string('title')->nullable();
+            $table->string('medium')->nullable();
+            $table->string('year')->nullable();
+            $table->string('dimensions_height')->nullable();
+            $table->string('dimensions_width')->nullable();
+            $table->string('dimensions_depth')->nullable();
+            $table->string('dimensions_units')->nullable();
+            $table->boolean('is_published');
+            $table->boolean('is_public');
+
+
 
 
             $table->unsignedBigInteger('user_id');
