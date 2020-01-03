@@ -2,29 +2,50 @@
 
 @section('content')
 
-       <div class="flex  p-0 bg-white justify-center">
+       <div class="flex bg-white justify-center">
 
-       <div class="flex flex-col items-start relative">
+       <div class="flex w-2/3 flex-row items-start relative">
 
-                                <span class="absolute top-0 right-0 pt-4 z-10">
+        <span class="absolute text-center bg-white top-0 right-0 mt-4 p-2 pb-2 z-10 opacity-75">
                                     
-                                    <form action="{{ action('ArtifactController@destroy', $artifact->id)}}" role="form" method="POST">
+        <div class="flex justify-center items-center">
+        <a href="{{action('ArtifactController@addToCollection', $artifact)}}">
+        @icon('briefcase', ['class' => ' text-gray-500 border-0 hover:text-gray-200 w-6 h-6'])</a>
+        </div>
 
-                                    {!! csrf_field() !!}
-                                    <input type="hidden" name="_method" value="DELETE">
+        <div class="flex">
+            <a href="{{action('CommentController@create', $artifact->id)}}">
+            @icon('comment', ['class' => 'text-gray-500 border-0 hover:text-gray-200 w-6 h-6'])
+            </a>
+        </div>
 
-                                    <button class="" type="submit">
-                                    @icon('icon-trash', ['class' => 'text-gray-500 border-0 hover:text-gray-200 mr-1 mt-2 w-8 h-8 fill-current'])
-                                    </button>
+        <div class="flex justify-center">
+            <a class="" href="{{ action('ArtifactController@rotate', 
+            ['artifact' => $artifact->id, 'degrees' => -90 ])}}">
+            @icon('rotate-cw', ['class' => 'text-gray-500 border-0 hover:text-gray-200 w-5 h-5'])
+            </a>
+        </div>
+        
+        <div class="flex justify-center">
+        <a class="pl-2" href="{{ action('ArtifactController@rotate', 
+        ['artifact' => $artifact->id, 'degrees' => 90 ])}}">
+        @icon('rotate-ccw', ['class' => 'text-gray-500 border-0 hover:text-gray-200 w-5 h-5 '])</a>
+        </div>
+        <div class="flex">
 
-                                    </form>
+                                     <form action="{{ action('ArtifactController@destroy', $artifact->id)}}" role="form" method="POST">
 
-                                    <a href="{{action('ArtifactController@addToCollection', $artifact)}}
-                                    ">@icon('icon-briefcase', ['class' => ' text-gray-500 border-0 hover:text-gray-200 mr-1 mt-2 w-8 h-8 fill-current'])</a>
+                                        {!! csrf_field() !!}
+                                        <input type="hidden" name="_method" value="DELETE">
 
-                                    @icon('icon-comment', ['class' => ' text-gray-500 border-0 hover:text-gray-200 mr-1 mt-2 w-8 h-8 fill-current'])
+                                        <button class="" type="submit">
+                                        @icon('trash', ['class' => 'text-gray-500 border-0 hover:text-gray-200 w-6 h-6'])
+                                        </button>
 
-                                </span>
+                                        </form>
+        </div>
+
+                                    </span>
 
             <div class="">
                 <img class="w-full relative h-auto mt-4" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
@@ -97,46 +118,85 @@
             {{ $artifact->created_at }}</p>
             @endif
 
-            
-
-
-
             @if (!is_null($artifact->collections))
-            <p class="font-semibold">Collections</p>
-            <p class="mb-2">
+            <p class="font-semibold mb-2">Collections</p>
             
                 @foreach ($artifact->collections as $collection)
             
-              
+                
                     <form id="removeFromCollection" method="POST" action="{{ action('CollectionController@removeArtifact',['artifact' => $artifact ,'collection' => $collection ]) }}">
                     
                     <input type="hidden" name="_method" value="DELETE">
 
                     {{ csrf_field() }}
 
-                        <span class="inline-block text-xs p-1 text-left rounded-lg mr-1 mb-1 bg-gray-200"><a href="{{action('ExploreController@test', $collection)}}">{{ $collection->title }}</a>
+                         <div class="flex mt-1 justify-between rounded-lg bg-gray-200 items-center text-sm">
 
-                    <input type="submit" cloass="bg-gray-200" value="X">
+                            <div class="flex">
+                                <a class="pl-2" href="{{action('ExploreController@test', $collection)}}">{{ $collection->title }}</a>
+                            </div>
+                            
+                            <div class="flex bg-gray-200 rounded-lg pr-1">
+                                <button type="submit" class="bg-gray-200 rounded-lg">
+                                @icon('x-circle', ['class' => ' text-gray-500 border-0 hover:text-gray-200 w-5 h-5'])
+                                </button>
+                            </div>
 
-                    </form>
+                    </div>
 
-                    </span>
+                        </form>
 
                 @endforeach
-            </p>
             
-            @endif<br/><br/>
-            
-            
+            @endif
+                       
+
+        </div>
+
+        @if ($artifact->comments)
+        
+            @foreach ($artifact->comments as $comment)
+        
+                <div class="shadow relative bg-yellow-200 p-2 mt-1 text-sm tracking-tight leading-tight">
+                
+                <div class="font-semibold">{{$comment->user->fullName}}</div>
+                <div class="mt-2">{{$comment->body}}</div>
+
+                @if ($comment->user_id == Auth::User()->id)
+                
+                {{-- Editing Options --}}
+
+                    <div class="flex justify-end items-center">
+        
+                    <a class=""href="{{action('CommentController@edit', ['artifact' => $artifact->id , 'comment' => $comment->id ]) }}">
+                    @icon('edit', ['class' => ' text-gray-700 border-0 hover:text-yellow-900 w-5 h-5'])
+                    </a>
+        
+                    <form id="delete_comment" method="POST" action="{{ action('CommentController@destroy',['artifact' => $artifact->id ,'comment' => $comment->id ]) }}">
+                    
+                    <input type="hidden" name="_method" value="DELETE">
+
+                    {{ csrf_field() }}
+
+                    <button type="submit" class="">
+                    @icon('x-circle', ['class' => ' text-gray-700 border-0 hover:text-yellow-900 w-5 h-5'])
+                    </button>
+                    
+                    </form>
+
+                </div>
+
+                @else
+                @endif
+
+                </div>
+
+             @endforeach
+        
+        @else
+        @endif
 
 
-
-
-
-            <div class="text-xs p-1 text-center rounded-lg bg-gray-200">
-            <a href="{{action('ArtifactController@addToCollection', $artifact->id)}}">ADD TO COLLECTION</a>
-            </div>
-    
        </div>
        </div>
        </div>
@@ -156,12 +216,7 @@
     <!-- Collection -->
     <!-- End Collection -->
     
-
-    {{-- <a class="btn btn-primary m-1" href='{{ action('ArtifactController@rotate', [ 'id' => $artifact->id, 'degrees' => '90' ]) }}'>Rotate counterclockwise</a>
-
-    <a class="btn btn-primary m-1" href='{{ action('ArtifactController@rotate', [ 'id' => $artifact->id, 'degrees' => '-90' ]) }}'>Rotate clockwise</a> --}}
-
-       
+   
     </div>
                     
 @endsection

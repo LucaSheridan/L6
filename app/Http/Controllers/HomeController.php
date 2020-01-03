@@ -25,7 +25,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( Section $currentSection)
+    public function index( Request $request, Section $currentSection)
     {
         
         // show all users active classes
@@ -42,6 +42,8 @@ class HomeController extends Controller
         
         //$inactiveSections = Auth::User()->sections()->where('is_active', 0 )->get();
         //$allSections = Auth::User()->sections()->get();
+
+
 
         return view('home')->with(['activeSections' => $activeSections, 'currentSection' => $currentSection]);
         }

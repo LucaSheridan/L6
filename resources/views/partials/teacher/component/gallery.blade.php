@@ -23,7 +23,7 @@
                 <div class="flex ">
                     <a class=""href="{{action('SectionController@edit', $activeSection)}}">
                        <div class="flex justify-end p-1 bg-gray-400 hover:bg-gray-300 rounded-t-lg text-gray-600">
-                            <div>@icon('icon-edit', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 fill-current'])</div>
+                            <div>@icon('edit', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 fill-current'])</div>
                             <div class="flex pt-1 px-1">Edit</div>
                         </div>
                     </a>
@@ -63,10 +63,10 @@
                         
                         <div class="flex justify-end p-1 bg-gray-300 bg-gray-400 hover:bg-gray-300 border-b rounded-t-lg text-gray-600">
                         
-                            <div>@icon('icon-edit', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 fill-current'])</div>
+                            <div>@icon('edit', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 fill-current'])</div>
                             <div class="flex pt-1 px-1"></div>
                             
-                             <div>@icon('icon-x-circle', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 fill-current'])</div>
+                             <div>@icon('x-circle', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 fill-current'])</div>
                             <div class="flex pt-1 px-1"></div>
  
                         </div>
@@ -132,7 +132,7 @@
                         <div class="flex justify-end p-1 bg-gray-300 bg-gray-400 hover:bg-gray-300 border-b rounded-t-lg text-gray-600">
                         
                             <div>
-                            @icon('icon-plus-circle', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 fill-current'])</div>
+                            @icon('plus-circle', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 fill-current'])</div>
                             
                             <div class="flex pt-1 px-1">Add</div>
                            
@@ -282,7 +282,7 @@
 
                         @foreach ( $students as $student )
 
-                            <div class="w-1/3 sm:w-1/3 md:w-1/4 lg:w-1/5 border-4 border-white">
+                            <div class="w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/4 border-4 border-white">
 
                              <a href="{{ action('SectionController@studentProgress', [ 'user' => $student->id , 'section' => $activeSection->id ] )}}">
 
@@ -296,7 +296,7 @@
 
                                     <a href="{{ action('ArtifactController@show', $artifact->id)}}">
                                     
-                                    <img class="border-4 border-red-300 w-full" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_thumb}}"></a>
+                                    <img class="border-4 border-red-300 w-full" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}"></a>
 
                                 @endforeach
 

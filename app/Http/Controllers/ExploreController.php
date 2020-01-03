@@ -20,7 +20,7 @@ class ExploreController extends Controller
     public function test(Request $request, Collection $collection)
     {
         
-    return view('layouts.test')->with('collection', $collection);
+    return view('collection.show')->with('collection', $collection);
 
     }
 

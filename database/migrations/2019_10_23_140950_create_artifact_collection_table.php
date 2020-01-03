@@ -18,6 +18,13 @@ class CreateArtifactCollectionTable extends Migration
             $table->bigInteger('collection_id')->unsigned();
             $table->bigInteger('artifact_id')->unsigned();
             $table->bigIncrements('position')->unsigned();
+            $table->string('title')->nullable();
+            $table->string('medium')->nullable();
+            $table->string('year')->nullable();
+            $table->string('dimensions_height')->nullable();
+            $table->string('dimensions_width')->nullable();
+            $table->string('dimensions_depth')->nullable();
+            $table->string('dimensions_units')->nullable();
             
             $table->foreign('collection_id')
                   ->references('id')

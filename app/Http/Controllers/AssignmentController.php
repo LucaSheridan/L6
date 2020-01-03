@@ -222,7 +222,7 @@ class AssignmentController extends Controller
         'title' => 'required',
         'date_due' => 'nullable|date_format:"m-d-y"',
         'active' => 'required',
-        'description' => 'required'
+        //'description' => 'required'
         ]);
 
         //set and persist assignment information to database

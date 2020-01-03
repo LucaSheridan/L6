@@ -17,7 +17,6 @@ class CreateCommentsTable extends Migration
             $table->bigIncrements('id');
             
             $table->bigInteger('artifact_id');
-            $table->text('title');
             $table->text('body');
             $table->bigInteger('user_id');
                     

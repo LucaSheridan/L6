@@ -155,7 +155,7 @@ class SectionController extends Controller
 
         flash('Section updated successfully!')->success();
 
-        return redirect()->action('HomeController@index');
+        return redirect()->action('SectionController@show', $section);
     }
 
     /**

@@ -33,6 +33,19 @@ class CollectionController extends Controller
         return view('collection.create');
     }
 
+       /**
+     * Show the a new collection.
+     *
+     * @return \Illuminate\Http\Response
+     */
+        public function show(Request $request, Collection $collection)
+    {
+        
+        // dd($collection);
+
+        return view('collection.show')->with( 'collection', $collection );
+    }
+
     /**
      * Store a newly created collection  to the database.
      *
@@ -144,10 +157,10 @@ class CollectionController extends Controller
         
         $collection->save();
 
-       flash('Artifact added to Collection!', 'success');
+        flash('Artifact added to '.$collection->title.'!', 'success');
 
+        return redirect()->action('ArtifactController@show', $artifact);
 
-        return redirect()->action('HomeController@index');
     }
 
 
@@ -164,37 +177,26 @@ class CollectionController extends Controller
         
         $collection->save();
 
-        flash('Artifact removed from Collection!', 'success');
+        flash('Artifact removed from '.$collection->title.'!', 'success');
 
-        return redirect()->action('HomeController@index');
+        return redirect()->action('ArtifactController@show', $artifact);
 
 
     }
-     /**
-     * Show a collection.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function showStudent(Request $request, Section $section, Collection $collection)
-    {
+    
+
+    //  /**
+    //  * Show a collection.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function slideshow(Request $request, Section $section, Collection $collection)
+    // {
         
-    return view('partials.student.collection.show')->with(['currentSection' => $section, 'collection' => $collection]);
+    // return view('collection.slideshow')->with('collection', $collection);
 
-    }
-
-     /**
-     * Show a collection.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function slideshow(Request $request, Section $section, Collection $collection)
-    {
-        
-    return view('collection.slideshow')->with('collection', $collection);
-
-    }
+    // }
 
 
 

@@ -89,7 +89,7 @@
         </tr>
 
 
-        @foreach ($user->activeSections as $section)
+        @foreach ($user->sections as $section)
 
         
         <tr class="border">

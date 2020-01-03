@@ -2,14 +2,11 @@
 
 @section('content')
         
-    
-
-
-    <div class="w-full bg-gray-300 p-4">
+<div class="w-full bg-gray-300 p-4">
     
     {{-- Collection Title --}}
 
-    <div class="flex border-0 border-yellow-600">
+    <div class="flex border-2 border-yellow-600">
            
             <div class="flex-grow px-2 pt-2 text-left text-2xl rounded-br-lg text-gray-600">{{strtoupper($collection->title)}}</div>
             

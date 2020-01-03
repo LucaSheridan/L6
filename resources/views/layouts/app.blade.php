@@ -12,20 +12,21 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+ <!--    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <link rel="stylesheet" href="https://unpkg.com/flickity-fullscreen@1/fullscreen.css">
+ -->
 
 </head>
 
 <body class="antialiased leading-none">
-
-
     
     <!-- <div id="app" class="container max-w-5xl m-auto "> -->
-    <div id="app" class="bg-gray-300" style="height:90vh;margin:5vh; ">
+    <div id="app" class="" 
+    style="height:100vh; margin-left:5vh; margin-right:5vh;">
+    <!-- style="height:100vh; margin-left:5vh; margin-right:5vh;"> -->
 
               
-        <nav class="bg-gray-200 shadow mb-0 py-2 border-b-2 border-red-400">
+        <nav class="bg-gray-200 shadow mb-0 py-1 border-b-2 border-red-400">
   <!--  <nav class="bg-blue-900 shadow mb-8 py-6"> -->            
  
         <div class="mx-auto px-4">
@@ -47,50 +48,68 @@
         
         <div class="flex-shrink items-center p-2 text-md text-right">
                     
-                            @guest
-                            <a class="no-underline text-gray-600 hover:text-red-300 text-sm p-3" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            @if (Route::has('register'))
-                                <a class="no-underline text-gray-600 hover:text-red-300 text-sm p-3" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            @endif
-                        @else
-                            
-                        
-                        <div class="flex items-center text-gray-600">
-                        
-                        <drop-down class="text-left bg-gray-200 pt-2 pb-1">
-
-                        <template v-slot:icon>
-                        
-                        <div class="flex pl-10 ">
-
-                        {{ Auth::user()->full_name }}
-                        
-<!--                         <img class="w-12 h-full rounded-full hover:shadow" src="https://s3.amazonaws.com/artifacts-0.3/{{Auth::User()->profile_pic}}">
- -->
-                            @icon('icon-cheveron-down', ['class' => 'w-5 h-5 fill-current'])
+                @guest
+                <a class="no-underline text-gray-600 hover:text-red-300 text-sm p-3" href="{{ route('login') }}">{{ __('Login') }}</a>
+                @if (Route::has('register'))
+                    <a class="no-underline text-gray-600 hover:text-red-300 text-sm p-3" href="{{ route('register') }}">{{ __('Register') }}</a>
+                @endif
+                @else
+                    
+               <div class="relative flex items-center text-gray-600">
+                    
+               <dropdown>
+        
+                    <template v-slot:trigger>
+                    
+                        <div class="p-2 bg-red-400 rounded-full">
+                        {{ Auth::User()->initials }}
                         </div>
 
-                        </template>                       
+                    </template>
 
-                        <template v-slot:options>
-                        
-                        <ul classs="">
-                        <li class="hover:text-red-500"><a href="{{action('UserController@show', Auth::User())}}">Profile</a></li>
-                        <li class="hover:text-red-500"><a href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">Logout</a></li>
-                        </ul>
+                    <div class="z-10 absolute right-0 shadow-2xl mt-1 bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap">
 
-                        </template>
+                    <li class="hover:text-gray-200 px-2"><a href="{{action('UserController@show', Auth::User())}}">Profile</li>
+                    <li class="hover:text-gray-200 px-2"><a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">Logout</a></li>
+                    </div>
 
-                        </drop-down>
-                        </div>
+                </dropdown>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                                {{ csrf_field() }}
-                            </form>
 
-                        @endguest
+                <!--     <drop-down class="text-left bg-gray-200 pt-2 pb-1">
+
+                    <template v-slot:icon>
+                    <div class="flex pl-10">
+                    
+                    <span class="hover:bg-red-500 float-right h-12 inline-block w-10 rounded-full bg-gray-600 py-3 text-gray-100">{{ substr( Auth::User()->firstName , 0 , 1)}}{{ substr( Auth::User()->lastName , 0 , 1)}}</span> -->
+
+<!--                      @icon('cheveron-down', ['class' => 'w-5 h-5 fill-current']) 
+ --><!-- 
+                   </div>
+
+                    </template>                       
+
+                <template v-slot:options>
+                
+                <ul classs="">
+                <li class="hover:text-red-500"><a href="{{action('UserController@show', Auth::User())}}">Profile</a></li>
+                <li class="hover:text-red-500"><a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">Logout</a></li>
+                </ul>
+
+                </template>
+
+                </drop-down> -->
+                                </div>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                        {{ csrf_field() }}
+                    </form>
+
+                @endguest
 
                     </div>
                 </div>
@@ -103,13 +122,13 @@
 
         @yield('content')
     
-    </div>
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
+<!--     <script src="https://use.fontawesome.com/85e6087def.js"></script>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="https://unpkg.com/flickity-fullscreen@1/fullscreen.js"></script>
-
+ -->
 
 </body>
 </html>

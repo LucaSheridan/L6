@@ -1011,6 +1011,51 @@ video {
   width: 50px;
 }
 
+/** Pure CSS Modals **/
+
+.overlay {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, .6);
+}
+
+.overlay:target {
+  visibility: visible;
+  border-radius: 0px;
+  padding: 1em;
+}
+
+.modal {
+  position: relative;
+  width: 600px;
+  max-width: 80%;
+  background: white;
+  border-radius: 8px;
+  padding: 1em 2em;
+}
+
+.modal .close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: grey;
+  text-decoration: none;
+}
+
+.overlay .cancel {
+  position: absolute;
+  background: red;
+  height: 100%;
+  width: 100%;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -4114,19 +4159,23 @@ video {
 }
 
 .h-1\/4 {
-  height: 25%;
+  height: 25vh;
 }
 
 .h-1\/2 {
-  height: 50%;
+  height: 50vh;
 }
 
 .h-3\/4 {
-  height: 75%;
+  height: 75vh;
+}
+
+.h-4\/5 {
+  height: 80vh;
 }
 
 .h-full {
-  height: 80%;
+  height: 100vh;
 }
 
 .leading-none {
@@ -14796,19 +14845,23 @@ video {
   }
 
   .sm\:h-1\/4 {
-    height: 25%;
+    height: 25vh;
   }
 
   .sm\:h-1\/2 {
-    height: 50%;
+    height: 50vh;
   }
 
   .sm\:h-3\/4 {
-    height: 75%;
+    height: 75vh;
+  }
+
+  .sm\:h-4\/5 {
+    height: 80vh;
   }
 
   .sm\:h-full {
-    height: 80%;
+    height: 100vh;
   }
 
   .sm\:leading-none {
@@ -25464,19 +25517,23 @@ video {
   }
 
   .md\:h-1\/4 {
-    height: 25%;
+    height: 25vh;
   }
 
   .md\:h-1\/2 {
-    height: 50%;
+    height: 50vh;
   }
 
   .md\:h-3\/4 {
-    height: 75%;
+    height: 75vh;
+  }
+
+  .md\:h-4\/5 {
+    height: 80vh;
   }
 
   .md\:h-full {
-    height: 80%;
+    height: 100vh;
   }
 
   .md\:leading-none {
@@ -36132,19 +36189,23 @@ video {
   }
 
   .lg\:h-1\/4 {
-    height: 25%;
+    height: 25vh;
   }
 
   .lg\:h-1\/2 {
-    height: 50%;
+    height: 50vh;
   }
 
   .lg\:h-3\/4 {
-    height: 75%;
+    height: 75vh;
+  }
+
+  .lg\:h-4\/5 {
+    height: 80vh;
   }
 
   .lg\:h-full {
-    height: 80%;
+    height: 100vh;
   }
 
   .lg\:leading-none {
@@ -46800,19 +46861,23 @@ video {
   }
 
   .xl\:h-1\/4 {
-    height: 25%;
+    height: 25vh;
   }
 
   .xl\:h-1\/2 {
-    height: 50%;
+    height: 50vh;
   }
 
   .xl\:h-3\/4 {
-    height: 75%;
+    height: 75vh;
+  }
+
+  .xl\:h-4\/5 {
+    height: 80vh;
   }
 
   .xl\:h-full {
-    height: 80%;
+    height: 100vh;
   }
 
   .xl\:leading-none {

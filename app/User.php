@@ -45,6 +45,11 @@ public function getFullNameAttribute()
         return ucfirst($this->firstName).' '.ucfirst($this->lastName);
     }
 
+public function getInitialsAttribute()
+    {
+        return substr( $this->firstName , 0 , 1).''.substr( $this->lastName , 0 , 1);
+    }
+
     /**
      * A user may belong to multiple sites.
      *
@@ -62,10 +67,10 @@ public function getFullNameAttribute()
      */
     public function sections()
     {
-        return $this->belongsToMany(Section::class)->orderby('is_active','desc')->orderby('title');
+        return $this->belongsToMany(Section::class)->orderby('created_at', 'DESC');;
     }
 
-     /**
+    /**
      * A user may belong to multiple active sections.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -73,6 +78,16 @@ public function getFullNameAttribute()
     public function activeSections()
     {
         return $this->belongsToMany(Section::class)->where('is_active', 1 )->orderby('created_at', 'DESC');
+    }
+
+    /**
+     * A user may belong to multiple active sections.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function inactiveSections()
+    {
+        return $this->belongsToMany(Section::class)->where('is_active', 0 )->orderby('created_at', 'DESC');
     }
 
     /*

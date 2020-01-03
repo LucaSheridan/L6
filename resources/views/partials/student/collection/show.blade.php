@@ -61,7 +61,7 @@
                     <a href="{{action('CollectionController@slideshow', $collection )}}">
                         <div class="flex justify-end p-2 bg-gray-200 rounded-tl-lg ">
                         
-                            <div>@icon('icon-video', ['class' => 'float-right text-gray-600 hover:text-red-400 fill-current'])</div>
+                            <div>@icon('play-circle', ['class' => 'float-right text-gray-600 hover:text-red-400 fill-current'])</div>
 
                             <div class="flex pt-1 px-1 text-gray-600 hover:text-red-400">Play</div>
                         </div>
@@ -70,7 +70,7 @@
                     <a href="{{action('CollectionController@edit', $collection )}}">
                         <div class="flex justify-end p-2 bg-gray-200 rounded-tl-lg ">
                         
-                            <div>@icon('icon-edit', ['class' => 'float-right text-gray-600 hover:text-red-400 fill-current'])</div>
+                            <div>@icon('edit', ['class' => 'float-right text-gray-600 hover:text-red-400 fill-current'])</div>
 
                             <div class="flex pt-1 px-1 text-gray-600 hover:text-red-400">Edit</div>
                         </div>
@@ -79,7 +79,7 @@
                     <a href="{{action('CollectionController@delete', $collection )}}">
                         <div class="flex justify-end p-2 bg-gray-200 rounded-tr-lg">
                         
-                            <div>@icon('icon-x-circle', ['class' => 'float-right text-gray-600 hover:text-red-400 fill-current'])</div>
+                            <div>@icon('x-circle', ['class' => 'float-right text-gray-600 hover:text-red-400 fill-current'])</div>
 
                             <div class="flex pt-1 px-1 text-gray-600 hover:text-red-400">Delete</div>
                         </div>

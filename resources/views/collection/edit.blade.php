@@ -16,8 +16,7 @@
                 <form id="edit_collection" method="POST" action="{{ action('CollectionController@update', $collection) }}">
                 {{ csrf_field() }}
 
-                <input type="hidden" name="_method" value="PATCH">
-
+                    <input type="hidden" name="_method" value="PATCH">
 
                     <div class="p-3 border-l-2 border-b-0 border-r-2">
             
@@ -44,9 +43,9 @@
        
                     <div class="my-1 text-center">
 
-                          <a href="{{action('HomeController@index')}}" class="inline-block mb-1 md:mb-0 bg-gray-400 hover:bg-red-500 text-gray-700 hover:text-white px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">Cancel</a>
+                          <a href="{{action('HomeController@index')}}" class="inline-block mb-1 md:mb-0 bg-gray-400 hover:bg-gray-500 text-gray-700 hover:text-white px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">Cancel</a>
 
-                          <button type="submit" class="mb-1 md:mb-0 bg-gray-400 hover:bg-green-500 text-gray-700 hover:text-green-100 px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">Save</button>
+                          <button type="submit" class="mb-1 md:mb-0 bg-gray-400 hover:bg-green-500 text-gray-700 hover:text-green-100 px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">Update</button>
 
                     </div>
                     </div>

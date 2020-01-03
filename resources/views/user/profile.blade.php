@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-      
 
 {{-- Begin Content Container --}}     
 
@@ -18,19 +17,7 @@
         
         <div class="flex-grow p-2 text-left text-2xl rounded-br-lg text-gray-300 mb-2">
 
-        @if (is_null($user->profile_pic))
-
             <span class="float-right h-12 inline-block w-10 rounded-full bg-gray-700 p-2">LS</span>
-
-        @else
-
-        {{ $user->profile_pic }}
-
-            <img class="float-right hover:shadow-xl h-12 inline-block w-10 rounded-full bg-gray-700 p-2">LS</span>
-
-            <img class="w-16 hover:shadow-xl" src="https://s3.amazonaws.com/artifacts-0.3/{{$user->profile_pic}}">
-
-        @endif
 
         {{ $user->fullName}}</div>
 
@@ -52,18 +39,6 @@
             </div>
         </div>
 
-       @if (is_null($user->profile_pic))
-
-        No Profile Picture
-
-        @else
-
-        {{-- $user->profile_pic --}}
-
-        <img class="w-16 rounded-full hover:shadow-xl" src="https://s3.amazonaws.com/artifacts-0.3/{{$user->profile_pic}}">
-
-        @endif
-
         </br/></br/>
 
         Name: {{ $user->fullName}} </br/></br/>
@@ -72,33 +47,35 @@
 
         
 
-        <div class="text-2xl mb-2 ml-4">CLASSES</div/>
+        <div class="text-2xl mb-2 ml-4">
+        CLASSES: 
+        </div/>
 
         <div class="border-2 p-4 bg-gray-100 rounded-lg leading-snug">
 
-        <table>
+        <table class="leading-tight">
 
-        <tr class="border">
+       <tr class="border">
             <td class="p-2 ">Title</td>
             <td class="p-2 ">Site</td>
             <td class="p-2 ">Year</td>
             <td class="p-2 text-center">Status</td>
             <td class="p-2 text-center">Enrollment</td>
             <td class="p-2 text-center">Roster</td>
-            <td class="p-2 ">Code</td>
+            <td class="p-2 ">Enrollment Code</td>
         </tr>
 
-
-        @foreach ($user->activeSections as $section)
+        @foreach ($sections as $section)
+        
 
         
         <tr class="border">
 
     {{-- Title --}}
 
-            <td class="border p-2">
+            <td class="border p-1">
 
-                    <a href="{{action('SectionController@show', $section->id)}}">
+                    <a class="text-gray-600 hover:text-red-400"href="{{action('SectionController@show', $section->id)}}">
 
                         {{ $section->title}}
 
@@ -107,15 +84,15 @@
 
     {{-- Site --}} 
         
-            <td class="border p-2">
+            <td class="border p-1">
 
-        {{$section->site->nickname}}
+        {{$section->site->name}}
 
         </td>
 
     {{-- Site --}} 
         
-            <td class="border p-2">
+            <td class="border p-1">
 
         {{$section->year}}
 
@@ -124,53 +101,45 @@
     {{-- Status --}}
 
 
-            <td class="border text-center p-2">
+            <td class="border text-center p-1 px-4">
 
             @if ( $section->is_active === 1 )
 
-        @icon('icon-check-circle', ['class' => 'text-green-500 w-8 h-8 m-2 fill-current'])
-
+active
         @else 
 
-        @icon('icon-check-circle', ['class' => 'text-gray-500 w-8 h-8 m-2 fill-current'])
-
+inactive
         @endif
 
         </td>
 
 
-    {{-- Enrollment --}}
-
-            <td class="border text-center p-2">
-
-            @if ( $section->is_open === 1 )
-
-            @icon('icon-check-circle', ['class' => 'text-green-500 w-8 h-8 m-2 fill-current'])
-
-            @else 
-
-            @icon('icon-check-circle', ['class' => 'text-red-500 w-8 h-8 m-2 fill-current'])
-
-            @endif
-
-        </td>
-
    {{-- Roster --}} 
         
-            <td class="border text-center p-2">
+            <td class="border text-center px-1">
 
         {{$section->students->count()}}
 
         </td>
 
+     {{-- Enrollment --}}
 
-    {{-- Code --}}
+            <td class="border text-center p-1">
 
-            <td class="border p-2">
+            @if ( $section->is_open === 1 )
 
-            {{ $section->registrationCode }}
+open
+            @else 
+
+closed
+            @endif
 
         </td>
+
+
+    {{-- Enrollment Code --}}
+
+            <td class="border p-1">{{ $section->registrationCode }}</td>
 
     </tr>
 
@@ -178,29 +147,26 @@
 
     </table>
 
-    {{ $sections->links()}}
+    {{ $sections->links() }}
+
 
         </div>
 
 
-        <h4>Collections</h4>
+      <!--   <h4>Collections</h4>
 
         @foreach ($user->collections as $collection)
 
         {{ $collection->title}} | {{ $collection->artifacts->count()}} Artifacts</br/></br/>
 
-             @endforeach
+             @endforeach -->
 
 
         </div>
 
         <div>
 
-
-
-
-
-
+    
     <!-- Comments -->
     <!-- End Comments -->
 

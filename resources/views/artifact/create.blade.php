@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <div class="sm:flex sm:items-center text-center p-4">
 
     <div class="bg-gray-300 border-2 border-gray-500 w-full sm:flex-1 p-2 pt-4 mb-4 sm:mb-0 rounded-lg">
@@ -19,23 +18,34 @@
             <input type="hidden" name="assignment_id" value="{{$assignment->id}}">
             <input type="hidden" name="component_id" value="{{$component->id}}">
 
-            <label for="file" class="block mx-auto text-gray-600 my-2 text-center  p-2 rounded">
-                                        @icon('icon-upload', ['class' => 'mx-auto bg-gray-300 w-24 h-full border-8 bg-white hover:bg-gray-700 hover-text-white border-gray-500 p-4 rounded-lg fill-current'])
-            </label>
+            <label for="file" class="block mx-auto text-gray-600 my-2 text-center p-2 rounded">
+               
+     <!--        <span class="mx-auto bg-gray-300 hover:bg-gray-700 hover-text-white border-gray-500 p-0 rounded-full">
+ 
+ @icon('upload')
+
+</span> -->
+
+                        <div class="relative flex items-center justify-center text-gray-600">
+                                        
+                        <div class="p-2 bg-gray-100 hover:bg-gray-500 hover:text-gray-100 rounded-full">
+                        @icon('upload')
+                        </div>
+
+                        </div>
+
+               
+                </label>
 
             @if ($errors->has('file'))
-        
-            ERROR 
-
-            <span class="help-block">
-            <strong>!!{{ $errors->first('file') }}</strong>
-            </span>
-        
-        @endif
+            <div class="help-block mb-4 text-red-500">
+            {{ $errors->first('file') }}
+            </div>
+            @endif
             
             <input class="btn-gray" type="submit" value="upload">
             
-            </form>
+    </form>
 
         </div>
 
@@ -59,29 +69,23 @@
             <input type="hidden" name="assignment_id" value="{{$assignment->id}}">
             <input type="hidden" name="component_id" value="{{$component->id}}">
 
+            @if ($errors->has('url'))
+            <div class="help-block mb-4 text-red-500">
+            {{ $errors->first('url') }}
+            </div>
+            @endif
+
             <input class="inline-block btn-gray" type="submit" value="submit">
 
             
             </form>
-
-
-        @if ($errors->has('url'))
-        
-            ERROR 
-
-            <span class="help-block">
-            <strong>!!{{ $errors->first('url') }}</strong>
-            </span>
-        
-        @endif
-
 
     </div>
 
 
 </div>
 
-<!--     <file-preview></file-preview>
+<!-- <file-preview></file-preview>
  -->
  
 </div>

@@ -1,39 +1,91 @@
-@extends('layouts.app')
-
 @section('content')
   
 <div class="flex items-center p-4 bg-gray-500">
     
         {{-- Begin Container --}}     
 
-        <div class="w-full m-0 p-0">
+        <div class="w-full">
 
-        {{-- Begin Class Section --}} 
+        {{-- Begin  Section --}} 
 
-             {{-- Class Title --}}
+             {{--  Section Title: Classes --}}
 
-            <div class="flex">
+            <div class="flex items-center ">
            
-                <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-600">
+            <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-200">
                                 
                 {{ Auth::User()->sections()->count() > 1 ? 'CLASSES' : 'CLASS'}}
 
             </div>
-            
-        {{-- Class Option --}}
 
-            <div class="flex ">
+           
+        {{--  Section Option: Classes --}}
+
+            <div class="flex relative">
+
+            <dropdown class="bg-gray-500">
+        
+            <template v-slot:trigger>
                     
-                    <a class=""href="{{action('SectionController@create')}}">
-                        <div class="flex justify-end p-1 bg-gray-400 hover:bg-gray-300 rounded-t-lg">
-                        
-                            <div>@icon('icon-plus-circle', ['class' => 'text-gray-500 hover:text-red-400 fill-current'])</div>
+                <div class="p-1">
+                @icon('menu', ['class' => ' text-gray-200'])
+                </div>
 
-                             <div class="flex pt-1 px-1 text-gray-600">Create</div>
+            </template>
+
+                <div class="z-10 absolute top-0 right-0 shadow-sm mt-4 mr-4 bg-gray-700 text-gray-400 rounded py-2 list-none text-left leading-normal whitespace-no-wrap">
+
+                    <li class="hover:text-gray-300 px-4">
+                    <a class="" href="{{action('SectionController@create')}}"> 
+                    <div class="flex items-center">
+                    <div class="pr-2 text-gray-500">@icon('plus-circle', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                    <div class="">New</div>
+                    </div>
+                    </a>
+                    </li>
+
+                    <!-- <li class="hover:text-gray-300 px-4">
+                    <a class="" href="{{action('SectionController@create')}}"> 
+                    <div class="flex items-center">
+                    <div class="pr-2 text-gray-500">@icon('trash', ['class' => 'w-5 h-5 hover:text-gray-600'])</div>
+                    <div class="">Delete</div>
+                    </div>
+                    </a>
+                    </li>
+
+                    <li class="hover:text-gray-300 px-4">
+                    <a class="" href="{{action('SectionController@create')}}"> 
+                    <div class="flex items-center">
+                    <div class="pr-2 text-gray-500">@icon('edit', ['class' => 'w-5 h-5 hover:text-gray-600'])</div>
+                    <div class="">Edit</div>
+                    </div>
+                    </a>
+                    </li>
+
+                    <li class="hover:text-gray-300 px-4">
+                    <a class="" href="{{action('SectionController@create')}}"> 
+                    <div class="flex items-center">
+                    <div class="pr-2 text-gray-500">@icon('briefcase', ['class' => 'w-5 h-5 hover:text-gray-600'])</div>
+                    <div class="">Collect</div>
+                    </div>
+                    </a>
+                    </li> -->
+                    
+                </div>
+
+            </dropdown>
+                    
+                   <!--  <a class=""href="{{action('SectionController@create')}}">
+                        
+                        <div class="flex justify-end items-center p-1 bg-gray-400 hover:bg-gray-300 rounded-t-lg">
+                        
+                            <div>@icon('plus-circle', ['class' => 'text-gray-500 hover:text-red-400 w-5 h-5'])</div>
+
+                             <div class="flex px-1 text-gray-600">Create</div>
  
                         </div>
 
-                     </a>
+                     </a> -->
             </div>
     
       {{-- End Class Option --}}
@@ -50,7 +102,7 @@
 
                              <div class="flex">
                                    
-                                    <a class="p-2 no-underline text-sm aliased my-1 ml-1 text-gray-500 rounded-lg bg-gray-200 hover:bg-gray-300 hover:text-gray-700
+                                    <a class="p-2 no-underline text-lg aliased my-1 ml-1 text-gray-500 rounded-lg bg-gray-200 hover:bg-gray-300 hover:text-gray-700
                                 
                                     {{active_check('teacher/section/'.$section->id)}}"
                                     
@@ -109,7 +161,7 @@
            
         {{-- Artifacts Title --}}
 
-            <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-600">ARTIFACTS</div>
+            <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-200">ARTIFACTS</div>
             
             <div class="flex">
                     
@@ -117,13 +169,14 @@
 
                     <a class="" href="{{action('ArtifactController@create')}}">
                         
-                        <div class="flex justify-end p-1 bg-gray-400 hover:bg-gray-300 rounded-t-lg">
+                        <div class="flex justify-end items-center p-1 bg-gray-400 hover:bg-gray-300 rounded-t-lg">
                         
-                            <div>@icon('icon-plus-circle', ['class' => 'float-right text-gray-500 hover:text-red-400 fill-current'])</div>
+                            <div>@icon('plus-circle', ['class' => 'text-gray-500 hover:text-red-400 w-5 h-5'])</div>
 
-                            <div class="flex pt-1 px-1 text-gray-600">Create</div>
-
+                             <div class="flex px-1 text-gray-600">Create</div>
+ 
                         </div>
+
                      </a>
 
                 {{-- Option Tab End--}}
@@ -158,7 +211,7 @@
 
         @else
 
-        <div class="p-2 text-gray-600">No artifacts. Why not upload one one?</div>
+        <div class="p-2 text-gray-200">No artifacts. Why not upload one one?</div>
 
         @endif
 
@@ -170,20 +223,21 @@
 
         <div class="flex border-0 border-yellow-600">
            
-            <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-600">COLLECTIONS</div>
+            <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-200">COLLECTIONS</div>
             
             <div class="flex">
                     
                     {{-- Option 1: Solo Icon Tab Link --}}
 
                     <a class="" href="{{action('CollectionController@create')}}">
-                        <div class="flex justify-end p-1 bg-gray-400 hover:bg-gray-300 rounded-t-lg">
+                        <div class="flex justify-end items-center p-1 bg-gray-400 hover:bg-gray-300 rounded-t-lg">
                         
-                            <div>@icon('icon-plus-circle', ['class' => 'text-gray-500 hover:text-red-400 fill-current'])</div>
+                            <div>@icon('plus-circle', ['class' => 'text-gray-500 hover:text-red-400 w-5 h-5'])</div>
 
-                             <div class="flex pt-1 px-1 text-gray-600">Create</div>
+                             <div class="flex px-1 text-gray-600">Create</div>
  
                         </div>
+
                      </a>
 
                      {{-- Option 1: End--}}
@@ -211,7 +265,7 @@
 
                     @if ( $loop->first )
                             <div class="relative w-full">
-                            <a href="{{action('ExploreController@test', ['section' => $section , 'collection' => $collection ])}}">
+                            <a href="{{action('CollectionController@show', $collection )}}">
                                 <img class="w-full rounded-t-lg opacity-75 hover:opacity-100 " src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_thumb}}">
 
                             </a>

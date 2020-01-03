@@ -5,8 +5,6 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -29,7 +27,7 @@ Vue.component('file-preview', require('./components/FilePreview.vue').default);
 
 // Custom Components
 
-Vue.component('drop-down', require('./components/DropDown.vue').default);
+Vue.component('dropdown', require('./components/Dropdown.vue').default);
 Vue.component('drop-menu', require('./components/DropMenu.vue').default);
 
 /**

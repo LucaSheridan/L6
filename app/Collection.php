@@ -21,7 +21,7 @@ class Collection extends Model
 
     public function artifacts()
     {
-        return $this->belongsToMany(Artifact::class)->withPivot('position')->orderBy('position', 'asc');
+        return $this->belongsToMany(Artifact::class)->withPivot('position','title','medium','year','dimensions_height','dimensions_width','dimensions_depth','dimensions_units')->orderBy('position', 'asc');
     }
 
 }

@@ -40,7 +40,7 @@ class Section extends Model
      */
     public function students()
     {
-        return $this->belongsToMany(User::class)->role('student');
+        return $this->belongsToMany(User::class)->role('student')->orderBy('lastName', 'asc');
     }
 
         /**

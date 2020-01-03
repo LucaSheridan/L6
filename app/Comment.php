@@ -26,7 +26,7 @@ class Comment extends Model
         return $this->belongsTo(Artifact::class);
     }
 
-    public function owner()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

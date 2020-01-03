@@ -71,19 +71,15 @@ class Artifact extends Model
         // ,'description','dimensions_height','dimensions_width','dimensions_depth','dimensions_units'
     }
 
-    
-
     /**
-     * An artifact may have many comments posted to it. 
+     * An artifact can have many comments.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\morphMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function comments()
     {
-        return $this->morphMany(Comment::class, 'commentable')
-        		    ->whereNull('parent_id');
+        return $this->hasMany(Comment::class);
     }
-
     /**
      * Add a comment to the post.
      *

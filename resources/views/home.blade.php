@@ -1,8 +1,8 @@
-<!-- @extends('layouts.app')
+@extends('layouts.app')
 
-@section('content') -->
-    
-        @if ( Auth::User()->hasRole('master'))
+@section('content')
+
+      <!--   @if ( Auth::User()->hasRole('master'))
 
                     @include('partials.master.home')
                 
@@ -16,6 +16,6 @@
         @else
                     @include('partials.student.home')
                 
-        @endif 
+        @endif  -->
             
-<!-- @endsection -->
+@endsection

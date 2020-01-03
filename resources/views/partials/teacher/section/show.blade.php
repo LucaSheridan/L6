@@ -25,7 +25,7 @@
                     <a class=""href="{{action('SectionController@edit', $activeSection)}}">
                         <div class="flex justify-end p-1 bg-gray-400 hover:bg-gray-300 rounded-t-lg">
                         
-                            <div>@icon('icon-plus-circle', ['class' => 'text-gray-500 hover:text-red-400 fill-current'])</div>
+                            <div>@icon('edit', ['class' => 'text-gray-500 hover:text-red-400 w-6 h-6'])</div>
 
                              <div class="flex pt-1 px-1 text-gray-600">Edit</div>
  
@@ -44,7 +44,7 @@
 
                         <div class="flex justify-end p-1 bg-gray-400 hover:bg-gray-300 rounded-t-lg">
                         
-                            <div>@icon('icon-x-circle', ['class' => 'text-gray-500 hover:text-red-400 fill-current'])</div>
+                            <div>@icon('x-circle', ['class' => 'text-gray-500 hover:text-red-400 w-6 h-6'])</div>
 
                              <div class="flex pt-1 px-1 text-gray-600">
                               <button>Delete</button></div>
@@ -88,7 +88,7 @@
                         
                         <div class="flex justify-end p-1 bg-gray-400 hover:bg-gray-300 border-b border-gray-400 rounded-t-lg text-gray-600">
                         
-                            <div>@icon('icon-search', ['class' => 'w-4 h-4 float-right ml-1 fill-current'])</div>
+                            <div>@icon('search', ['class' => 'w-4 h-4 float-right ml-1 w-6 h-6'])</div>
                             <div class="flex pt-1 px-1">Search</div>
  
                         </div>
@@ -155,7 +155,7 @@
                         
                         <div class="flex justify-end p-1 bg-gray-300 bg-gray-400 hover:bg-gray-300 border-b rounded-t-lg text-gray-600">
                         
-                            <div>@icon('icon-plus-circle', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 fill-current'])</div>
+                            <div>@icon('plus-circle', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 w-6 h-6'])</div>
                             <div class="flex pt-1 px-1">Create</div>
  
                         </div>
@@ -287,7 +287,7 @@
                                     
                                         <div class="pl-2">
 
-                                        @icon('icon-cog', ['class' => 'w-5 h-5 mr-2 text-gray-500 hover:text-red-500 fill-current overflow-visible'])
+                                        @icon('cog', ['class' => 'w-5 h-5 mr-2 text-gray-500 hover:text-red-500 w-6 h-6 overflow-visible'])
                                         
                                         </div>
 

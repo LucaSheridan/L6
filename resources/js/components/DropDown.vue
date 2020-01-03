@@ -1,38 +1,63 @@
 <template>
 
-<div class="w-full">
-    
-    <button v-on:click="isHidden = !isHidden">
-      <slot name="icon"></slot>
-    </button>
-  
-    <div class="relative z-10">
-  
-    <div class="bg-gray-100 border-2 leading-snug w-full shadow-lg absolute mt-2 p-2 z-20" v-if="!isHidden">
+  <div class="dropdown">
+        
+        <div class="dropdown-trigger" @click.prevent="isOpen = ! isOpen">
+          <slot name="trigger"></slot>
+        </div>
 
-         <slot name="options"></slot>
-
-    </div>
-  
-  </div>
-
-</div>
+        <!-- <transition name="pop-out-quick"> -->
+          <ul v-show="isOpen">
+            <slot></slot>
+        </ul>
+<!--       </transition>
+ -->  </div>
 
 </template>
 
+
+
 <script>
 
-export default {
-/*
-  Defines the data used by the component
-*/
+  export default {
 
-el: '#dropdown',
-data(){
-  return {
-    isHidden: true
-    }
-}
+    data() {
+      return {
+        isOpen: false
+      };
+    },
+
+  // //   watch: {
+  // //     isOpen(isOpen) {
+  // //       if (isOpen) {
+  // //         document.addEventListener('click', this.closeIfClickedOutside);
+  // //       }
+
+  // //     }
+  // // },
+
+  // methods: {
+  //     closeIfClickedOutside() {
+  //       alert('hi there');
+  //     }
+  // }
 }
 
 </script>
+
+<style>
+
+  .pop-out-quick-enter-active,
+  .pop-out-quick-leave-active {
+    transition: all 0.4s;
+  }
+
+
+  .pop-out-quick-enter,
+  .pop-out-quick-leave {
+      opacity: 0;
+      transform: translateY(-7px);
+  }
+
+
+</style>

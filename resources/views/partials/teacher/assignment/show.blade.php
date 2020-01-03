@@ -21,7 +21,7 @@
                 <div class="flex ">
                     <a class=""href="{{action('SectionController@edit', $activeSection)}}">
                        <div class="flex justify-end p-1 bg-gray-400 hover:bg-gray-300 rounded-t-lg text-gray-600">
-                            <div>@icon('icon-edit', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 fill-current'])</div>
+                            <div>@icon('edit', ['class' => 'w-5 h-5 text-gray-500 hover:text-red-400 '])</div>
                             <div class="flex pt-1 px-1">Edit</div>
                         </div>
                     </a>
@@ -145,10 +145,10 @@
                         
                         <div class="flex justify-end p-1 bg-gray-300 bg-gray-400 hover:bg-gray-300 border-b rounded-t-lg text-gray-600">
                         
-                            <div>@icon('icon-edit', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 fill-current'])</div>
+                            <div>@icon('edit', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 '])</div>
                             <div class="flex pt-1 px-1"></div>
                             
-                             <div>@icon('icon-x-circle', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 fill-current'])</div>
+                             <div>@icon('x-circle', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 '])</div>
                             <div class="flex pt-1 px-1"></div>
  
                         </div>
@@ -224,7 +224,7 @@
                         <div class="flex justify-end p-1 bg-gray-300 bg-gray-400 hover:bg-gray-300 border-b rounded-t-lg text-gray-600">
                         
                             <div>
-                            @icon('icon-plus-circle', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 fill-current'])</div>
+                            @icon('plus-circle', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 '])</div>
                             
                             <div class="flex pt-1 px-1">Add</div>
                            

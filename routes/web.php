@@ -27,6 +27,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/modal', function () {
+    return view('modaltest');
+});
+
+Route::get('/dropdown', function () {
+    return view('dropdown');
+});
+
 // Index
 
 Route::get('/site', 'SiteController@index');
@@ -67,28 +75,35 @@ Auth::routes();
 	Route::get('/artifact/create/{section?}/{assignment?}/{component?}', 'ArtifactController@create');
 	Route::post('/artifact/create', 'ArtifactController@store');
 	Route::post('/artifact/createFromURL', 'ArtifactController@storeFromURL');
-
 	Route::get('/artifact/{artifact}', 'ArtifactController@show');
 	Route::delete('/artifact/{artifact}', 'ArtifactController@destroy');
-
+	Route::get('/artifact/{artifact}/rotate/{degrees}', 'ArtifactController@rotate');
 	Route::get('/artifact/{artifact}/addToCollection', 'ArtifactController@addToCollection');
 	//Route::get('/artifact/{artifact}/removeFromCollection', 'ArtifactController@removeFromCollection');
 
 		//Route::post('/artifact/{artifact}/collection/{collection}', 'ArtifactController@addToCollection');
 		// Route::post('/artifact/{artifact}/collection/{collection}/remove', 'ArtifactController@removeFromCollection');
 
-	Route::get('/artifact/{artifact}/comment', 'ArtifactController@addComment');
+	Route::get('/artifact/{artifact}/comment', 'CommentController@create');
+	Route::post('/artifact/{artifact}/comment', 'CommentController@store');
+	
+	Route::get('/artifact/{artifact}/comment/{comment}/edit', 'CommentController@edit');
+	Route::post('/artifact/{artifact}/comment/{comment}/edit', 'CommentController@update');
+	Route::delete('/artifact/{artifact}/comment/{comment}', 'CommentController@destroy');
+
 
 	// Collections 
 
 	Route::get('/collection/create/', 'CollectionController@create');
 	Route::post('/collection/create', 'CollectionController@store');
+	Route::get('/collection/{collection}', 'CollectionController@show');
 	Route::get('/collection/{collection}/edit', 'CollectionController@edit');
 	Route::patch('/collection/{collection}/update', 'CollectionController@update');
 	Route::get('/collection/{collection}/delete', 'CollectionController@delete');
 	Route::delete('/collection/{collection}', 'CollectionController@destroy');
 	Route::post('/collection/addArtifact/{artifact}', 'CollectionController@addArtifact');
 	Route::delete('/collection/deleteArtifact/{artifact}', 'CollectionController@removeArtifact');
+	Route::get('collection/{collection/slideshow}', 'CollectionController@slideshow');
 
 
 
@@ -109,7 +124,16 @@ Route::group(['middleware' => ['role:teacher']], function () {
 
 	Route::get('/teacher/section/{section}/student/{user}', ['middleware' => 'auth', 'uses' => 'SectionController@studentProgress']);
 
+	// Single Student - All Progress
+
 	Route::get('/teacher/section/{section}/sectionProgress', ['middleware' => 'auth', 'uses' => 'SectionController@sectionProgress']);
+
+	// Single Student  - Assignment Progress
+
+		Route::get('/section/{section}/assignment/{assignment}/user/{user}', ['middleware' => 'auth', 'uses' => 'SectionController@StudentAssignmentProgressView']);
+
+		// // detail view
+		// Route::get('/section/{section}/{assignment}/{user}/detail', ['middleware' => 'auth', 'uses' => 'SectionController@StudentAssignmentDetailView']);
 
 
 	// Assignments
@@ -125,16 +149,16 @@ Route::group(['middleware' => ['role:teacher']], function () {
 	
     // Components
 
-	Route::get('/teacher/section/{section}/assignment/{assignment}/component/create', 'ComponentController@create');
-	Route::post('/teacher/section/{section}/assignment/{assignment}/component', 'ComponentController@store');
-	Route::get('/teacher/section/{section}/assignment/{assignment}/component/{component}/edit', 'ComponentController@edit');
+		Route::get('/teacher/section/{section}/assignment/{assignment}/component/create', 'ComponentController@create');
+		Route::post('/teacher/section/{section}/assignment/{assignment}/component', 'ComponentController@store');
+		Route::get('/teacher/section/{section}/assignment/{assignment}/component/{component}/edit', 'ComponentController@edit');
 
-	//Route::get('/teacher/section/{section}/assignment/{assignment}/component/{component}', 'ComponentController@show');
-	Route::get('/teacher/section/{section}/assignment/{assignment}/component/{component}', 'ComponentController@gallery');
+		//Route::get('/teacher/section/{section}/assignment/{assignment}/component/{component}', 'ComponentController@show');
+		Route::get('/teacher/section/{section}/assignment/{assignment}/component/{component}', 'ComponentController@gallery');
 
-	Route::patch('/teacher/section/{section}/assignment/{assignment}/component/{component}/update', 'ComponentController@update');
-	Route::get('/teacher/section/{section}/assignment/{assignment}/component/{component}/delete', 'ComponentController@delete');
-	Route::delete('/teacher/section/{section}/assignment/{assignment}/component/{component}/delete', 'ComponentController@destroy');
+		Route::patch('/teacher/section/{section}/assignment/{assignment}/component/{component}/update', 'ComponentController@update');
+		Route::get('/teacher/section/{section}/assignment/{assignment}/component/{component}/delete', 'ComponentController@delete');
+		Route::delete('/teacher/section/{section}/assignment/{assignment}/component/{component}/delete', 'ComponentController@destroy');
 
 	// Artifacts
 	
@@ -150,12 +174,6 @@ Route::group(['middleware' => ['role:teacher']], function () {
 
 	Route::get('/student/section/{section}/assignment/{assignment}', 'AssignmentController@showStudent');
 	
-	// Collections
-
-	Route::get('student/section/{section}/collection/{collection}', 'CollectionController@showStudent');
-
-	Route::get('collection/{collection}', 'CollectionController@slideshow');
-
 	
 
 	

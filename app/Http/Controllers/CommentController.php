@@ -3,22 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Artifact;
+use App\Comment;
 
 class CommentController extends Controller
 {
-    //
-}
-
-
-/**
+    
+    /**
      * Show the form for creating a new assignment component.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $request, Artifact $artifact)
+    {
+
+        return view('comment.create')->with(['artifact' => $artifact]);
+
+    }
+
+   /**
+     *  Persist  a new component to the database.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         
-    	$this->validate($request, [
+        $this->validate($request, [
         
         'body' => 'required',
         'artifact_id' => 'required',
@@ -28,20 +39,71 @@ class CommentController extends Controller
         
         //create a new comment instance
         $comment = New Comment;
-		//set and title information
-        $comment->title = $request->input('title');
-        //set section id 
         $comment->body = $request->input('body');
-        //set artifact id 
         $comment->artifact_id = $request->input('artifact_id');
-        //set user id 
-		$comment->artifact_id = $request->input('user_id');
-
+		$comment->user_id = $request->input('user_id');
 		$comment->save();
 
-		flash('Your assignment was created successfully!', 'success');
+		flash('Your comment was created successfully!', 'success');
 
-        
-        
-        return view('partials.teacher.component.create')->with(compact('section','assignment'));
+        return redirect()->action('ArtifactController@show', $comment->artifact_id);
+
     }
+
+    /**
+     * Show the form for creating a new assignment component.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request, Artifact $artifact, Comment $comment)
+    {
+
+        //dd($comment);
+
+        return view('comment.edit')->with(['artifact' => $artifact, 'comment' => $comment]);
+
+    }
+
+    /**
+     *  Persist  a new component to the database.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Artifact $artifact, Comment $comment)
+    {
+        
+        $this->validate($request, [
+        
+        'body' => 'required',
+        'artifact_id' => 'required',
+        'user_id' => 'required',
+        
+        ]);
+        
+        $comment->body = $request->input('body');
+        $comment->artifact_id = $request->input('artifact_id');
+        $comment->user_id = $request->input('user_id');
+        $comment->save();
+
+        flash('Your comment was edited successfully!', 'success');
+
+        return redirect()->action('ArtifactController@show', $comment->artifact_id);
+
+    }
+
+    /**
+     *  Persist  a new component to the database.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, Artifact $artifact, Comment $comment)
+    {
+        
+        $comment->delete();
+
+        flash('Your comment was deleted successfully!', 'success');
+
+        return redirect()->action('ArtifactController@show', $comment->artifact_id);
+
+    }
+}

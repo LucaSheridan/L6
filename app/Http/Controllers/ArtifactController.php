@@ -57,7 +57,9 @@ class ArtifactController extends Controller
         //dd($user);
 
         //create an array of the IDs of all the users collections.
-        $couldBeCollectedIn = $user->collections->pluck('id');
+        $couldBeCollectedIn = Auth::User()->collections->pluck('id');
+
+        //dd($couldBeCollectedIn);
 
         // remove all current collections from all Possible Collections.
         $diff = $couldBeCollectedIn->diff($isCollectedIn);
@@ -74,18 +76,7 @@ class ArtifactController extends Controller
         return view('artifact.addToCollection')->with(['artifact' => $artifact, 'addable' => $addable, 'dropable' => $dropable ]);
     }
 
-    
-
-
-
-
-
-
-
-
-
-
-     /**
+ /**
      * remove artifact to the Collection
      *
      * @param  \App\Artifact  $artifact
@@ -235,6 +226,10 @@ class ArtifactController extends Controller
 
             $artifact->artifact_path = $imagePath;
             $artifact->artifact_thumb = $thumbPath;
+
+            $artifact->is_published = 0;
+            $artifact->is_public = 1;
+
             $artifact->save();
 
             //dd($artifact);
@@ -280,7 +275,7 @@ class ArtifactController extends Controller
         // create valiadator
         $this->validate($request, [
         
-            'url' => 'required',
+            'url' => 'required|url',
             'user_id' => 'required',
             //'assignment_id' => 'required',
             //'component_id' => 'required',
@@ -379,6 +374,10 @@ class ArtifactController extends Controller
 
             $artifact->artifact_path = $imagePath;
             $artifact->artifact_thumb = $thumbPath;
+
+            $artifact->is_published = 0;
+            $artifact->is_public = 1;
+
             $artifact->save();
 
             //dd($artifact);
@@ -411,31 +410,15 @@ class ArtifactController extends Controller
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
+  /**
      * Display the specified resource.
      *
      * @param  \App\Artifact  $artifact
      * @return \Illuminate\Http\Response
      */
-    public function show(Artifact $artifact)
+    public function show(Request $request, Artifact $artifact)
     {
+ 
         return view('artifact.show')->with('artifact', $artifact);
     }
 
@@ -590,7 +573,7 @@ class ArtifactController extends Controller
             File::delete($old_thumb_path);
             File::delete($old_artifact_path);
 
-            flash('Image rotated', 'success');
+            flash('Image rotated ', 'success');
 
             return redirect()->action('ArtifactController@show', $artifact->id);
     }
