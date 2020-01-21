@@ -9,7 +9,11 @@
                                    
                                     <a class="p-2 no-underline text-sm aliased my-1 ml-1 text-gray-500 rounded-lg bg-gray-200 hover:bg-gray-300 hover:text-gray-700 text-lg
                                 
-                                    {{active_check('teacher/section/'.$section->id.'*')}}"
+                                    {{active_check(['teacher/section/'.$section->id.'/student/*',
+                                                    'teacher/section/'.$section->id.'/assignment/*',
+                                                    'teacher/section/'.$section->id
+
+                                    ])}}"
                                     
                                     href="{{action('SectionController@show', $section)}}">
 

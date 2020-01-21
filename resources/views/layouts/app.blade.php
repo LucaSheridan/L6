@@ -12,37 +12,38 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
- <!--    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <link rel="stylesheet" href="/path/to/flickity.css" media="screen">
     <link rel="stylesheet" href="https://unpkg.com/flickity-fullscreen@1/fullscreen.css">
- -->
+ 
 
 </head>
 
 <body class="antialiased leading-none">
     
-    <!-- <div id="app" class="container max-w-5xl m-auto "> -->
-    <div id="app" class="" 
-    style="height:100vh; margin-left:5vh; margin-right:5vh;">
+    <div id="app" class="container max-w-3xl mx-auto ">
+    <!-- <div id="app" class="" 
+    style="height:100vh; margin-left:5vh; margin-right:5vh;"
+    > -->
     <!-- style="height:100vh; margin-left:5vh; margin-right:5vh;"> -->
 
               
-        <nav class="bg-gray-200 shadow mb-0 py-1 border-b-2 border-red-400">
+        <nav class="bg-gray-200 shadow py-1 border-b-2 text-center border-red-400">
   <!--  <nav class="bg-blue-900 shadow mb-8 py-6"> -->            
  
         <div class="mx-auto px-4">
                 
         <div class="flex items-center justify-center pt-0">
 
-        <div class="flex-grow mr-6">
+        <div class="flex-grow">
         
-        <a href="{{ url('/home') }}" class="tracking-wide font-thin logo text-4xl md:text-5xl text-gray-600 hover:text-gray-500 no-underline">
+        <a href="{{ url('/home') }}" class="tracking-wide font-thin logo text-4xl md:text-5xl text-gray-600 hover:text-gray-500 no-underline" tabIndex="-1">
         
         {{-- AlTERNATE NAMES --}}
 
-        <!-- <span class="font-semibold tracking-tight">ART</span>IFACTS</a>-->
+        <span class="font-semibold tracking-tight text-purple-800">ART</span><span class="text-purple-400">IFACTS</span></a>
 
-<span class="font-semibold tracking-tight">BSGE</span>ART</a>
- 
+<!-- <span class="font-semibold tracking-tight">BSGE</span>ART</a>
+ --> 
  <!-- <span class="font-semibold tracking-tight"></span>arT.io</a> -->
         </div>
         
@@ -76,33 +77,6 @@
                     </div>
 
                 </dropdown>
-
-
-                <!--     <drop-down class="text-left bg-gray-200 pt-2 pb-1">
-
-                    <template v-slot:icon>
-                    <div class="flex pl-10">
-                    
-                    <span class="hover:bg-red-500 float-right h-12 inline-block w-10 rounded-full bg-gray-600 py-3 text-gray-100">{{ substr( Auth::User()->firstName , 0 , 1)}}{{ substr( Auth::User()->lastName , 0 , 1)}}</span> -->
-
-<!--                      @icon('cheveron-down', ['class' => 'w-5 h-5 fill-current']) 
- --><!-- 
-                   </div>
-
-                    </template>                       
-
-                <template v-slot:options>
-                
-                <ul classs="">
-                <li class="hover:text-red-500"><a href="{{action('UserController@show', Auth::User())}}">Profile</a></li>
-                <li class="hover:text-red-500"><a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">Logout</a></li>
-                </ul>
-
-                </template>
-
-                </drop-down> -->
                                 </div>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
@@ -121,14 +95,21 @@
         @include('flash::message')
 
         @yield('content')
+
+    </div>
     
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}"></script>
-<!--     <script src="https://use.fontawesome.com/85e6087def.js"></script>
+<script src="{{ mix('js/app.js') }}"></script>
+
+
+
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="https://unpkg.com/flickity-fullscreen@1/fullscreen.js"></script>
- -->
+
+                        <script type="text/javascript" src="fadeinfadeout.js"></script>
+
+
 
 </body>
 </html>

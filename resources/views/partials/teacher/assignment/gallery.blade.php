@@ -16,7 +16,7 @@
 
         {{-- Class Title --}}
         
-        <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-300 mb-2">CLASS</div>
+        <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-300 mb-2">CLASS!!!</div>
                 
                 <!-- {{-- Class Menu --}}
                
@@ -303,7 +303,9 @@
 
                             <div class="w-1/3 sm:w-1/3 md:w-1/4 lg:w-1/5 border-4 border-white">
 
-                              <a href="{{ action('SectionController@studentProgress', [ 'user' => $student->id , 'section' => $activeSection->id , 'assignment' => $assignment->id ] )}}">
+                             <!--  <a href="{{ action('SectionController@studentProgress', [ 'user' => $student->id , 'section' => $activeSection->id , 'assignment' => $assignment->id ] )}}">-->
+                                
+                            <a href="{{ action('SectionController@StudentAssignmentView', [ 'user' => $student->id , 'section' => $activeSection->id , 'assignment' => $activeAssignment->id ] )}}">
 
 
                             <div class="flex items-stretch p-2 bg-gray-300 text-gray-700 rounded-t-lg text-xs ">{{ $student->fullName}}</div></a>
@@ -315,7 +317,7 @@
 
                                     <a href="{{ action('ArtifactController@show', $artifact->id)}}">
                                     
-                                    <img class="border-4 border-red-300 w-full" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_thumb}}"></a>
+                                    <img class="border-4 border-red-300 w-full" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}"></a>
 
                                 @endforeach
 

@@ -17,7 +17,7 @@ class CreateArtifactCollectionTable extends Migration
         Schema::create('artifact_collection', function (Blueprint $table) {
             $table->bigInteger('collection_id')->unsigned();
             $table->bigInteger('artifact_id')->unsigned();
-            $table->bigIncrements('position')->unsigned();
+            $table->bigInteger('position')->unsigned();
             $table->string('title')->nullable();
             $table->string('medium')->nullable();
             $table->string('year')->nullable();

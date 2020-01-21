@@ -12,62 +12,70 @@
 
     {{-- Begin Class Header --}} 
             
-    <div class="flex border-0">
+    
 
-        {{-- Class Title --}}
-        
-        <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-300 mb-2">CLASS</div>
 
-         {{-- Class Option --}}
 
-            <div class="flex ">
-                    
-                    <a class=""href="{{action('SectionController@edit', $activeSection)}}">
-                        <div class="flex justify-end p-1 bg-gray-400 hover:bg-gray-300 rounded-t-lg">
-                        
-                            <div>@icon('edit', ['class' => 'text-gray-500 hover:text-red-400 w-6 h-6'])</div>
 
-                             <div class="flex pt-1 px-1 text-gray-600">Edit</div>
- 
-                        </div>
+    {{--  Classes Section: Title --}}
 
-                     </a>
+        <div class="flex items-center mb-1">
+           
+            <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-200">
+            CLASS
             </div>
 
-            <div class="flex ">
-                    
-                    <form action="{{action('SectionController@destroy', $activeSection)}}" method="POST">
+{{--  Classes Section: Menu --}}
 
-                    {{ csrf_field() }}
+            <div class="flex relative text-left">
+                <dropdown>
+    
+                    <template v-slot:trigger>
+                    @icon('menu', ['class' => ' w-5 h-5 text-gray-200'])
+                    </template>
 
-                    <input type="hidden" name="_method" value="DELETE">
+                    <div class="z-10 absolute top-0 right-0 shadow-2xl bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap">
 
-                        <div class="flex justify-end p-1 bg-gray-400 hover:bg-gray-300 rounded-t-lg">
-                        
-                            <div>@icon('x-circle', ['class' => 'text-gray-500 hover:text-red-400 w-6 h-6'])</div>
-
-                             <div class="flex pt-1 px-1 text-gray-600">
-                              <button>Delete</button></div>
-
-
- 
+                        <li class="hover:text-gray-300 px-3">
+                        <a class=""href="{{action('SectionController@edit', $activeSection)}}">
+                        <div class="flex items-center">
+                        <div class="pr-2 text-gray-500">
+                        @icon('edit', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                         <div>Edit Class</div>
                         </div>
+                        </a>
+                        </li>
 
-                     </form>
+                        <li class="hover:text-gray-300 px-3">
+                        
+                        <form action="{{action('SectionController@destroy', $activeSection)}}" method="POST">
+
+                        {{ csrf_field() }}
+                        <input type="hidden" name="_method" value="DELETE">
+                        <div class="flex items-center">
+                        <div class="pr-2 text-gray-500">
+                        <button>@icon('x-circle', ['class' => 'w-5 h-5 hover:text-gray-200'])</button></div>
+                        <div><button>Delete Class</button></div>
+                        </div>
+                        </form>
+                        </li>
+               
+                    </div>
+
+                </dropdown>
             </div>
     
-      {{-- End Class Option --}}
-                
+{{-- End Classes Header --}}
+
     </div>
 
-        {{-- Class Navigation --}}
+{{-- Class Navigation --}}
 
-            @include('partials.teacher.section.nav')
-
+     @include('partials.teacher.section.nav')
 
     <div class="flex flex-wrap w-full mt-4">
          
-{{-- START STUDENTS ------------------------------------------------------------------------------------------------}}
+{{-- START STUDENTS ------------------------------------------------------------------}}
 
  <div class="w-full sm:w-1/2 mb-4 sm:mb-0 sm:border-r-8 border-gray-500">
              

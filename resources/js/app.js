@@ -16,11 +16,11 @@ window.Vue = require('vue');
 // Server-Side-Up Components
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('single-file-upload', require('./components/SingleFileUpload.vue').default);
-Vue.component('multiple-file-upload', require('./components/MultipleFileUpload.vue').default);
-Vue.component('select-file-upload', require('./components/SelectFileUpload.vue').default);
-Vue.component('file-progress', require('./components/FileProgress.vue').default);
-Vue.component('file-preview', require('./components/FilePreview.vue').default);
+// Vue.component('single-file-upload', require('./components/SingleFileUpload.vue').default);
+// Vue.component('multiple-file-upload', require('./components/MultipleFileUpload.vue').default);
+// Vue.component('select-file-upload', require('./components/SelectFileUpload.vue').default);
+// Vue.component('file-progress', require('./components/FileProgress.vue').default);
+// Vue.component('file-preview', require('./components/FilePreview.vue').default);
 
 // Vue.component('calendar', Calendar);
 // Vue.component('date-picker', DatePicker);
@@ -28,7 +28,7 @@ Vue.component('file-preview', require('./components/FilePreview.vue').default);
 // Custom Components
 
 Vue.component('dropdown', require('./components/Dropdown.vue').default);
-Vue.component('drop-menu', require('./components/DropMenu.vue').default);
+// Vue.component('drop-menu', require('./components/DropMenu.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

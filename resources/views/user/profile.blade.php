@@ -38,15 +38,6 @@
                 
             </div>
         </div>
-
-        </br/></br/>
-
-        Name: {{ $user->fullName}} </br/></br/>
-
-        Email: {{ $user->email }}</br/></br/>
-
-        
-
         <div class="text-2xl mb-2 ml-4">
         CLASSES: 
         </div/>
@@ -103,13 +94,79 @@
 
             <td class="border text-center p-1 px-4">
 
-            @if ( $section->is_active === 1 )
+ {{-- Begin Form --}} 
 
-active
-        @else 
+                    <form id="edit_section" method="POST" action="{{ action('SectionController@update', $section) }}">
+                    
+                    {{ csrf_field() }}
+                    
+                    <input type="hidden" name="_method" value="PATCH">
 
-inactive
-        @endif
+
+
+                    <div class="mb-6">
+
+                        @if( $section->is_active)
+                        
+                        <label class="inline-flex items-center">
+                        
+                        <input type="radio" class="form-checkbox mr-2" checked name="active" value="true"
+                        >Active
+                        </label>
+
+                        <label class="inline-flex items-center">
+                        <input type="radio" class="form-checkbox mr-2" name="active" value="false">Inactive
+                        </label>
+
+                        @else
+
+                        <label class="inline-flex items-center">
+                        <input type="radio" class="form-checkbox mr-2" name="active" value="true"
+                        >Active
+                        </label>
+
+                        <label class="inline-flex items-center">
+                        <input type="radio" class="form-checkbox mr-2" checked name="active" value="false">Inactive
+                        </label>
+
+                        @endif
+                    
+                    </div>
+
+                    <div class="mb-6">
+
+                        @if( $section->is_open)
+                        
+                            <label class="inline-flex items-center">
+                            
+                            <input type="radio" class="form-checkbox mr-2" checked name="open" value="true"
+                            >Registration is Open
+                            </label>
+
+                            <label class="inline-flex items-center">
+                            <input type="radio" class="form-checkbox mr-2" name="open" value="false">Registration is Closed
+                            </label>
+
+                        @else
+
+                            <label class="inline-flex items-center">
+                            <input type="radio" class="form-checkbox mr-2" name="open" value="true"
+                            >Registration is Open
+                            </label>
+
+                            <label class="inline-flex items-center">
+                            <input type="radio" class="form-checkbox mr-2" checked name="open" value="false">Registration is Closed
+                            </label>
+
+                        @endif
+                    
+                    </div>
+
+                          <button type="submit" class="mb-1 md:mb-0 bg-gray-400 hover:bg-green-500 text-gray-700 hover:text-green-100 px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">Save</button>
+
+                    </div>
+                
+                </form>
 
         </td>
 

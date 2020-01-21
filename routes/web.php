@@ -27,6 +27,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/imagediv', function () {
+    return view('imagediv');
+});
 Route::get('/modal', function () {
     return view('modaltest');
 });
@@ -76,6 +79,8 @@ Auth::routes();
 	Route::post('/artifact/create', 'ArtifactController@store');
 	Route::post('/artifact/createFromURL', 'ArtifactController@storeFromURL');
 	Route::get('/artifact/{artifact}', 'ArtifactController@show');
+	Route::get('/artifact/{artifact}/edit', 'ArtifactController@edit');
+	Route::patch('/artifact/{artifact}/update', 'ArtifactController@update');
 	Route::delete('/artifact/{artifact}', 'ArtifactController@destroy');
 	Route::get('/artifact/{artifact}/rotate/{degrees}', 'ArtifactController@rotate');
 	Route::get('/artifact/{artifact}/addToCollection', 'ArtifactController@addToCollection');
@@ -103,7 +108,8 @@ Auth::routes();
 	Route::delete('/collection/{collection}', 'CollectionController@destroy');
 	Route::post('/collection/addArtifact/{artifact}', 'CollectionController@addArtifact');
 	Route::delete('/collection/deleteArtifact/{artifact}', 'CollectionController@removeArtifact');
-	Route::get('collection/{collection/slideshow}', 'CollectionController@slideshow');
+	
+	Route::get('collection/{collection}/slideshow', 'CollectionController@slideshow');
 
 
 
@@ -130,7 +136,7 @@ Route::group(['middleware' => ['role:teacher']], function () {
 
 	// Single Student  - Assignment Progress
 
-		Route::get('/section/{section}/assignment/{assignment}/user/{user}', ['middleware' => 'auth', 'uses' => 'SectionController@StudentAssignmentProgressView']);
+		Route::get('/section/{section}/assignment/{assignment}/user/{user}', ['middleware' => 'auth', 'uses' => 'SectionController@StudentAssignmentView']);
 
 		// // detail view
 		// Route::get('/section/{section}/{assignment}/{user}/detail', ['middleware' => 'auth', 'uses' => 'SectionController@StudentAssignmentDetailView']);
@@ -145,6 +151,8 @@ Route::group(['middleware' => ['role:teacher']], function () {
 	Route::patch('/teacher/section/{section}/assignment/{assignment}/update', 'AssignmentController@update');
 	Route::delete('/teacher/section/{section}/assignment/{assignment}', 'AssignmentController@destroy');
 	Route::get('/teacher/section/{section}/assignment/{assignment}/gallery', 'AssignmentController@gallery');
+
+	
 
 	
     // Components

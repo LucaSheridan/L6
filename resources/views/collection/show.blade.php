@@ -2,13 +2,16 @@
 
 @section('content')
     
-    <div class="flex flex-col items-center items-stretch bg-white m-10 rounded-lg p-4 shadow-xl">
+    <div class="flex flex-col items-center items-stretch bg-white m-10 rounded-lg p-0">
    
     {{-- Options --}}
 
+        <span class="text-red-400 font-sembibold text-2xl uppercase roman ">{{$collection->title}}</span>
+ 
+
     <div class="inline-flex justify-end rounded-lg ">
                 
-                    <a href="{{action('CollectionController@slideshow', $collection )}}">
+                    <a href="{{action('CollectionController@slideshow', $collection->id)}}">
                         <div class="flex justify-end p-2 bg-gray-200 rounded-tl-lg ">
                         
                             <div>@icon('play-circle', ['class' => 'float-right text-gray-600 hover:text-red-400 h-5 w-5'])</div>
@@ -29,7 +32,7 @@
                             
                             </div>
 
-                            <div class="flex pt-1 px-1 text-gray-600 hover:text-red-400">Edit</div>
+                            <div class="flex pt-1 px-1 text-gray-600 hover:text-red-400">Edit!</div>
                         </div>
                     </a>
 
@@ -48,10 +51,7 @@
 
     {{-- Title --}}
 
-    <div class="w-full bg-gray-200 p-2 pl-4 mb-2 border">
-
-    <span class="text-red-400 font-sembibold text-2xl uppercase roman ">{{$collection->title}}</span>
-              
+    <div class="w-full bg-gray-200 p-2 pl-4 mb-2 border">              
 
     <p class=" italic mt-2 text-md text-gray-600 leading-normal rounded-lg">{{$collection->description}}</p>
 
@@ -77,11 +77,16 @@
                         
                         <ul class="leading-tight">
 
-                            <Li>{{$artifact->user->fullName}}</li>
-                            <li><span class="italic">{{$artifact->pivot->title}}</span></li>
-                            <!--  <li>{{$artifact->pivot->medium}}</li>c-->                        
-                            <li>{{$artifact->pivot->year}}</li>
+<!--                             <Li>{{$artifact->user->fullName}}</li>
+ -->                            <Li class="font-semibold">{{$artifact->artist}}</li>
                             
+                                <li><span class="italic">{{$artifact->title}}</span></li> 
+                                                           <!--  <li>{{$artifact->pivot->medium}}</li>c-->                        
+                            
+                            <li>{{$artifact->medium}}</li>
+
+<!--                             <li>{{$artifact->pivot->year}}</li>
+ -->                            
                             <!--  <li>{{$artifact->pivot->dimensions_height}} x {{$artifact->pivot->dimensions_width}}
                                 @if ($artifact->pivot->dimensions_depth)
                                 x {{$artifact->pivot->dimensions_depth}}

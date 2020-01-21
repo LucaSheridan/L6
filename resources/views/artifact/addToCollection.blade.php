@@ -29,7 +29,9 @@
   
                         <label for="collection" class="w-full m-0 font-semibold text-gray-600 text-sm pt-2 pr-3 align-middle">Collection</label>
 
-                        <select id="collection" form="addToCollection" class="p-1 my-4" name="collection" type="select" class="select">
+                        <select id="collection" form="addToCollection" class="mt-2 px-2 py-1 pr-8 bg-gray-300 form-select w-full" name="collection" type="select" class="form-select">
+
+
 
                         @foreach ($addable as $collection)
 

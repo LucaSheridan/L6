@@ -18,6 +18,10 @@ module.exports = {
      'full': '100vh',
     },
 
+    cursor: {
+     'zoom-in': 'zoom-in',
+   },
+
 
     extend: {}
   },

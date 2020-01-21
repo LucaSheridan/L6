@@ -25,7 +25,7 @@
 
                         <label for="body" class="w-full font-semibold text-gray-600 text-sm pt-2 pr-3 align-middle">Comment Text</label>
 
-                        <textarea id="body" class="w-full mt-2 rounded p-2 border text-gray-600 text-sm leading-snug {{ $errors->has('body') ? 'border-red-500' : 'border' }}" name="body" value="{{ old('body') }}" >{{ old('body') }}</textarea>
+                        <textarea id="body" class="w-full mt-2 p-2 rounded p-2 border text-gray-600 text-sm leading-snug {{ $errors->has('body') ? 'border-red-500' : 'border' }}" name="body" value="{{ old('body') }}" autofocus tabindex="1">{{ old('body') }}</textarea>
                         {!! $errors->first('body', '<span class="text-red-500 text-sm mt-2">:message</span>') !!}
 
 
@@ -42,7 +42,7 @@
 
                           <a href="{{action('ArtifactController@show', $artifact)}}" class="inline-block mb-1 md:mb-0 bg-gray-400 hover:bg-red-500 text-gray-700 hover:text-white px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">Cancel</a>
 
-                          <button type="submit" class="mb-1 md:mb-0 bg-gray-400 hover:bg-green-500 text-gray-700 hover:text-green-100 px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">Submit</button>
+                          <button type="submit" class="mb-1 md:mb-0 bg-gray-400 hover:bg-green-500 text-gray-700 hover:text-green-100 px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded" tabindex="2">Submit</button>
 
                     </div>
                     </div>

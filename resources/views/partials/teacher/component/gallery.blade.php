@@ -202,7 +202,7 @@
 
                                         <a href="{{action('ComponentController@gallery', ['section' => $assignment->section_id , 'assignment' => $component->assignment_id , 'component' => $component->id ])}}" class="p-0 m-0 hover:text-red-400 hover:rounded no-underline text-sm
 
-                                        {{active_check('teacher/section/'.$activeSection->id.'/assignment/'.$activeAssignment->id.'/component/'.$component->id.'*')}}">
+                                        {{active_check('teacher/section/'.$activeSection->id.'/assignment/'.$activeAssignment->id.'/component/'.$activeComponent->id.'*')}}">
                                         
                                         {{ $component->title}}</a>
 

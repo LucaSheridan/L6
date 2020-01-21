@@ -2,97 +2,49 @@
   
 <div class="flex items-center p-4 bg-gray-500">
     
-        {{-- Begin Container --}}     
+{{-- Begin Container --}}     
 
-        <div class="w-full">
+    <div class="w-full">
+            
+{{--  Classes Section: Title --}}
 
-        {{-- Begin  Section --}} 
-
-             {{--  Section Title: Classes --}}
-
-            <div class="flex items-center ">
+        <div class="flex items-center mb-1">
            
             <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-200">
-                                
-                {{ Auth::User()->sections()->count() > 1 ? 'CLASSES' : 'CLASS'}}
-
+            {{ Auth::User()->sections()->count() > 1 ? 'CLASSES' : 'CLASS'}}
             </div>
 
-           
-        {{--  Section Option: Classes --}}
+{{--  Classes Section: Menu --}}
 
-            <div class="flex relative">
+            <div class="flex relative text-left">
+                <dropdown>
+    
+                    <template v-slot:trigger>
+                    @icon('menu', ['class' => ' w-5 h-5 text-gray-200'])
+                    </template>
 
-            <dropdown class="bg-gray-500">
-        
-            <template v-slot:trigger>
-                    
-                <div class="p-1">
-                @icon('menu', ['class' => ' text-gray-200'])
-                </div>
+                    <div class="z-10 absolute top-0 right-0 shadow-2xl bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap">
 
-            </template>
-
-                <div class="z-10 absolute top-0 right-0 shadow-sm mt-4 mr-4 bg-gray-700 text-gray-400 rounded py-2 list-none text-left leading-normal whitespace-no-wrap">
-
-                    <li class="hover:text-gray-300 px-4">
-                    <a class="" href="{{action('SectionController@create')}}"> 
-                    <div class="flex items-center">
-                    <div class="pr-2 text-gray-500">@icon('plus-circle', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
-                    <div class="">New</div>
-                    </div>
-                    </a>
-                    </li>
-
-                    <!-- <li class="hover:text-gray-300 px-4">
-                    <a class="" href="{{action('SectionController@create')}}"> 
-                    <div class="flex items-center">
-                    <div class="pr-2 text-gray-500">@icon('trash', ['class' => 'w-5 h-5 hover:text-gray-600'])</div>
-                    <div class="">Delete</div>
-                    </div>
-                    </a>
-                    </li>
-
-                    <li class="hover:text-gray-300 px-4">
-                    <a class="" href="{{action('SectionController@create')}}"> 
-                    <div class="flex items-center">
-                    <div class="pr-2 text-gray-500">@icon('edit', ['class' => 'w-5 h-5 hover:text-gray-600'])</div>
-                    <div class="">Edit</div>
-                    </div>
-                    </a>
-                    </li>
-
-                    <li class="hover:text-gray-300 px-4">
-                    <a class="" href="{{action('SectionController@create')}}"> 
-                    <div class="flex items-center">
-                    <div class="pr-2 text-gray-500">@icon('briefcase', ['class' => 'w-5 h-5 hover:text-gray-600'])</div>
-                    <div class="">Collect</div>
-                    </div>
-                    </a>
-                    </li> -->
-                    
-                </div>
-
-            </dropdown>
-                    
-                   <!--  <a class=""href="{{action('SectionController@create')}}">
-                        
-                        <div class="flex justify-end items-center p-1 bg-gray-400 hover:bg-gray-300 rounded-t-lg">
-                        
-                            <div>@icon('plus-circle', ['class' => 'text-gray-500 hover:text-red-400 w-5 h-5'])</div>
-
-                             <div class="flex px-1 text-gray-600">Create</div>
- 
+                        <li class="hover:text-gray-300 px-3">
+                        <a class="" href="{{action('SectionController@create')}}"> 
+                        <div class="flex items-center">
+                        <div class="pr-2 text-gray-500">
+                        @icon('plus-circle', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                         <div>Create New Class</div>
                         </div>
+                        </a>
+                        </li>
+               
+                    </div>
 
-                     </a> -->
+                </dropdown>
             </div>
     
-      {{-- End Class Option --}}
+{{-- End Classes Header --}}
 
-           </div>
+    </div>
      
-      {{-- Begin Class Selection --}}
+        {{-- Begin Class Selection --}}
 
                     <div class="hidden sm:block pr-1 sm:flex sm:flex-wrap bg-white rounded-tl-lg rounded-bl-lg rounded-br-lg">
                         
@@ -124,11 +76,8 @@
                         @endif
 
                     </div>
-        
         {{-- End Class Selection --}}
-
-        
-        {{-- Begin Class Selection for Mobile --}}
+         {{-- Begin Class Selection for Mobile --}}
 
                     
             <div class="sm:hidden bg-gray-100 sm:hidden p-1 flex flex-wrap w-full rounded-tl-lg rounded-bl-lg rounded-br-lg">
@@ -138,6 +87,9 @@
                             <select class="px-2 py-1 pr-8 bg-gray-300 form-select w-full text-xl text-red-500
 
                             " onchange="location = this.value;">>
+
+                            <option><span class="bg-red-300">Choose a Class</span>
+                                      </option>
       
                                 @foreach ( $activeSections as $section)                         
                                            
@@ -148,39 +100,46 @@
 
                            </select>
 
-<!--                         </div> 
- -->
-
             </div>
 
             </div>
 
         {{--  End Class Section on Mobile --}}
 
-<div class="flex mt-4">
+
+{{--  Classes Section: Menu --}}
+
+       
+            <div class="flex items-center mt-6 mb-1">
+           
+                <div class="flex-grow mb-0 px-2 text-left text-2xl rounded-br-lg text-gray-200">
+                ARTIFACTS
+                </div>
            
         {{-- Artifacts Title --}}
-
-            <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-200">ARTIFACTS</div>
             
-            <div class="flex">
-                    
-                {{-- Options Tab Begin--}}
+                 <div class="flex relative text-left">
+                <dropdown>
+    
+                    <template v-slot:trigger>
+                    @icon('menu', ['class' => ' w-5 h-5 text-gray-200'])
+                    </template>
 
-                    <a class="" href="{{action('ArtifactController@create')}}">
-                        
-                        <div class="flex justify-end items-center p-1 bg-gray-400 hover:bg-gray-300 rounded-t-lg">
-                        
-                            <div>@icon('plus-circle', ['class' => 'text-gray-500 hover:text-red-400 w-5 h-5'])</div>
+                    <div class="z-10 absolute top-0 right-0 shadow-2xl bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap">
 
-                             <div class="flex px-1 text-gray-600">Create</div>
- 
+                        <li class="hover:text-gray-300 px-3">
+                        <a class="" href="{{action('ArtifactController@create')}}"> 
+                        <div class="flex items-center">
+                        <div class="pr-2 text-gray-500">
+                        @icon('plus-circle', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                         <div>Create New Artifact</div>
                         </div>
+                        </a>
+                        </li>
+               
+                    </div>
 
-                     </a>
-
-                {{-- Option Tab End--}}
-
+                </dropdown>
             </div>
             </div>
         
@@ -192,7 +151,7 @@
 
         @foreach (Auth::User()->artifacts as $artifact) 
             
-            <div class="flex items-center text-center relative p-2 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5">
+            <div class="flex items-center text-center relative p-2 w-1/3 sm:w-1/3 md:w-1/4 lg:w-1/5">
         
           {{-- Begin Individual Artifacts Container--}}
 
@@ -211,7 +170,7 @@
 
         @else
 
-        <div class="p-2 text-gray-200">No artifacts. Why not upload one one?</div>
+        <div class="p-2 text-gray-600 leading-normal">Artifacts can be images of any stage of your creative work. Research, sketches, detailed plans, final artworks. Why not start by uploading something you've created?</div>
 
         @endif
 
@@ -219,32 +178,43 @@
 
 {{-- COLLECTIONS --}}
 
- {{-- Collections Title --}}
+{{--  Classes Section: Title --}}
 
-        <div class="flex border-0 border-yellow-600">
+        <div class="flex items-center mb-1">
            
-            <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-200">COLLECTIONS</div>
-            
-            <div class="flex">
-                    
-                    {{-- Option 1: Solo Icon Tab Link --}}
+            <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-200">
+            COLLECTIONS
+            </div>
 
-                    <a class="" href="{{action('CollectionController@create')}}">
-                        <div class="flex justify-end items-center p-1 bg-gray-400 hover:bg-gray-300 rounded-t-lg">
-                        
-                            <div>@icon('plus-circle', ['class' => 'text-gray-500 hover:text-red-400 w-5 h-5'])</div>
+{{--  Classes Section: Menu --}}
 
-                             <div class="flex px-1 text-gray-600">Create</div>
- 
+            <div class="flex relative text-left">
+                <dropdown>
+    
+                    <template v-slot:trigger>
+                    @icon('menu', ['class' => ' w-5 h-5 text-gray-200'])
+                    </template>
+
+                    <div class="z-10 absolute top-0 right-0 shadow-2xl bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap">
+
+                        <li class="hover:text-gray-300 px-3">
+                        <a class="" href="{{action('CollectionController@create')}}"> 
+                        <div class="flex items-center">
+                        <div class="pr-2 text-gray-500">
+                        @icon('plus-circle', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                         <div>Make New Collection</div>
                         </div>
+                        </a>
+                        </li>
+               
+                    </div>
 
-                     </a>
-
-                     {{-- Option 1: End--}}
-
-                       
+                </dropdown>
             </div>
-            </div>
+    
+{{-- End Classes Header --}}
+
+    </div>
      
     {{-- Collections List --}}
    
@@ -299,6 +269,6 @@
     @endif
     </div>
 
-  
+    
     
 @endsection

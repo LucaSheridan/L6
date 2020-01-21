@@ -115,7 +115,7 @@ class CollectionController extends Controller
             flash('Collection updates successfully!', 'success');
 
 
-            return redirect()->action('HomeController@index');
+            return redirect()->action('CollectionController@show', $collection);
      }
 
             /**
@@ -152,9 +152,17 @@ class CollectionController extends Controller
         
         $artifact = Artifact::find($request->input('artifact'));
         $collection = Collection::find($request->input('collection'));
-
-        $artifact->collections()->attach($request->input('collection')); 
         
+        //dd($collection);
+        // dd($lastPosition);
+
+        //$nextPosition = 1;
+
+        //dd($collection->artifacts_count);
+
+        $artifact->collections()->attach($request->input('collection'), ['position' => 1]); 
+        
+
         $collection->save();
 
         flash('Artifact added to '.$collection->title.'!', 'success');
@@ -185,18 +193,18 @@ class CollectionController extends Controller
     }
     
 
-    //  /**
-    //  * Show a collection.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function slideshow(Request $request, Section $section, Collection $collection)
-    // {
-        
-    // return view('collection.slideshow')->with('collection', $collection);
+     /**
+     * Show a collection.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function slideshow(Request $request, Section $section, Collection $collection)
+    {
+    
+        return view('collection.slideshow')->with( 'collection', $collection );
 
-    // }
+    }
 
 
 

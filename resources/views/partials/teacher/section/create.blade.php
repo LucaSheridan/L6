@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-auto">
+    <div class="container mx-auto h-full bg-gray-500">
         <div class="flex flex-wrap justify-center">
-            <div class="w-full max-w-md">
+            <div class="w-full max-w-md mx-4">
                 
                 <div class="flex flex-col break-words bg-white border border-2 rounded shadow-md mt-8">
 
@@ -35,7 +35,8 @@
   
                         <label for="site" class="w-full m-0 font-semibold text-gray-600 text-sm pt-2 pr-3 align-middle">Site</label>
 
-                        <select id="site" form="create_section" class="p-1" name="site" type="select" class="form-select">
+                        <select id="site" form="create_section" class="mt-2 px-2 py-1 pr-8 bg-gray-300 form-select w-full" name="site" type="select" class="form-select">
+
 
 						@foreach ($sites as $site)
 

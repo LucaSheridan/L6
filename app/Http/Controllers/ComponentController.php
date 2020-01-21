@@ -219,8 +219,9 @@ class ComponentController extends Controller
 
         $activeSection = $section;
         $activeAssignment = $assignment;
-        // $activeComponent = $component;
+        $activeComponent = $component;
 
+        //dd($activeComponent);
         //dd($activeAssignment);
 
         $sectionAssignments = Assignment::where('section_id', $section->id)->get();
@@ -238,6 +239,6 @@ class ComponentController extends Controller
         //dd($students);
 
         return view('partials.teacher.component.gallery')
-               ->with(compact('sections', 'activeSection', 'sectionAssignments', 'activeAssignment', 'components', 'component', 'students'));
+               ->with(compact('sections', 'activeSection', 'sectionAssignments', 'activeAssignment', 'components', 'activeComponent', 'students'));
      }
 }

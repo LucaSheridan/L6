@@ -446,24 +446,26 @@ class ArtifactController extends Controller
         
         // create valiadator
         $this->validate($request, [
-        'title' => 'required',
-        'medium' => 'required',
-        'dimensions_height' => 'required',
-        'dimensions_width' => 'required',
-        //'dimensions_depth' => 'required',
-        'dimensions_units' => 'required',
-        'description' => 'required|max:500'
+        // 'title' => 'required',
+        // 'medium' => 'required',
+        // 'artist' => 'required',
+        // 'dimensions_height' => 'required',
+        // 'dimensions_width' => 'required',
+        // 'dimensions_depth' => 'required',
+        // 'dimensions_units' => 'required',
+        'annotation' => 'max:500'
 
         ]);
 
         // get form input data
         $artifact->title = $request->input('title');
+        $artifact->artist = $request->input('artist');
         $artifact->medium = $request->input('medium');
         $artifact->dimensions_units = $request->input('dimensions_units');
         $artifact->dimensions_height = $request->input('dimensions_height');
         $artifact->dimensions_width = $request->input('dimensions_width');
         $artifact->dimensions_depth = $request->input('dimensions_depth');
-        $artifact->description = $request->input('description');
+        $artifact->annotation = $request->input('annotation');
 
         $artifact->save();
 
@@ -576,39 +578,5 @@ class ArtifactController extends Controller
             flash('Image rotated ', 'success');
 
             return redirect()->action('ArtifactController@show', $artifact->id);
-    }
-
-    //  /**
-    //  * Add Comment to Artifact.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function (Request $request, Artifact $artifact)
-       
-    //     {
-        
-    //     $artifact = Artifact::find($artifact->id);
-
-    //     $component_title = $artifact->component->title;
-
-    //     //dd($artifact);
-
-    //     $comment = $artifact->comments()->create([
-    //             // 'body' => $component_title.' -> '.$request->input('body'),
-    //             'body' => $request->input('body'),
-    //             'user_id' => Auth::User()->id
-    //     ]);
-
-    //     //return action('assignment.show')->with('assignment', $assignment_id);
-
-    //     //return redirect()->action('AssignmentController@show', $artifact->assignment_id);
-
-    //     return redirect()->action('SectionController@StudentAssignmentProgressView', [
-    //         'assignment' => $artifact->assignment_id, 
-    //         'user' => $artifact->user_id, 
-    //         'section' => $artifact->assignment->section->id ]);
-
-
-    //     }
-    
+    }    
 }

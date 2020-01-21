@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 //use App\Artifact;
 use App\Artifact;
 use App\Assignment;
+use App\Component;
 use App\Section;
 use App\User;
 use Auth;
@@ -44,7 +45,7 @@ class SectionController extends Controller
         
         $activeSection = Section::with('students','teachers','assignments','course')->where('id', $section->id)->first(); 
 
-        $sectionAssignments = Assignment::with('components')->where('section_id', $section->id)->orderBy('id','asc')->get(); 
+        $sectionAssignments = Assignment::with('components')->where('section_id', $section->id)->orderBy('id','desc')->get(); 
         
         // $roster = User::whereHas('roles', function ($query) { 
         // $query->where('name', 'like', 'student');
@@ -153,7 +154,7 @@ class SectionController extends Controller
         //$section->label = $request->input('label');
         $section->save();
 
-        flash('Section updated successfully!')->success();
+        flash('Artifact created!')->success();
 
         return redirect()->action('SectionController@show', $section);
     }
@@ -294,5 +295,44 @@ public function sectionProgress(Section $section)
                       'students' => $students]);
     
     }
+
+       /**
+     * Display an individual student assignment
+     *
+     * @param  \App\Section $section
+     * @param  \App\Assignment $assignment
+     * @param  \App\User $student
+     * @return \Illuminate\Http\Response
+     */
+    public function StudentAssignmentView(Section $section, Assignment $assignment, User $user)
+    {
+        $assignmentChecklist = Component::leftjoin('artifacts', function ($join) use ($assignment, $user) {
+
+            $join->on('components.id', '=', 'artifacts.component_id')
+                 ->where('artifacts.user_id', '=', $user->id); // This eliminates matches, not records
+
+                })
+
+                ->where('components.assignment_id', '=', $assignment->id)
+                ->orderBy('components.date_due', 'ASC')
+                ->select(
+                 'artifacts.id AS artifactID',
+                 'components.assignment_id AS assignmentID',
+                 'components.id AS componentID', 
+                 'components.title AS componentTitle',
+                 'components.date_due AS componentDateDue',
+                 'artifacts.artifact_thumb AS artifactThumb',
+                 'artifacts.artifact_path AS artifactPath',
+                 'artifacts.created_at AS artifactCreatedAt',
+                 'artifacts.is_published AS is_published')
+                 ->get();   
+
+                 dd($assignmentChecklist);                      
+
+        return view('partials.teacher.section.student.singleAssignment', 
+               compact('user', 'section', 'assignment', 'assignmentChecklist'));
+    }
 }
+
+
 

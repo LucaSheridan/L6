@@ -162,7 +162,7 @@
                     <tr>
                         <td colspan="5" class="border-2">
                             <div class="text-gray-600 text-md font-semibold text-gray-400 p-1">
-                                {{ $checklistItem->assignment->title }}</a>
+                            <a href="{{action('SectionController@StudentAssignmentView', ['$section' => $section, 'assignment' => $assignment, 'user' => $user ])}}">{{ $checklistItem->assignment->title }}</a>
                             </div>
                         </td>
                     </tr>
