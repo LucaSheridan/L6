@@ -40,7 +40,7 @@
         
         {{-- AlTERNATE NAMES --}}
 
-        <span class="font-semibold tracking-tight text-purple-800">ART</span><span class="text-purple-400">IFACTS</span></a>
+        <span class="font-semibold tracking-tight text-gray-600">ART</span><span class="text-gray-500">IFACTS</span></a>
 
 <!-- <span class="font-semibold tracking-tight">BSGE</span>ART</a>
  --> 

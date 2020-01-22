@@ -108,7 +108,7 @@
                         
                         <div class="flex justify-end p-2 bg-gray-200 rounded-t-lg">
                         
-                            <div>@icon('icon-plus-circle', ['class' => 'float-right text-gray-500 hover:text-red-400 fill-current'])</div>
+                            <div>@icon('plus-circle', ['class' => 'float-right text-gray-500 hover:text-red-400 fill-current'])</div>
 
                             <div class="flex pt-1 px-1 text-gray-600">Create</div>
 
@@ -160,7 +160,7 @@
                     <a class="" href="{{action('CollectionController@create')}}">
                         <div class="flex justify-end p-2 bg-gray-200 rounded-t-lg">
                         
-                            <div>@icon('icon-plus-circle', ['class' => 'float-right text-gray-500 hover:text-red-400 fill-current'])</div>
+                            <div>@icon('plus-circle', ['class' => 'float-right text-gray-500 hover:text-red-400 fill-current'])</div>
 
                              <div class="flex pt-1 px-1 text-gray-600">Create</div>
  

@@ -4,31 +4,109 @@
 
        <div class="flex flex-wrap justify-center">
 
-            <div class="flex flex-row w-full md:w-2/3 items-start border-0 mt-4 mr-0 ml-0 ml-4 md:ml-0 mb-4 relative">
+            <div class="flex flex-row w-full bg-red-00 md:w-2/3 items-start border-0 mt-4 mr-0 ml-0 ml-4 md:ml-0 mb-4 relative">
 
-                    <a class="cursor-zoom-in pr-10" href="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
-                    <img class="w-full" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}"></a>  
+                        <a class="cursor-zoom-in pr-10" href="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
+                            <img class="w-full border-4" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
+                        </a>  
 
-                    <div class="absolute bg-gray-300 border-white border-l border-b p-0 z-10 top-0 right-0">
+                        {{-- artifact menu trigger --}}
+
+                        <div class="absolute bg-gray-300 p-0 mr-2 z-10 top-0 right-0">
+                    
+                        <div class="relative">
+
+                        <dropdown>
+        
+                            <template v-slot:trigger>
+                            @icon('menu', ['class' => ' w-5 h-5 my-0 mx-2 hover:text-gray-400 text-gray-600'])
+                            </template>
+
+                                <div class="z-10 absolute top-0 right-0 shadow-2xl bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap mr-2 m-auto">            
+
+                                 <div class="hover:text-gray-300 px-3">
+                                <a href="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
+                                <div class="flex items-center">
+                                <div class="pr-2 text-gray-500">
+                                @icon('zoom-in', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                                 <div>Magnify</div>
+                                </div>
+                                </a>
+                                </div>
+
+                                <div class="hover:text-gray-300 px-3">
+                                <a href="{{action('ArtifactController@addToCollection', $artifact->id)}}">
+                                <div class="flex items-center">
+                                <div class="pr-2 text-gray-500">
+                                @icon('briefcase', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                                 <div>Add to Collection</div>
+                                </div>
+                                </a>
+                                </div>
+
+                                <div class="hover:text-gray-300 px-3">
+                                <a href="{{action('ArtifactController@rotate', ['artifact' => $artifact->id, 'degrees' => -90])}}">
+                                <div class="flex items-center">
+                                <div class="pr-2 text-gray-500">
+                                @icon('rotate-cw', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                                 <div>Rotate CW</div>
+                                </div>
+                                </a>
+                                </div>
+
+                                <div class="hover:text-gray-300 px-3">
+                                <a href="{{action('ArtifactController@rotate', ['artifact' => $artifact->id, 'degrees' => 90])}}">
+                                <div class="flex items-center">
+                                <div class="pr-2 text-gray-500">
+                                @icon('rotate-ccw', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                                 <div>Rotate CCW</div>
+                                </div>
+                                </a>
+                                </div>
+
+                                <form action="{{action('ArtifactController@destroy', $artifact)}}" method="POST">
+
+                                <div class="hover:text-gray-300 px-3">
+                                
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="DELETE">
+                                 <div class="flex items-center">
+                                <div class="pr-2 text-gray-500">
+                                 <button>@icon('x-circle', ['class' => 'w-5 h-5 hover:text-gray-200'])</button></div>
+                                 <button><div>Delete</div></button>
+                                </div>
+                                </form>
+                                </div>
+                                </div>
+
+                        </dropdown>
+
+                    </div>
+
+
+                    </div>            
+           </div>
+
+
+     <!--   <div class="flex-row mt-4 items-center border-2">
+           
+           <div>a</div>
+           <div>b</div>
+           <div>c</div>
+       </div> -->
+       
+<div class="mt-4 w-full pl-0 md:w-1/3 md:pl-0 mr-4 md:mr-0 text-sm relative bg-green-000">
+
+    <div class="absolute bg-gray-000 p-0 mr-0 z-10 top-0 right-0">
                     <div class="relative">
 
-                             <dropdown>
+                    <dropdown>
     
                     <template v-slot:trigger>
-                    @icon('menu', ['class' => ' w-5 h-5 my-0 mx-2 hover:text-gray-400 text-gray-600'])
+                    @icon('menu', ['class' => ' w-5 h-5  ml-2 hover:text-gray-400 text-gray-00'])
                     </template>
 
                     <div class="z-10 absolute top-0 right-0 shadow-2xl bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap mr-2 m-auto">            
-
-                        <div class="hover:text-gray-300 px-3">
-                        <a href="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
-                        <div class="flex items-center">
-                        <div class="pr-2 text-gray-500">
-                        @icon('zoom-in', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
-                         <div>Magnify</div>
-                        </div>
-                        </a>
-                        </div>
 
                         <div class="hover:text-gray-300 px-3">
                         <a href="{{action('ArtifactController@edit', $artifact->id)}}">
@@ -59,40 +137,6 @@
                         </div>
                         </a>
                         </div>
-
-                        <div class="hover:text-gray-300 px-3">
-                        <a href="{{action('ArtifactController@rotate', ['artifact' => $artifact->id, 'degrees' => -90])}}">
-                        <div class="flex items-center">
-                        <div class="pr-2 text-gray-500">
-                        @icon('rotate-cw', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
-                         <div>Rotate CW</div>
-                        </div>
-                        </a>
-                        </div>
-
-                        <div class="hover:text-gray-300 px-3">
-                        <a href="{{action('ArtifactController@rotate', ['artifact' => $artifact->id, 'degrees' => 90])}}">
-                        <div class="flex items-center">
-                        <div class="pr-2 text-gray-500">
-                        @icon('rotate-ccw', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
-                         <div>Rotate CCW</div>
-                        </div>
-                        </a>
-                        </div>
-
-                        <form action="{{action('ArtifactController@destroy', $artifact)}}" method="POST">
-
-                        <div class="hover:text-gray-300 px-3">
-                        
-                        {{ csrf_field() }}
-                        <input type="hidden" name="_method" value="DELETE">
-                         <div class="flex items-center">
-                        <div class="pr-2 text-gray-500">
-                         <button>@icon('x-circle', ['class' => 'w-5 h-5 hover:text-gray-200'])</button></div>
-                         <button><div>Delete</div></button>
-                        </div>
-                        </form>
-                        </div>
                
                     </div>
 
@@ -101,22 +145,15 @@
                         </div>
 
 
-                    </div>            
-           </div>
-
-
-     <!--   <div class="flex-row mt-4 items-center border-2">
-           
-           <div>a</div>
-           <div>b</div>
-           <div>c</div>
-       </div> -->
-       
-<div class="mt-4 w-full pl-0 md:w-1/3 md:pl-0 mr-4 md:mr-0 text-sm">
+                    </div>    
                 
-                <p class="text-gray-500 font-semibold text-lg uppercase mb-2 px-4">Info</p>
+    <div id="info" class="bg-red-000 p-1">
+    {{-- Artifact Info Title --}}
+    
+    <p class="text-gray-500 font-semibold text-lg uppercase mb-2 px-4 py-1">Info</p>
 
-                <div class="border-2 ml-4 mb-2 p-3 leading-snug text-sm rounded-lg">
+    {{-- Artifact Info Frame --}}
+    <div class="border-2 ml-4 mb-2 p-3 leading-snug text-sm rounded-lg">
 
         {{-- Artist--}}
                 
@@ -127,21 +164,18 @@
                 {{ $artifact->artist }}
                 @endif
                 </div>
-
         {{-- Title--}}
 
                 @if (is_null($artifact->title))
                 @else
                 <div class="italic text-md">{{ $artifact->title }} </div>
                 @endif
-
         {{-- Medium--}}
 
                 @if (is_null($artifact->medium))
                 @else
                 <div>{{ $artifact->medium }} </div>
                 @endif
-
         <!-- {{-- Teacher--}}
 
                 @if (is_null($artifact->section_id))
@@ -151,8 +185,7 @@
                 <p class="mb-2">
                     @foreach ( $artifact->section->teachers as $teacher )
                     {{$teacher->fullName}}
-                    @endforeach -->
-                
+                    @endforeach -->               
         <!--  {{-- Course--}}
 
                 <p class="font-semibold">Course
@@ -169,8 +202,7 @@
                 {{ $artifact->assignment->title }}</a>
                 @endif
                 </div>
-                
-    {{-- Component--}}
+        {{-- Component--}}
                 <div>
                 @if (is_null($artifact->component))
                 @else
@@ -178,20 +210,23 @@
                 <p class="mb-2 text-lg">
                 {{ $artifact->component->title }}</p>
                 @endif
-
-    {{-- Annotation--}}
-
-        <div class="my-4 text-md">
+        {{-- Annotation--}}
+       
+        <div class="mt-4 text-md">
         @if (is_null($artifact->annotation))
         @else
         {{$artifact->annotation}}
         @endif
         </div>
-</div>
+    
     </div>
-       <p class="ml-4 text-gray-500 font-semibold text-lg uppercase mb-2">Comments <span class="text-sm px-2 border-2 border-gray-500 py-0 bg-purple-200 rounded-full ">{{count($artifact->comments)}}</span></p>
+    </div>
+    
+    <div>
+    {{-- Artifact Comments Title --}}
+    <p class="ml-4 mt-4 text-gray-500 font-semibold text-lg uppercase mb-2">Comments <span class="text-sm px-2 border-2 border-gray-500 py-0 bg-purple-200 rounded-full ">{{count($artifact->comments)}}</span></p>       
 
-        <div class="border-2 bg-red-400 ml-4 mb-0 leading-snug">
+    <div class="ml-4 mb-0 leading-snug bg-red-200">
 
             @if ($artifact->comments)
             
@@ -201,9 +236,13 @@
                     
                     <div class="flex flex-grow font-semibold pt-2">{{$comment->user->fullName}}</div>
                         
-                            <div class="flex">
+                    <div class="flex">
                          
-                            <a class=""href="{{action('CommentController@edit', ['artifact' => $artifact->id , 'comment' => $comment->id ]) }}">
+                            
+
+                             @if ($comment->user_id == Auth::User()->id)
+                    
+                    <a class=""href="{{action('CommentController@edit', ['artifact' => $artifact->id , 'comment' => $comment->id ]) }}">
                             @icon('edit', ['class' => ' text-gray-700 border-0 hover:text-yellow-900 w-5 h-5'])
                             </a>
             
@@ -215,20 +254,21 @@
                             @icon('x-circle', ['class' => ' text-gray-700 border-0 hover:text-yellow-900 w-5 h-5'])
                             </button>
                             </form>
-                            </div>
-                    </div>
 
-                    <div class="px-2 pb-2 pt-1 shadow bg-yellow-200 text-sm tracking-tight leading-regular">{{$comment->body}}</div>
-
-                    @if ($comment->user_id == Auth::User()->id)
-                    you wrote this
                     @else
-                    someone else id
                     @endif
 
-                </div>
+
+                    </div>
+                    </div>
+
+                    <div class="px-2 pb-2 pt-1 bg-yellow-200 text-sm tracking-tight leading-regular">{{$comment->body}}</div>
+
 
              @endforeach
+
+            </div>
+
         
         @else
 
@@ -236,12 +276,11 @@
 
         @endif
 
-        </div>
-                
-
+            
+           
         @if ($artifact->collections->count() >= 1 )
 
-                     <p class="ml-4 text-gray-500 font-semibold text-lg uppercase mb-2">Collections</p>
+                     <p class="ml-4 mt-4 text-gray-500 font-semibold text-lg uppercase mb-2">Collections</p>
 
 
         <div class="border-2 ml-4 p-1 leading-snug bg-gray-100">
@@ -287,14 +326,6 @@
 
     <div>
 
-
-
-
-    <!-- Comments -->
-    <!-- End Comments -->
-
-    <!-- Collection -->
-    <!-- End Collection -->
     
    
     </div>
