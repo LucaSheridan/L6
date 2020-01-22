@@ -12,7 +12,7 @@
 
                         {{-- artifact menu trigger --}}
 
-                        <div class="absolute bg-gray-300 p-0 mr-2 z-10 top-0 right-0">
+                        <div class="absolute w-full bg-gray-200 p-0 mr-2 z-10 top-0 right-0">
                     
                         <div class="relative">
 
@@ -103,7 +103,7 @@
                     <dropdown>
     
                     <template v-slot:trigger>
-                    @icon('menu', ['class' => ' w-5 h-5  ml-2 hover:text-gray-400 text-gray-00'])
+                    @icon('menu', ['class' => ' w-5 h-5  ml-2 hover:text-gray-400 text-gray-700'])
                     </template>
 
                     <div class="z-10 absolute top-0 right-0 shadow-2xl bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap mr-2 m-auto">            
@@ -167,6 +167,7 @@
         {{-- Title--}}
 
                 @if (is_null($artifact->title))
+                Untitled
                 @else
                 <div class="italic text-md">{{ $artifact->title }} </div>
                 @endif
@@ -175,6 +176,12 @@
                 @if (is_null($artifact->medium))
                 @else
                 <div>{{ $artifact->medium }} </div>
+                @endif
+        
+        {{-- Year --}}
+                @if (is_null($artifact->year))
+                @else
+                <div>{{ $artifact->year }}</div>
                 @endif
         <!-- {{-- Teacher--}}
 

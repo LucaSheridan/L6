@@ -461,10 +461,11 @@ class ArtifactController extends Controller
         $artifact->title = $request->input('title');
         $artifact->artist = $request->input('artist');
         $artifact->medium = $request->input('medium');
-        $artifact->dimensions_units = $request->input('dimensions_units');
-        $artifact->dimensions_height = $request->input('dimensions_height');
-        $artifact->dimensions_width = $request->input('dimensions_width');
-        $artifact->dimensions_depth = $request->input('dimensions_depth');
+        $artifact->year = $request->input('year');
+        // $artifact->dimensions_units = $request->input('dimensions_units');
+        // $artifact->dimensions_height = $request->input('dimensions_height');
+        // $artifact->dimensions_width = $request->input('dimensions_width');
+        // $artifact->dimensions_depth = $request->input('dimensions_depth');
         $artifact->annotation = $request->input('annotation');
 
         $artifact->save();

@@ -57,13 +57,24 @@
 
                     </div>
 
+                 {{-- Begin Year Input--}}
+            
+                    <div class="mb-2">
+
+                        <label for="year" class="w-full md:mb-0 font-semibold text-gray-600 text-sm pt-2 pr-3 align-middle">Year</label>
+
+                        <input id="year" type="text" class="w-full mt-2 rounded h-8 p-1 border text-gray-600 text-sm {{ $errors->has('year') ? 'border-red-500' : 'border' }}" name="year" value="{{ $artifact->year}}" autofocus tabIndex="3">
+                        {!! $errors->first('year', '<span class="text-red-500 text-sm mt-2">:message</span>') !!}
+
+                    </div>
+
                 {{-- Begin Description Input--}}
             
                     <div class="mb-2">
 
                         <label for="description" class="w-full font-semibold text-gray-600 text-sm pt-2 pr-3 align-middle">Description</label>
 
-                        <textarea id="annotation" class="w-full mt-2 rounded p-2 border text-gray-600 leading-snug text-sm {{ $errors->has('annotation') ? 'border-red-500' : 'border' }}" name="annotation" value="" tabIndex="3">{{ $artifact->annotation}}</textarea>
+                        <textarea id="annotation" class="w-full mt-2 rounded p-2 border text-gray-600 leading-snug text-sm {{ $errors->has('annotation') ? 'border-red-500' : 'border' }}" name="annotation" value="" tabIndex="4">{{ $artifact->annotation}}</textarea>
 
                     </div>
 
@@ -71,7 +82,7 @@
 
                           <a href="{{ url()->previous() }}" class="inline-block mb-1 md:mb-0 bg-gray-400 hover:bg-red-500 text-gray-700 hover:text-white px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">Cancel</a>
 
-                          <button type="submit" class="mb-1 md:mb-0 bg-gray-400 hover:bg-green-500 text-gray-700 hover:text-green-100 px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded" tabIndex="4">Save</button>
+                          <button type="submit" class="mb-1 md:mb-0 bg-gray-400 hover:bg-green-500 text-gray-700 hover:text-green-100 px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded" tabIndex="5">Save</button>
 
                     </div>
 

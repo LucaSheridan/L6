@@ -14,7 +14,7 @@ class Artifact extends Model
     *
     * @var array
     */
-    protected $fillable = [];
+    protected $fillable = ['medium','year'];
 
     protected $dates = [
         'created_at','updated_at','date_due',
