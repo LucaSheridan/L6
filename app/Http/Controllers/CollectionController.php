@@ -27,10 +27,10 @@ class CollectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-        public function create()
+        public function create(Artifact $artifact)
     {
         
-        return view('collection.create');
+        return view('collection.create')->with('artifact', $artifact);
     }
 
        /**
@@ -65,14 +65,19 @@ class CollectionController extends Controller
             ]);
 
             $collections = Collection::all()->count();
+            $artifact = $request->input('artifact');
 
-            //dd($collections);
+            //dd($artifact);
 
             $collection = New Collection;
             $collection->title = $request->input('title');
             $collection->description = $request->input('description');
             $collection->save();
             $collection->curators()->attach(Auth::User()->id);
+            $collection->artifacts()->attach($artifact, [ 'position' => 1 ]);
+
+            //dd($collection);
+
             $collection->save();
 
             flash('New collection was created successfully!', 'success');
@@ -149,8 +154,8 @@ class CollectionController extends Controller
     public function addArtifact(Request $request, Artifact $artifact)
     {
 
-        
         $artifact = Artifact::find($request->input('artifact'));
+        
         $collection = Collection::find($request->input('collection'));
         
         //dd($collection);
@@ -158,9 +163,9 @@ class CollectionController extends Controller
 
         //$nextPosition = 1;
 
-        //dd($collection->artifacts_count);
+        $count = count($collection->artifacts);
 
-        $artifact->collections()->attach($request->input('collection'), ['position' => 1]); 
+        $artifact->collections()->attach($request->input('collection'), ['position' => $count +1 ]); 
         
 
         $collection->save();
@@ -185,7 +190,7 @@ class CollectionController extends Controller
         
         $collection->save();
 
-        flash('Artifact removed from '.$collection->title.'!', 'success');
+    flash('Artifact removed from '.$collection->title.'!', 'success');
 
         return redirect()->action('ArtifactController@show', $artifact);
 

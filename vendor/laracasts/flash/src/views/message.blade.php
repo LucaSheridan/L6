@@ -10,7 +10,7 @@
    
         @if ( $message['level'] == 'success')
 
-        <div class="p-2 border-2 border-t-0 ml-0 my-0
+        <div id="message" class="p-2 border-0 border-t-0 ml-0 my-0
         bg-green-300 text-green-800 border-green-500 shadow "
         role="alert"
         >

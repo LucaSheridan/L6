@@ -97,7 +97,7 @@ public function getInitialsAttribute()
      */
     public function artifacts()
     {
-        return $this->hasMany(Artifact::class)->orderBy('created_at', 'DESC');
+        return $this->hasMany(Artifact::class)->orderBy('created_at', 'ASC');
     }
 
     /*

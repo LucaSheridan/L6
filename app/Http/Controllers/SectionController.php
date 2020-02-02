@@ -154,7 +154,7 @@ class SectionController extends Controller
         //$section->label = $request->input('label');
         $section->save();
 
-        flash('Artifact created!')->success();
+        flash('Class updated!')->success();
 
         return redirect()->action('SectionController@show', $section);
     }

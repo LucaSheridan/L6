@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Artifact;
 use App\Section;
 use App\User;
 
@@ -36,16 +37,13 @@ class HomeController extends Controller
         $currentSection = Auth::User()->activeSections->first();
         else {}
 
-        //dd($currentSection->id);
+        $artifacts = Artifact::where('user_id', Auth::User()->id)
+        // ->paginate(12);
+        ->get();
 
-                
-        
-        //$inactiveSections = Auth::User()->sections()->where('is_active', 0 )->get();
-        //$allSections = Auth::User()->sections()->get();
+        //dd($artifacts);
 
-
-
-        return view('home')->with(['activeSections' => $activeSections, 'currentSection' => $currentSection]);
+        return view('home')->with(['activeSections' => $activeSections, 'currentSection' => $currentSection, 'artifacts' => $artifacts]);
         }
     }
 

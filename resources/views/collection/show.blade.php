@@ -71,7 +71,7 @@
 
 
                     <a href="{{action('ArtifactController@show', $artifact->id)}}">
-                    <img class="w-full" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
+                    <img class="w-full border border-gray-800" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
 
                         <div class="flex relative p-2 text-left text-xs text-gray-700">
                         

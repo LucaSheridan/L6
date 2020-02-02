@@ -58,18 +58,20 @@
 
 @section('content')
       
-    <a href="#join-modal">Join</a>
+    <a href="#zoom-modal" class=
+    "inbline-block h-16 m-4 p-2 bg-red-200 rounded-lg">Zoom</a>
 
-    @component('modal', ['name' => 'join-modal'])
+        @component('modal', ['name' => 'zoom-modal'])
 
-        <h1 class="mb-4 text-gray-600 uppercase">Join Artifacts</h1>
+            <h1 class="block mb-4 p-2 text-gray-600 uppercase">Zoom Image</h1>
 
-        <p class="leading-tight"/>Content of modal should go here. Whatever you need to say should be styled accordingly.
-        </p>
+            <p class="leading-tight"/>Content of modal should go here. Whatever you need to say should be styled accordingly.
+            </p>
 
-    @endcomponent
+        @endcomponent
 
-        <a href="#cancel-modal">Cancel</a>
+    <a href="#cancel-modal" class=
+    "inbline-block h-16 m-4 p-2 bg-red-200 rounded-lg">Cancel</a>
 
 
     @component('modal', ['name' => 'cancel-modal'])

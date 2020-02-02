@@ -18,6 +18,10 @@
 
                     <div class="p-3 border-l-2 border-b-0 border-r-2">
             
+                    {{-- Pass Artifact if variable is set --}}
+
+                    <input id="artifact" type="hidden" name="artifact" value="{{ $artifact->id }}">
+
                     {{-- Begin Title Input--}}
             
                     <div class="mb-2">

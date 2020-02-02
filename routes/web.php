@@ -81,6 +81,7 @@ Auth::routes();
 	Route::get('/artifact/{artifact}', 'ArtifactController@show');
 	Route::get('/artifact/{artifact}/edit', 'ArtifactController@edit');
 	Route::patch('/artifact/{artifact}/update', 'ArtifactController@update');
+	Route::get('/artifact/{artifact}/delete', 'ArtifactController@delete');
 	Route::delete('/artifact/{artifact}', 'ArtifactController@destroy');
 	Route::get('/artifact/{artifact}/rotate/{degrees}', 'ArtifactController@rotate');
 	Route::get('/artifact/{artifact}/addToCollection', 'ArtifactController@addToCollection');
@@ -99,7 +100,7 @@ Auth::routes();
 
 	// Collections 
 
-	Route::get('/collection/create/', 'CollectionController@create');
+	Route::get('/collection/create/{artifact?}', 'CollectionController@create');
 	Route::post('/collection/create', 'CollectionController@store');
 	Route::get('/collection/{collection}', 'CollectionController@show');
 	Route::get('/collection/{collection}/edit', 'CollectionController@edit');

@@ -20,7 +20,7 @@
 
 <body class="antialiased leading-none">
     
-    <div id="app" class="container max-w-3xl mx-auto ">
+    <div id="app" class="container max-w-5xl mx-auto ">
     <!-- <div id="app" class="" 
     style="height:100vh; margin-left:5vh; margin-right:5vh;"
     > -->
@@ -92,7 +92,9 @@
 
         <!-- Flash Messages Here-->
 
-        @include('flash::message')
+        <div class="">
+            @include('flash::message')
+        </div>
 
         @yield('content')
 
@@ -102,12 +104,18 @@
     <!-- Scripts -->
 <script src="{{ mix('js/app.js') }}"></script>
 
-
-
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="https://unpkg.com/flickity-fullscreen@1/fullscreen.js"></script>
 
-                        <script type="text/javascript" src="fadeinfadeout.js"></script>
+    <script type="text/javascript">
+    // close the div in 5 secs
+    window.setTimeout("hideMessage();", 3000);
+
+    function hideMessage(){
+    document.getElementById("message").style.display="none";
+    }
+    </script>
+
 
 
 

@@ -107,22 +107,23 @@
         {{--  End Class Section on Mobile --}}
 
 
-{{--  Classes Section: Menu --}}
+        {{--  Classes Section: Menu --}}
 
        
             <div class="flex items-center mt-6 mb-1">
            
                 <div class="flex-grow mb-0 px-2 text-left text-2xl rounded-br-lg text-gray-200">
-                ARTIFACTS
+                ARTIFACTS                    
                 </div>
-           
+
         {{-- Artifacts Title --}}
             
-                 <div class="flex relative text-left">
+                <div class="flex relative text-left">
                 <dropdown>
     
                     <template v-slot:trigger>
-                    @icon('menu', ['class' => ' w-5 h-5 text-gray-200'])
+                    @icon('menu', ['class' => ' w-5 h-5 text-gray-200'])              
+
                     </template>
 
                     <div class="z-10 absolute top-0 right-0 shadow-2xl bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap">
@@ -147,23 +148,16 @@
    
             <div class="flex flex-wrap items-center items-stretch bg-white p-2 rounded-tl-lg rounded-bl-lg rounded-br-lg mb-4">
 
-        @if (Auth::User()->artifacts->count() >0) 
+        @if ($artifacts->count() >0) 
 
-        @foreach (Auth::User()->artifacts as $artifact) 
+        @foreach ($artifacts as $artifact) 
             
-            <div class="flex items-center text-center relative p-2 w-1/3 sm:w-1/3 md:w-1/4 lg:w-1/5">
+            <div class="p-2 w-1/3 sm:w-1/3 md:w-1/4 lg:w-1/6 opacity-100 hover:opacity-75">
         
-          {{-- Begin Individual Artifacts Container--}}
-
-          <div class="relative w-full">
-                   
                 <a href="{{action('ArtifactController@show', $artifact->id)}}">
-                    <img class="w-full rounded-lg shadow-lg hover:shadow-xl" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_thumb}}">
+                    <img class="rounded-lg" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_thumb}}">
                 </a>      
-         
-          </div>
-        
-        </div>
+            </div>
 
 
         @endforeach
@@ -250,7 +244,7 @@
             {{-- Empty Collection Placeholder--}}
 
             <div class="relative w-full">
-                            <a href="{{action('ExploreController@test', ['section' => $section , 'collection' => $collection ])}}">
+                            <a href="{{action('CollectionController@show', ['section' => $section , 'collection' => $collection ])}}">
                                 <img class="w-full rounded-t-lg opacity-75 hover:opacity-100 " src="{{asset('storage/upload.png')}}">
 
                             </a>

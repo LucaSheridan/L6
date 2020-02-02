@@ -2,22 +2,13 @@
 
 @section('content')
       
-
 {{-- Begin Content Container --}}     
 
 <div class="flex items-center p-4 bg-gray-500">
 
-
     <div class="w-full m-0 p-0">
 
-    {{-- Begin Class Header --}} 
-            
-    
-
-
-
-
-    {{--  Classes Section: Title --}}
+ {{--  Classes Section: Title --}}
 
         <div class="flex items-center mb-1">
            
@@ -74,102 +65,110 @@
      @include('partials.teacher.section.nav')
 
     <div class="flex flex-wrap w-full mt-4">
-         
-{{-- START STUDENTS ------------------------------------------------------------------}}
-
- <div class="w-full sm:w-1/2 mb-4 sm:mb-0 sm:border-r-8 border-gray-500">
-             
-           {{--  Begin Student Header  --}}
-
-            <div class="flex w-full">
-
-                {{-- Students Title --}}
-           
-                <div class="flex-grow px-2 pt-1 text-left text-2xl rounded-br-lg text-gray-300">STUDENTS
-                </div>
-            
-                {{-- Students Menu --}}
-
-                    <div class="flex">
-                    
-                    <a class=""href="{{action('SectionController@edit', $activeSection)}}">
-                        
-                        <div class="flex justify-end p-1 bg-gray-400 hover:bg-gray-300 border-b border-gray-400 rounded-t-lg text-gray-600">
-                        
-                            <div>@icon('search', ['class' => 'w-4 h-4 float-right ml-1 w-6 h-6'])</div>
-                            <div class="flex pt-1 px-1">Search</div>
- 
-                        </div>
-                     </a>
-
-                    </div>
     
-                {{-- End Students Menu --}}
+    <div class="w-full sm:w-1/2 mb-4 sm:mb-0 sm:border-r-8 border-gray-500">
+             
+     {{-- Students --}}
 
-           </div>
+        <div class="flex items-center mb-1">
 
-           {{-- End Students Header --}}
+            <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-200">
+            STUDENTS
+            </div>
+                
+            <div class="flex relative text-left">
+                
+                <dropdown>
+                
+                    <template v-slot:trigger>
+                    @icon('menu', ['class' => ' w-5 h-5 text-gray-200'])
+                    </template>
+                    
+                    <div class="z-10 absolute top-0 right-0 shadow-2xl bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap">
+
+                        <li class="hover:text-gray-300 px-3">
+                        <div class="flex items-center">
+                        <div class="pr-2 text-gray-500">
+                        @icon('search', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                         <div>Search</div>
+                        </div>
+                        </li>
+               
+                    </div>
+
+                </dropdown>
+            </div>
+    
+        </div>
 
             @if ($activeSection->students->count() > 0)
 
-                                <div class="bg-gray-100 rounded-l-lg rounded-br-lg p-2 text-sm">
-                                    <ul class="leading-snug text-sm no-underline text-gray-700">
+                 <div class="bg-gray-100 rounded-lg p-2 text-sm">
+                    <ul class="leading-snug text-sm no-underline text-gray-700">
                                     
-                                    @foreach ($activeSection->students as $student)
-                                    
-                                    <a href="{{action('SectionController@studentProgress', ['section'=> $activeSection, 'user' => $student])}}">
-                                               
-                                    <li class="pl-2 rounded-sm text-gray-600 text-sm bg-gray-100 hover:bg-gray-200 hover:text-red-500">
-                                    {{ $student->fullName}}</li>
+                        @foreach ($activeSection->students as $student)
+                        
+                        <a href="{{action('SectionController@studentProgress', ['section'=> $activeSection, 'user' => $student])}}">
+                        <li class="pl-2 rounded-sm text-gray-600 text-sm bg-gray-100 hover:bg-gray-200 hover:text-red-500">
+                        {{ $student->fullName}}</li>
+                        </a>
+                        
+                        @endforeach
+                        
+                    </ul>
+                </div>
 
-                                    </a>
-                                    
-
-                                @endforeach
-                            </ul>
-
-                                </div>
-
-                            @else
+            @else
            
-                                <div class="text-gray-600 rounded-l-lg rounded-br-lg bg-gray-100 p-3 no-underline text-sm">
+                <div class="text-gray-600 rounded-l-lg rounded-br-lg bg-gray-100 p-3 no-underline text-sm">
 
-                                No students are currently enrolled in this class.
-                                </div>            
+                No students are currently enrolled in this class.
+                </div>            
                             
-                            @endif
+            @endif
 
+        </div>
 
-            </div>
-
-              {{-- START ASSIGNMENT -----------------------------------------------------------------------------------}}
+        {{-- ASSIGNMENT --}}
 
          <div class="w-full sm:w-1/2 border-gray-500 mb-4">
              
            {{--  Begin Assignment Header  --}}
 
-            <div class="flex w-full">
+        <div class="flex items-center mb-1">
 
                 {{-- Assignments Title --}}
-           
-                <div class="flex-grow px-2 pt-1 text-left text-2xl rounded-br-lg text-gray-300">ASSIGNMENTS
+
+                <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-200">
+                ASSIGNMENTS
                 </div>
             
                 {{-- Assignment Option --}}
 
-                    <div class="flex ">
-                    
-                    <a class=""href="{{action('AssignmentController@create', $activeSection)}}">
-                        
-                        <div class="flex justify-end p-1 bg-gray-300 bg-gray-400 hover:bg-gray-300 border-b rounded-t-lg text-gray-600">
-                        
-                            <div>@icon('plus-circle', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 w-6 h-6'])</div>
-                            <div class="flex pt-1 px-1">Create</div>
- 
-                        </div>
-                     </a>
+                    <div class="flex relative text-left">
+                
+                <dropdown>
+    
+                    <template v-slot:trigger>
+                    @icon('menu', ['class' => ' w-5 h-5 text-gray-200'])
+                    </template>
 
+                    <div class="z-10 absolute top-0 right-0 shadow-2xl bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap">
+
+                        <li class="hover:text-gray-300 px-3">
+                        <a class=""href="{{action('SectionController@edit', $activeSection)}}">
+                        <div class="flex items-center">
+                        <div class="pr-2 text-gray-500">
+                        @icon('plus-circle', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                         <div>New Assignment</div>
+                        </div>
+                        </a>
+                        </li>
+               
                     </div>
+
+                </dropdown>
+            </div>
     
                 {{-- End Assignment Menu --}}
 
@@ -248,7 +247,7 @@
                                                                                           
                                 @foreach ( $assignment->components as $component )
                 
-                                    <div class="pl-2 mt-1 bg-red-50">
+                                    <div class="pl-2 mt-1 leading-tight">
                             
                                         <a href="{{action('ComponentController@gallery', ['section' => $assignment->section_id , 'assignment' => $component->assignment_id , 'component' => $component->id ])}}" class="p-0 m-0 hover:text-red-400 hover:rounded no-underline text-sm">
                                         {{ $component->title}}</a>

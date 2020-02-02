@@ -124,7 +124,7 @@
          
          {{-- Start Assignment Column One --}}
 
-            <div class="w-full md:w-1/3 lg:w-2/5 xl:w-1/5 
+            <div class="w-full md:w-2/5
 
              border-gray-500 mb-4 sm:mb-0 sm:border-r-8 ">
              
@@ -205,7 +205,7 @@
 
 {{-- START Column 2 --------------------------------------------------------------------------------------------}}
 
- <div class="w-full md:w-2/3 lg:w-3/5 xl:w-4/5 border-gray-500 mb-4 sm:mb-0 sm:border-r-8">
+ <div class="w-full md:w-3/5 border-gray-500 mb-4 sm:mb-0 sm:border-r-8">
              
            {{--  Begin Component Header  --}}
 
