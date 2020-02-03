@@ -92,7 +92,7 @@
 
         <!-- Flash Messages Here-->
 
-        <div class="">
+        <div>
             @include('flash::message')
         </div>
 
@@ -102,14 +102,14 @@
     
 
     <!-- Scripts -->
-<script src="{{ mix('js/app.js') }}"></script>
+   <script src="{{ mix('js/app.js') }}"></script>
 
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="https://unpkg.com/flickity-fullscreen@1/fullscreen.js"></script>
 
     <script type="text/javascript">
-    // close the div in 5 secs
-    window.setTimeout("hideMessage();", 3000);
+    // close the div in 4 secs
+    window.setTimeout("hideMessage();", 4000);
 
     function hideMessage(){
     document.getElementById("message").style.display="none";

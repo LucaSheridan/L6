@@ -241,7 +241,7 @@ class ArtifactController extends Controller
 
             {
             
-            flash('Your artifact was created successfully!');
+            flash('Your artifact was created successfully!', 'success');
 
             return redirect()->action('HomeController@index');
 

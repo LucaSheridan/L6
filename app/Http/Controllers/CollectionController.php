@@ -123,8 +123,8 @@ class CollectionController extends Controller
             return redirect()->action('CollectionController@show', $collection);
      }
 
-            /**
-     * Show the form for creating a new collection.
+    /**
+     * Show the confirmation dialogue to delete a coillection.
      *
      * @return \Illuminate\Http\Response
      */
@@ -161,11 +161,11 @@ class CollectionController extends Controller
         //dd($collection);
         // dd($lastPosition);
 
-        //$nextPosition = 1;
+        $max = $collection->artifacts()->max('position');
 
-        $count = count($collection->artifacts);
-
-        $artifact->collections()->attach($request->input('collection'), ['position' => $count +1 ]); 
+        //dd($max);
+        
+        $artifact->collections()->attach($request->input('collection'), ['position' => $max +1 ]); 
         
 
         $collection->save();

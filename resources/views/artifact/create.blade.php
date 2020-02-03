@@ -11,7 +11,7 @@
 
             {!! csrf_field() !!}
       
-            <input type="file" name="file" value="{{ old('file') }}" id="file">
+            <input type="file" style="display:none" name="file" value="{{ old('file') }}" id="file">
             
             <input type="hidden" name="user_id" value="{{ Auth::User()->id }}">
             <input type="hidden" name="section_id" value="{{$section->id}}">

@@ -7,7 +7,7 @@
 
         {{-- Artifact Column --}}
         
-        <div class="flex md:w-2/3 items-start ml-4 md:ml-0 relative">
+        <div class="flex md:w-2/3 items-start ml-4 md:ml-0 md:pl-4 lg:pl-0 relative">
 
         {{-- Artifact Image --}}
         <a class="cursor-zoom-in pr-10" href="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
@@ -16,7 +16,7 @@
 
         {{-- Artifact Menu Trigger | pinned to right of Artifact Column --}} 
 
-            <div class="absolute right-0 mr-2">
+            <div class="absolute right-0 mr-1">
             
                 <div>
 

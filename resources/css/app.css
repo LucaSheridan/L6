@@ -124,16 +124,16 @@
     }
 
     #message {
-    animation: fadein 4s;
-    -moz-animation: fadein 4s; /* Firefox */
-    -webkit-animation: fadein 4s; /* Safari and Chrome */
-    -o-animation: fadein 4s; /* Opera */
+    animation: fadein 4s linear forwards;
+    -moz-animation: fadein 4s linear forwards; /* Firefox */
+    -webkit-animation: fadein 4s linear forwards; /* Safari and Chrome */
+    -o-animation: fadein 4s linear forwards; /* Opera */
 }
 @keyframes fadein {
     0%, 100% {
         opacity:0;
     }
-    50% {
+    30% {
         opacity:1;
     }
 }
@@ -141,7 +141,7 @@
      0%, 100% {
         opacity:0;
     }
-    50% {
+    30% {
         opacity:1;
     }
 }
@@ -149,7 +149,7 @@
      0%, 100% {
         opacity:0;
     }
-    50% {
+    30% {
         opacity:1;
     }
 }
@@ -157,7 +157,7 @@
     0%, 100% {
         opacity:0;
     }
-    50% {
+    30% {
         opacity:1;
     }
 }

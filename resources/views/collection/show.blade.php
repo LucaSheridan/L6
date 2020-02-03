@@ -63,7 +63,7 @@
 
         @foreach ($collection->artifacts as $artifact) 
             
-       <div class="flex items-center text-center relative p-2 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5">
+       <div class="flex  text-center relative p-2 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5">
         
           {{-- Begin Individual Artifacts Container--}}
 
@@ -71,7 +71,7 @@
 
 
                     <a href="{{action('ArtifactController@show', $artifact->id)}}">
-                    <img class="w-full border border-gray-800" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
+                    <img class="w-full border border-gray-800" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_thumb}}">
 
                         <div class="flex relative p-2 text-left text-xs text-gray-700">
                         
