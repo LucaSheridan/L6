@@ -211,8 +211,8 @@ class SectionController extends Controller
                 })
 
                 ->whereIn('components.assignment_id', $assignments)
-                ->orderBy('assignment_id', 'asc')
-                ->orderBy('components.date_due', 'asc')
+                ->orderBy('assignment_id', 'desc')
+                ->orderBy('components.date_due', 'desc')
                 ->select(
                  'artifacts.id AS artifact_id',
                  'components.assignment_id AS assignment_id',

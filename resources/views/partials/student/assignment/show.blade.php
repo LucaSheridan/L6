@@ -9,14 +9,14 @@
     
     <select class="px-2 py-1 pr-8 m-0 bg-gray-300 form-select w-full text-xl text-red-500 rounded-lg" onchange="location = this.value;">
           
-                            <option class="" value="{{action('HomeController@index', $currentSection->id) }}">{{$currentSection->course->title}}</option>
+                            <option class="" value="{{action('HomeController@index', $currentSection->id) }}">{{$currentSection->title}}</option>
             
                                 @foreach ( Auth::User()->activeSections as $section)                         
                                                
                                     @if ( $currentSection->id == $section->id ) 
 
                                     @else
-                                        <option value="{{action('HomeController@index', $section->id) }}">{{ $section->course->title}}</option>
+                                        <option value="{{action('HomeController@index', $section->id) }}">{{ $section->title}}</option>
                                     @endif
                                 
                                 @endforeach
@@ -73,14 +73,14 @@
 
     <div class="flex flex-wrap items-center items-stretch bg-white rounded-lg p-2">
 
-        <table class="p-2 bg-gray-200 w-full rounded-lg ">
+        <table class="p-2 w-full rounded-lg">
 
      <tr>
-                <td class="w-12 text-gray-600 font-bold py-2 pl-2">Status</td>  
+                <td class="w-4 text-gray-600 font-bold py-1 pl-1 ">Status</td>  
                 <td class="w-16 py-2 pl-1"></td>
-                <td class="w-auto text-gray-600 font-bold py-2 pl-2 ">Component</td>
-                <td class="w-12 text-gray-600 font-bold p-2">Add</td>
-                <td class="w-12 text-gray-600 font-bold p-2">Delete</td>
+                <td class="w-56 text-gray-600 font-bold py-2 pl-2 ">Component</td>
+                <td class="w-4 text-gray-600 font-bold p-2 text-center">Add</td>
+                <td class="w-4 text-gray-600 font-bold p-2 text-center">Delete</td>
 
     </tr> 
 
@@ -93,12 +93,15 @@
     <!-- Submission Status -->
     <td class="text-center">
 
-            {{-- Display Empty Checkbox --}}
+        <div class=
+        "flex justify-center items-center">
+        
+                   {{-- Display Empty Checkbox --}}
 
 
                     @if (!$checklistItem->artifactCreatedAt)
 
-                        @icon('icon-check-circle', ['class' => 'text-gray-400 w-8 h-8 m-2 fill-current'])
+                        @icon('check-circle', ['class' => 'text-gray-400 w-8 h-8 m-2'])
 
                     @else
 
@@ -108,49 +111,54 @@
                 
                         @if ($checklistItem->artifactCreatedAt <= $duedate)
 
-                            @icon('icon-check-circle', ['class' => 'text-green-500 w-8 h-8 m-2 fill-current'])
+                            @icon('check-circle', ['class' => 'text-green-500 w-8 h-8 m-2'])
 
                         @else 
 
-                            @icon('icon-check-circle', ['class' => 'text-yellow-500 w-8 h-8 m-2 fill-current'])
+                            @icon('check-circle', ['class' => 'text-yellow-500 w-8 h-8 m-2'])
 
                                                                      
                         @endif
 
                     @endif
 
+                    </div> 
+
     </td>
 
-    <td>
+    <td class="">
 
                 @if (!$checklistItem->artifactCreatedAt)
 
-                    <div class="bg-gray-200 w-16 h-16 text-center text-sm ">
+                    <div class="flex items-center justify-center text-sm ">pending
                     </div>
 
                     @else
 
-                    <a href="{{ action('ArtifactController@show', $checklistItem->artifactID)}}">
+                    <div class="flex items-center justify-center text-sm ">
 
-                    <img class="w-16 h-16 border-4 border-white rounded-lg" src="https://s3.amazonaws.com/artifacts-0.3/{{$checklistItem->artifactThumb}}"></a>
+                        <a href="{{ action('ArtifactController@show', $checklistItem->artifactID)}}">
+                        <img class="w-16 md:w-24 lg:w-32 h-16 md:w-24 lg:w-32 border-4 border-white rounded-lg" src="https://s3.amazonaws.com/artifacts-0.3/{{$checklistItem->artifactThumb}}"></a>
+                    
+                    </div>
 
-                 @endif
-   
+                @endif
+
     </td>
     
     <!-- Component Title -->
 
-    <td class="p-2 ">{{ $checklistItem->componentTitle }}<br/>
+    <td class="p-2">{{ $checklistItem->componentTitle }}<br/>
     
     <!-- Due Date -->
     
-    <span class="text-gray-600 text-xs border-b border-gray-600">
+    <span class="text-gray-600 text-xs border-b border-gray-600 w-16 ">
         Due {{Carbon\Carbon::parse($checklistItem->componentDateDue)->format('m/d g:i A ')}}
     </span>
 
     <br/>
     
-    <span class="text-gray-600 text-xs">
+    <span class="text-gray-600 text-xs w-16 ">
         @if(!$checklistItem->artifactCreatedAt)
         @else
         Submitted: {{Carbon\Carbon::parse($checklistItem->artifactCreatedAt)->timezone('America/New_York')->format('m/d g:i A')}}
@@ -159,102 +167,39 @@
     <!-- {{ Carbon\Carbon::parse($checklistItem->componentDateDue)->format('D n/j g:i a') }}-->
     </td>
    
-    <td class="text-center">
+    <td class="text-center w-16">
 
-    {{-- Show Image Upload Form or Options for Uploaded Artifact --}}
+        {{-- Show Image Upload Form or Options for Uploaded Artifact --}}
 
-    @if ($checklistItem->artifactID)
-            
-            <a href='{{ action('ArtifactController@create', ['section' => $checklistItem->sectionID , 'assignment' => $checklistItem->assignmentID , 'component' => $checklistItem->componentID] ) }}'>
-            @icon('icon-plus-circle', ['class' => 'text-gray-400 hover:text-red-400 w-8 h-8 ml-1 fill-current'])
-
-            </a>
-    </td>
-    
-    <td class="text-center">
-
-            <form action="{{ action('ArtifactController@destroy', $checklistItem->artifactID) }}" role="form" method="POST">
-
-            {!! csrf_field() !!}
-            <input type="hidden" name="_method" value="DELETE">
-
-            <button class="" type="submit">
-            @icon('icon-x-circle', ['class' => 'text-red-500 border-0 hover:text-red-400 w-8 h-8 fill-current'])
-            </button>
-            </form>
-            
-    
-    @else
-
-         <td class="text-center">
-
-    <a href='{{ action('ArtifactController@create', ['section' => $checklistItem->sectionID , 'assignment' => $checklistItem->assignmentID , 'component' => $checklistItem->componentID] ) }}'>
-            @icon('icon-plus-circle', ['class' => 'text-gray-400 hover:text-red-400 w-8 h-8 ml-1 fill-current'])
-
-            </a>
-
-        </td>
-
-            <!--  <form action="{{ action('ArtifactController@store') }}" role="form" method="POST" enctype="multipart/form-data">
-
-        {!! csrf_field() !!}
-  
-        <label for="file" class="inline-block bg-red-200 p-2">
-        Select a file to upload
-        </label>
-
-        <input type="hidden" name="user_id" value="{{ Auth::User()->id }}">
-        <input type="hidden" name="section_id" value="{{$checklistItem->sectionID}}">
-        <input type="hidden" name="assignment_id" value="{{$checklistItem->assignmentID}}">
-        <input type="hidden" name="component_id" value="{{$checklistItem->componentID}}">
-
-
-        <input type="file" name="file" value="{{ old('file') }}" id="file">
-
-        
-        <button type="submit" value="submit">@icon('icon-upload', ['class' => 'text-gray-400 hover:text-red-400 w-8 h-8 ml-1 fill-current'])</input>
-        
-        </form> -->
-
-
-        @if ($errors->has('file')) 
-
-            <span class="text-red-600">
-            {{ $errors->first('file') }}
-            </span>
-        
-        @endif
-
-
-        {{-- <form  role="form" method="POST" action="{{ url('/artifact') }}" enctype="multipart/form-data">
-                        
-        {!! csrf_field() !!}
-
-       
-        <input type="file" class="p-2 border rounded bg-gray-200" name="file" placeholder="Browse" value="{{ old('file') }}"/>
-
-        <input type="hidden" name="user_id" value="{{ Auth::User()->id }}">
-        <input type="hidden" name="assignment_id" value="{{$checklistItem->assignmentID}}">
-        <input type="hidden" name="component_id" value="{{$checklistItem->componentID}}">
-        
-       <button id="upload" type="submit" class="btn btn-success">Upload
-       </button>
-
-        <!-- File Uplaod Errors-->
-
-        @if ($errors->has('file'))
-        
-            <span class="help-block">
-            <strong>{{ $errors->first('file') }}</strong>
-            </span>
-        
-        @endif
-                                        
-        </form> --}}
-
-    @endif
+        <div class=
+        "flex justify-center items-center">
+        <a href="{{ action('ArtifactController@create', [ 'section' => $currentSection , 'assignment' => $checklistItem->assignmentID , 'component' => $checklistItem->componentID ]) }}">
+        @icon('plus-circle', ['class' => 'text-gray-400 hover:text-red-400 w-8 h-8 ml-1'])
+        </a>
+        </div>
 
     </td>
+
+        @if ($checklistItem->artifactID)
+
+            {{-- Delete Artifact --}}
+
+                <td class="text-center w-16">
+
+                    <div class="flex justify-center items-center">
+                    
+                        <a href="{{action('ArtifactController@delete', $checklistItem->artifactID )}}">@icon('x-circle', ['class' => 'text-red-500 border-0 hover:text-red-400 w-8 h-8'])</a>
+
+                    </div>
+
+                    @else
+
+                     <td class="text-center w-16">
+                     </td>
+
+                    @endif
+
+                </td>
 
 
 </tr>

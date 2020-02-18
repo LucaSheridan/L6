@@ -8,81 +8,116 @@
         
     {{-- CLASSES--}}
     
-        <div class="mb-2 text-2xl text-gray-300">CLASSES</div>
+        <div class="mt-2 mb-3 text-2xl text-gray-300">CLASSES</div>
     
-        {{-- Begin Class Select --}}
+        @if ( is_null($currentSection))
+        
+            <div class="p-4 mb-3 bg-gray-300 w-full text-gray-700 rounded-lg text-center">
+        
+                <p>You haven't enrolled in any classes yet.</p>
+                
+                <a class="inline-block max-w-sm mt-3 px-2 py-2 rounded-lg bg-red-400 shadow hover:bg-red-500 hover:shadow-lg text-gray-200 hover:text-gray-100" href="{{route('addClass')}}">Join a class</a>
+                
+            </div>
 
-            <select class="px-2 py-1 pr-8 mb-4 bg-gray-300 form-select w-full text-xl rounded-lg text-red-500 rounded-none" onchange="location = this.value;">
+            NO ASSIGNMENTS SHOWN - BECAUSE NO CLASSES JOINED - 1
+        
+        @else
 
-                <option class="" value="{{action('HomeController@index', $currentSection->id) }}">{{$currentSection->title}}</option>
+            {{-- Begin Class Select --}}
 
-                    @foreach ( Auth::User()->activeSections as $section)                         
-                                   
-                        @if ( $currentSection->id == $section->id )
-                        @else
-                        <option value="{{action('HomeController@index', $section->id) }}">{{ $section->title}}</option>
-                        @endif
-                    
-                    @endforeach
+            @if ( is_null($currentSection))
+            @else
+           
+                 <select class="px-2 py-1 pr-8 mb-4 bg-gray-300 form-select w-full text-xl rounded-lg text-red-500 rounded-none" onchange="location = this.value;">
 
-            </select>
+                    <option class="" value="{{action('HomeController@index', $currentSection->id) }}">{{$currentSection->title}}</option>
+
+                        @foreach ( Auth::User()->activeSections as $section)                         
+                                       
+                            @if ( $currentSection->id == $section->id )
+                            @else
+                            <option value="{{action('HomeController@index', $section->id) }}">{{ $section->title}}</option>
+                            @endif
+                        
+                        @endforeach
+
+                    </select>
+
+            @endif
+
+        @endif
 
         {{-- END CLASSES --}}
 
          {{-- ASSIGNMENTS --}}
             
-        <div class="mb-2 text-2xl text-gray-300">ASSIGNMENTS</div>
-
         {{-- Begin Assignment Select for Mobile --}}
 
-                    @if ($currentSection->assignments->count() > 0)
+                    
+        @if ( is_null($currentSection))
+        
+        NO ASSIGNEMNEBTS BEASUE OF NO CLASSES -2 
+        @else
 
-                         <select class="block sm:hidden px-2 py-1 pr-8 mb-4 bg-gray-300 form-select w-full text-xl rounded-lg text-gray-600 rounded-none" onchange="location = this.value;">
-  
-                             @foreach ($currentSection->assignments as $assignment)
-             
-                                <option value="{{action('AssignmentController@showStudent', ['section' => $currentSection->id, 'assignment' => $assignment->id])}}" class="hover:text-red-500', $assignment->id) }}">{{ $assignment->title }}</option>
+            <div class="mb-2 text-2xl text-gray-300">ASSIGNMENTS</div>
 
-                             @endforeach
+            @if ($currentSection->assignments->count() > 0)
 
-                        </select>
+                                <select class="block sm:hidden px-2 py-1 pr-8 mb-4 bg-gray-300 form-select w-full text-xl rounded-lg text-gray-600 rounded-none" onchange="location = this.value;">
+      
+                                 @foreach ($currentSection->assignments as $assignment)
+                 
+                                    <option value="{{action('AssignmentController@showStudent', ['section' => $currentSection->id, 'assignment' => $assignment->id])}}" class="hover:text-red-500', $assignment->id) }}">{{ $assignment->title }}</option>
 
-                    @else
-                        <div class="block sm:hidden px-2 py-2 pr-8 mb-4 bg-gray-300 w-full text-lg rounded-lg text-gray-600 rounded-none">No projects assigned</div>
+                                 @endforeach
 
-                    @endif
+                            </select>
+
+                        @else
+                            <div class="block sm:hidden px-2 py-2 pr-8 mb-4 bg-gray-300 w-full text-lg rounded-lg text-gray-600 rounded-none">No projects assigned</div>
+
+                        @endif
+            @endif
 
         {{-- Begin Assignment Select for > Mobile --}}
   
-                    <div class="hidden sm:block px-2 py-1 pr-8 mb-4 bg-gray-300 w-full text-lg rounded-lg text-gray-600 rounded-none">
+                    <div class="hidden sm:block px-2 py-1 mb-4 bg-gray-300 w-full text-lg rounded-lg text-gray-600 rounded-none">
+
+                @if ( is_null($currentSection))
+
+                NO Assignments $currentSection is null
+                @else
 
                     @if ($currentSection->assignments->count() > 0)
 
-                    <ul class="leading-tight text-md">
+                        <ul class="leading-tight text-md">
 
-                        @foreach ($currentSection->assignments as $assignment)
-         
-                            <li class="">
-                            <a class="text-gray-600 hover:text-red-500 text-sm font-semibold" href="
-                            {{action('AssignmentController@showStudent', ['section' => $currentSection->id, 'assignment' => $assignment->id])}}">{{$assignment->title}}</a>
-                            </li>
+                            @foreach ($currentSection->assignments as $assignment)
+             
+                                <li class="">
+                                <a class="text-gray-600 hover:text-red-500 text-sm font-semibold" href="
+                                {{action('AssignmentController@showStudent', ['section' => $currentSection->id, 'assignment' => $assignment->id])}}">{{$assignment->title}}</a>
+                                </li>
 
-                                   <!-- <ul class="ml-2">
-                                    @foreach ($assignment->components as $component)
-                                    
-                                    <a href="">
-                                        <li class="text-xs">
-                                   - {{$component->title}}</li></a>
+                                       <!-- <ul class="ml-2">
+                                        @foreach ($assignment->components as $component)
+                                        
+                                        <a href="">
+                                            <li class="text-xs">
+                                       - {{$component->title}}</li></a>
 
-                                    @endforeach
-                                    </ul> -->
+                                        @endforeach
+                                        </ul> -->
 
-                    @endforeach
-                    <ul>
+                            @endforeach
+                        <ul>
                     
                     @else
                     <div class="text-sm">No projects assigned</div>
                     @endif
+                
+                @endif
 
                     </div>
 
@@ -108,7 +143,7 @@
                         
                         <div class="flex justify-end p-2 bg-gray-200 rounded-t-lg">
                         
-                            <div>@icon('plus-circle', ['class' => 'float-right text-gray-500 hover:text-red-400 fill-current'])</div>
+                            <div>@icon('plus-circle', ['class' => 'float-right text-gray-500 hover:text-red-400'])</div>
 
                             <div class="flex pt-1 px-1 text-gray-600">Create</div>
 
@@ -160,7 +195,7 @@
                     <a class="" href="{{action('CollectionController@create')}}">
                         <div class="flex justify-end p-2 bg-gray-200 rounded-t-lg">
                         
-                            <div>@icon('plus-circle', ['class' => 'float-right text-gray-500 hover:text-red-400 fill-current'])</div>
+                            <div>@icon('plus-circle', ['class' => 'float-right text-gray-500 hover:text-red-400'])</div>
 
                              <div class="flex pt-1 px-1 text-gray-600">Create</div>
  
@@ -200,20 +235,13 @@
                 @foreach ($collection->artifacts as $artifact)
 
                     @if ( $loop->first )
+                            
                             <div class="relative w-full">
                             
-                            <!-- Original Option -->
-
-                            <a href="{{action('CollectionController@showStudent', ['section' => $section , 'collection' => $collection ])}}">
-
-                            <!-- New Option-->
-
-                            <a href="{{action('ExploreController@test', $collection )}}">
-
+                            <a href="{{action('CollectionController@show', $collection )}}">
                             
                             <img class="w-full rounded-t-lg opacity-75 hover:opacity-100 " src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_thumb}}">
 
-                            
                             </a>
                        </div>
                      @else
@@ -226,7 +254,7 @@
             {{-- Empty Collection Placeholder--}}
 
             <div class="relative w-full">
-                            <a href="{{action('CollectionController@showStudent', ['section' => $section , 'collection' => $collection ])}}">
+                            <a href="{{action('CollectionController@show', $collection )}}">
                                 <img class="w-full rounded-t-lg opacity-75 hover:opacity-100 " src="{{asset('storage/upload.png')}}">
 
                             </a>

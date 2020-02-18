@@ -103,7 +103,7 @@ class ArtifactController extends Controller
     public function create(Request $request, Section $section, Assignment $assignment, Component $component)
    
         {
-        // return view('artifact.create')->with('component', $component);
+
     return view('artifact.create')->with(['section' => $section, 'assignment' => $assignment, 'component'=> $component]);
 
         }
@@ -252,6 +252,8 @@ class ArtifactController extends Controller
             { 
 
             flash('An artifact has been successfully added to this assignment!', 'success');
+
+            //dd( $section_id );
 
             return redirect()->action('AssignmentController@showStudent', [
                 'section' => $section_id , 
@@ -462,10 +464,10 @@ class ArtifactController extends Controller
         $artifact->artist = $request->input('artist');
         $artifact->medium = $request->input('medium');
         $artifact->year = $request->input('year');
-        // $artifact->dimensions_units = $request->input('dimensions_units');
-        // $artifact->dimensions_height = $request->input('dimensions_height');
-        // $artifact->dimensions_width = $request->input('dimensions_width');
-        // $artifact->dimensions_depth = $request->input('dimensions_depth');
+        $artifact->dimensions_height = $request->input('dimensions_height');
+        $artifact->dimensions_width = $request->input('dimensions_width');
+        $artifact->dimensions_depth = $request->input('dimensions_depth');
+        $artifact->dimensions_units = $request->input('dimensions_units');
         $artifact->annotation = $request->input('annotation');
 
         $artifact->save();

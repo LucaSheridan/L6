@@ -18,6 +18,7 @@ class CreateArtifactCollectionTable extends Migration
             $table->bigInteger('collection_id')->unsigned();
             $table->bigInteger('artifact_id')->unsigned();
             $table->bigInteger('position')->unsigned();
+            $table->string('artist')->nullable();
             $table->string('title')->nullable();
             $table->string('medium')->nullable();
             $table->string('year')->nullable();
@@ -25,7 +26,8 @@ class CreateArtifactCollectionTable extends Migration
             $table->string('dimensions_width')->nullable();
             $table->string('dimensions_depth')->nullable();
             $table->string('dimensions_units')->nullable();
-            
+            $table->text('label_text', 750)->nullable();
+
             $table->foreign('collection_id')
                   ->references('id')
                   ->on('collections')

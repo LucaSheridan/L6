@@ -164,7 +164,6 @@ class AssignmentController extends Controller
      */
     public function showStudent(Section $section, Assignment $assignment)
     {
-
         $checklist = DB::table('components')
 
             ->leftjoin('artifacts', function ($join) use ($assignment) {
@@ -173,10 +172,8 @@ class AssignmentController extends Controller
             ->where('artifacts.user_id', '=', Auth::User()->id); 
             // This eliminates matches, not records
             })
-
             ->where('components.assignment_id', '=', $assignment->id)
-
-            ->orderBy('components.date_due', 'ASC')
+             ->orderBy('components.date_due', 'ASC')
             ->select(
                       'artifacts.id AS artifactID',
                       'components.section_id AS sectionID',
@@ -193,16 +190,13 @@ class AssignmentController extends Controller
         return view('partials.student.assignment.show')->with(['currentSection' => $section,'currentAssignment' => $assignment, 'checklist' => $checklist]);
         }
 
-     /**
+    /**
      * Show the form for creating a new assignment.
      *
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, Section $section, Assignment $assignment )
     {
-
-        //dd($assignment);
-
        return view('partials.teacher.assignment.edit')->with(['section' => $section, 'assignment' => $assignment]);
     }
 
@@ -213,16 +207,13 @@ class AssignmentController extends Controller
      */
     public function update(Request $request, Section $section, Assignment $assignment )
     {
-
-        //dd($request->input('active'));
-
         //validate form
         $this->validate($request, [
         
         'title' => 'required',
         'date_due' => 'nullable|date_format:"m-d-y"',
         'active' => 'required',
-        //'description' => 'required'
+
         ]);
 
         //set and persist assignment information to database
@@ -245,8 +236,7 @@ class AssignmentController extends Controller
 
         flash('Your assignment was updated successfully!', 'success');
 
-
-       return view('partials.teacher.assignment.show')->with(['activeSection' => $section, 'activeAssignment' => $assignment, 'sectionAssignments' => $section->assignments]);
+        return view('partials.teacher.assignment.show')->with(['activeSection' => $section, 'activeAssignment' => $assignment, 'sectionAssignments' => $section->assignments]);
     }
 
      public function gallery(Section $section, Assignment $assignment)
@@ -254,14 +244,12 @@ class AssignmentController extends Controller
         
         $sections =  Auth::User()->sections()->get()->pluck('label','id');
 
+        //
         $activeSection = $section;
         $activeAssignment = $assignment;
         $activeComponent = $activeAssignment->components->first();
 
-        //dd($activeComponent);
-
         $sectionAssignments = Assignment::where('section_id', $section->id)->get();
-
         $components = Component::where('assignment_id', $assignment->id)->get()->pluck('title','id');
     
         $students = User::with(['artifacts' => function ($query) use($activeComponent) {
@@ -277,5 +265,29 @@ class AssignmentController extends Controller
         return view('partials.teacher.assignment.gallery')
                ->with(compact('sections', 'activeSection', 'sectionAssignments', 'activeAssignment', 'components', 'activeComponent', 'students'));
      }
+
+    /**
+     * Show the confirmation dialogue to delete an assignment.
+     *
+     * @return \Illuminate\Http\Response
+     */
+        public function delete(Request $request, Section $section, Assignment $assignment)
+    {
+        return view('partials.teacher.assignment.delete')->with(compact('section', 'assignment'));
+    }
+    
+    /**
+     * Delete an assignment form the database along with all related components.
+     *
+     * @return \Illuminate\Http\Response
+     */
+        public function destroy (Section $section, Assignment $assignment)
+    {
+        $assignment->delete();
+
+        flash('Assignment deleted successfully!', 'success');
+
+        return redirect()->action( 'SectionController@show', $section->id);
+    }
 
 }

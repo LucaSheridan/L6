@@ -16,7 +16,7 @@
                                     @if ( $currentSection->id == $section->id ) 
 
                                     @else
-                                        <option value="{{action('HomeController@index', $section->id) }}">{{ $section->x}}</option>
+                                        <option value="{{action('HomeController@index', $section->id) }}">{{ $section }}</option>
                                     @endif
                                 
                                 @endforeach

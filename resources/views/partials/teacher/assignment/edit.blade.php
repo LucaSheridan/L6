@@ -29,7 +29,7 @@
 
                         <label for="title" class="w-full md:mb-0 font-semibold text-gray-600 text-sm pt-2 pr-3 align-middle">Title</label>
 
-                        <input id="title" type="text" class="w-full mt-2 rounded h-8 p-1 border text-gray-600 text-sm {{ $errors->has('title') ? 'border-red-500' : 'border' }}" name="title" value="{{ $assignment->title}}" autofocus>
+                        <input id="title" type="text" class="w-full mt-2 rounded h-8 p-1 border text-gray-600 text-sm {{ $errors->has('title') ? 'border-red-500' : 'border' }}" name="title" value="{{ $assignment->title}}" autofocus tabIndex="1">
                         {!! $errors->first('title', '<span class="text-red-500 text-sm mt-2">:message</span>') !!}
 
                     </div>
@@ -40,7 +40,7 @@
 
                         <label for="description" class="w-full font-semibold text-gray-600 text-sm pt-2 pr-3 align-middle">Description</label>
 
-                        <textarea id="description" class="w-full mt-2 rounded p-2 border text-gray-600 leading-snug text-sm {{ $errors->has('description') ? 'border-red-500' : 'border' }}" name="description" value="" >{{ $assignment->description}}</textarea>
+                        <textarea id="description" class="w-full mt-2 rounded p-2 border text-gray-600 leading-snug text-sm {{ $errors->has('description') ? 'border-red-500' : 'border' }}" name="description" tabIndex="2">{{ $assignment->description}}</textarea>
 
                     </div>
 
@@ -75,9 +75,9 @@
 
                     <div class="my-1 text-center">
 
-                          <a href="{{ url()->previous() }}" class="inline-block mb-1 md:mb-0 bg-gray-400 hover:bg-red-500 text-gray-700 hover:text-white px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">Cancel</a>
+                          <a href="{{ url()->previous() }}" class="inline-block mb-1 md:mb-0 bg-gray-400 hover:bg-gray-500 text-gray-700 hover:text-white px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">Cancel</a>
 
-                          <button type="submit" class="mb-1 md:mb-0 bg-gray-400 hover:bg-green-500 text-gray-700 hover:text-green-100 px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">Save</button>
+                          <button type="submit" class="mb-1 md:mb-0 bg-gray-400 hover:bg-green-500 text-gray-700 hover:text-green-100 px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded" tabIndex="3">Save</button>
 
                     </div>
 

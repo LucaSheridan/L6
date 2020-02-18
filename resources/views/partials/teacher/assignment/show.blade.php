@@ -53,9 +53,9 @@
 
                         @else
 
-                        <div class="p-2">    
+                        <div class="p-2">
 
-                        <p>You are currently have no assigned classes.</p>
+                            <p>You are currently have no assigned classes.</p>
 
                         </div>
 
@@ -82,9 +82,8 @@
                         
                         <div class="sm:hidden px-0 py-0 flex flex-wrap w-full mr-4">
                     
-                            <select class="px-2 py-1 pr-8 m-0 bg-gray-300 form-select w-full text-lg text-red-500
-
-                            " onchange="location = this.value;">
+                            <select class="px-2 py-1 pr-8 m-0 bg-gray-300 form-select w-full text-lg text-red-500" 
+                            onchange="location = this.value;">
       
                                  <option class="" value="{{action('SectionController@show', $section->id) }}">{{$activeSection->title}}</option>
                 
@@ -120,42 +119,65 @@
 
    {{-- Start Assignment Row --}}
 
+
+
    <div class="flex p-0 flex-wrap w-full mt-4">
          
          {{-- Start Assignment Column One --}}
 
-            <div class="w-full md:w-2/5
-
-             border-gray-500 mb-4 sm:mb-0 sm:border-r-8 ">
+            <div class="w-full md:w-2/5 border-gray-500 mb-4 sm:mb-0 sm:border-r-8 ">
              
+          
             {{--  Assignment Header  --}}
 
-            <div class="flex w-full">
-
+            <div class="flex items-center mt-0 mb-1">
+           
             {{-- Assignments Title --}}
        
-            <div class="flex-grow px-2 pt-1 text-left text-2xl rounded-br-lg text-gray-300">ASSIGNMENT
+            <div class="flex-grow mb-0 px-2 text-left text-2xl rounded-br-lg text-gray-200">
+                ASSIGNMENT                    
             </div>
         
             {{-- Assignment Menu --}}
 
-                    <div class="flex">
+                   <div class="flex relative text-left">
                     
-                    <a class=""href="{{action('AssignmentController@edit', ['section' => $activeSection , 'assignment' => $activeAssignment->id ]) }}">
-                        
-                        <div class="flex justify-end p-1 bg-gray-300 bg-gray-400 hover:bg-gray-300 border-b rounded-t-lg text-gray-600">
-                        
-                            <div>@icon('edit', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 '])</div>
-                            <div class="flex pt-1 px-1"></div>
-                            
-                             <div>@icon('x-circle', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 '])</div>
-                            <div class="flex pt-1 px-1"></div>
- 
-                        </div>
-                     </a>
+                    <dropdown>
+    
+                    <template v-slot:trigger>
+                    @icon('menu', ['class' => ' w-5 h-5 text-gray-200'])              
 
+                    </template>
+
+                    <div class="z-10 absolute top-0 right-0 shadow-2xl bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap">
+
+                        <li class="hover:text-gray-300 px-3">
+                        <a class="" href="{{action('AssignmentController@edit', ['section' => $activeSection , 'assignment' => $activeAssignment])}}"> 
+                        <div class="flex items-center">
+                        <div class="pr-2 text-gray-500">
+                        @icon('edit', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                         <div>Edit</div>
+                        </div>
+                        </a>
+                        </li>
+
+
+                        <li class="hover:text-gray-300 px-3">
+                        <a class="" href="{{action('AssignmentController@delete', ['section' => $activeSection , 'assignment' => $activeAssignment ])}}"> 
+                        <div class="flex items-center">
+                        <div class="pr-2 text-gray-500">
+                        @icon('x-circle', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                         <div>Delete</div>
+                        </div>
+                        </a>
+                        </li>
+               
                     </div>
+
+                </dropdown>
             </div>
+
+        </div>
 
            <div class="bg-gray-100 p-1 rounded-l-lg rounded-br-lg mb-2 sm:mb-2">
 
@@ -205,40 +227,47 @@
 
 {{-- START Column 2 --------------------------------------------------------------------------------------------}}
 
- <div class="w-full md:w-3/5 border-gray-500 mb-4 sm:mb-0 sm:border-r-8">
+ <div class="w-full md:w-3/5 border-red-500 mb-4">
              
-           {{--  Begin Component Header  --}}
+           {{--  Assignment Header  --}}
 
-            <div class="flex w-full">
-
-                {{-- Component Title --}}
+            <div class="flex items-center mt-0 mb-1">
            
-                <div class="flex-grow px-2 pt-1 text-left text-2xl rounded-br-lg text-gray-300">COMPONENTS
-                </div>
-            
-                {{-- Component Menu --}}
+            {{-- Assignments Title --}}
+       
+            <div class="flex-grow mb-0 px-2 text-left text-2xl rounded-br-lg text-gray-200">
+                COMPONENTS                    
+            </div>
+        
+            {{-- Assignment Menu --}}
 
-                    <div class="flex">
+                   <div class="flex relative text-left">
                     
-                    <a href="{{ action('ComponentController@create', ['section' => $activeSection, 'assignment' => $activeAssignment]) }}">    
-                        <div class="flex justify-end p-1 bg-gray-300 bg-gray-400 hover:bg-gray-300 border-b rounded-t-lg text-gray-600">
-                        
-                            <div>
-                            @icon('plus-circle', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400 '])</div>
-                            
-                            <div class="flex pt-1 px-1">Add</div>
-                           
-                        </div>
-                     </a>
-
-                    </div>
+                    <dropdown>
     
-           {{-- End Component Menu --}}
+                    <template v-slot:trigger>
+                    @icon('menu', ['class' => ' w-5 h-5 text-gray-200'])              
 
-           </div>
+                    </template>
 
-           {{-- End Component Header --}}
+                    <div class="z-10 absolute top-0 right-0 shadow-2xl bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap">
 
+                        <li class="hover:text-gray-300 px-3">
+                        <a class="" href="{{action('ComponentController@create', ['section' => $activeSection , 'assignment' => $activeAssignment])}}"> 
+                        <div class="flex items-center">
+                        <div class="pr-2 text-gray-500">
+                        @icon('edit', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                         <div>Create</div>
+                        </div>
+                        </a>
+                        </li>
+               
+                    </div>
+
+                </dropdown>
+            </div>
+
+        </div>
            {{-- Start Component Content --}}
 
            <!-- Check if Assignments exist -->
@@ -247,40 +276,7 @@
 
                  @if ($sectionAssignments->count() > 0)
 
-                        <!-- If they do, loop through the assignments -->
-
-                        <accordion class="block bg-gray-100 m-0 p-0">
-            
-                            <div slot="header"></div>
-                    
-                            <!-- Assignment Header -->
-                         <!--    <a href="{{action('AssignmentController@show', ['assignment' => $assignment->id , 'section' => $activeSection->id])}}" class="text-gray-600 no-underline text-sm hover:text-red-500">
-                            <b>{{$activeAssignment->title}}</b> -->
-
-                            <!-- Add Due Date if a Single Component Assignment -->
-
-                            <!-- @if ($activeAssignment->components->count() < 2 )
-                                
-                                <span class="float-right text-sm text-gray-600">
-                                
-                                @foreach ( $assignment->components as $component )
-
-                                    {{$component->title}}  {{$component->date_due}}
-                                
-                                    @if (is_null($component->date_due))
-                                    N/A
-                                    @else
-                                    {{ Carbon\Carbon::parse($component->date_due)->format('m/j/y') }}
-                                    @endif
-                                
-                                @endforeach
-                                
-                                </span>
-                            @else
-                                
-                                {{-- No due date next to the assignment title --}}
-                            
-                            @endif -->
+                        <!-- If they do, loop through the assignments -->    
                 
                         @if ($activeAssignment->components->count() < 2)
 
@@ -302,7 +298,8 @@
                                         @if (is_null($component->date_due))
                                         N/A
                                         @else
-                                        {{ Carbon\Carbon::parse($component->date_due)->format('m/j/y') }}</a>
+                                        {{ Carbon\Carbon::parse($component->date_due)->format('m/j/y') }}
+                                        </a>
                                         @endif
                                         </span>
                                     
@@ -312,36 +309,72 @@
 
                                 </div>                                            
 
-
-                    </accordion>
-
                         @else
 
                             {{-- Multi Component --}}
 
-                                    <div class="block body text-gray-600 text-sm mt-0 mb-0">
+                                    <div class="text-gray-600 text-sm">
                                                                                           
-                                    @foreach ( $activeAssignment->components as $component )
+                                        @foreach ( $activeAssignment->components as $component )
 
-                                    {{-- Components --}}
+                                        {{-- Components --}}
 
-                                    <div class="p-1">
+                                            <div class="flex items-center leading-tight">
                             
-                                        <a href="{{action('ComponentController@gallery', ['section' => $assignment->section_id , 'assignment' => $component->assignment_id , 'component' => $component->id ])}}" class="p-0 m-0 hover:text-red-400 hover:rounded no-underline text-sm">
-                                        {{ $component->title}}</a>
+                                            <div class="flex flex-grow pl-2">
+                                                <a href="{{action('ComponentController@gallery', ['section' => $assignment->section_id , 'assignment' => $component->assignment_id , 'component' => $component->id ])}}" class="hover:text-red-400 hover:rounded no-underline text-sm">
+                                                {{ $component->title}}</a>
+                                            </div>
 
-                                        
-                                        <a href="{{action('ComponentController@edit', ['section' => $assignment->section_id , 'assignment' => $component->assignment_id , 'component' => $component->id ]) }}" class="p-0 m-0 hover:text-red-400 no-underline text-sm">
-                                        
-                                        <span class="float-right">
-                                        @if (is_null($component->date_due))
-                                        N/A
-                                        @else
-                                        {{ Carbon\Carbon::parse($component->date_due)->format('m/j/y') }}</a>
-                                        @endif
-                                        </span>
-                                    
-                                    </div>
+                                            <div class="flex mr-2">
+                                                <a href="{{action('ComponentController@edit', ['section' => $assignment->section_id , 'assignment' => $component->assignment_id , 'component' => $component->id ]) }}" class="hover:text-red-400 no-underline text-sm">        
+                                                    @if (is_null($component->date_due))
+                                                    N/A
+                                                    @else
+                                                    Due {{ Carbon\Carbon::parse($component->date_due)->format('m/j') }}
+                                                     @endif
+                                                </a>
+                                            </div>
+                                            
+                                            <div class="flex mr-1 relative">
+                                            <dropdown>
+    
+                    <template v-slot:trigger>
+                    @icon('menu', ['class' => ' w-4 h-4 text-gray-500'])              
+
+                    </template>
+
+                    <div class="z-10 absolute top-0 right-0 shadow-2xl bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap">
+
+                        <li class="hover:text-gray-300 px-3">
+                        <a href="{{action('ComponentController@edit', ['section' => $assignment->section_id , 'assignment' => $component->assignment_id , 'component' => $component->id ]) }}" class="hover:text-gray-200 no-underline text-sm">
+                                         
+                        <div class="flex items-center">
+                        <div class="pr-2 text-gray-500">
+                        @icon('edit', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                         <div>Edit</div>
+                        </div>
+                        </a>
+                        </li>
+
+
+                        <li class="hover:text-gray-300 px-3">
+                        <a class="" href="{{action('ComponentController@delete', ['section' => $activeSection , 'assignment' => $activeAssignment, 'component' => $component])}}"> 
+                        <div class="flex items-center">
+                        <div class="pr-2 text-gray-500">
+                        @icon('x-circle', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                         <div>Delete</div>
+                        </div>
+                        </a>
+                        </li>
+               
+                    </div>
+
+                </dropdown> </div>
+
+
+
+                                            </div>
                     
                                     @endforeach
 

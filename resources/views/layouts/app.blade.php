@@ -36,18 +36,18 @@
 
         <div class="flex-grow">
         
-        <a href="{{ url('/home') }}" class="tracking-wide font-thin logo text-4xl md:text-5xl text-gray-600 hover:text-gray-500 no-underline" tabIndex="-1">
+        <a href="{{ url('/home') }}" class="tracking-wide font-thin logo text-4xl md:text-5xl text-gray-600 hover:text-gray-500 no-underline outline-none" tabIndex="-1">
         
         {{-- AlTERNATE NAMES --}}
 
-        <span class="font-semibold tracking-tight text-gray-600">ART</span><span class="text-gray-500">IFACTS</span></a>
+        <span class="ml-10 font-semibold tracking-tight text-gray-600">ART</span><span class="text-gray-500">IFACTS</span></a>
 
 <!-- <span class="font-semibold tracking-tight">BSGE</span>ART</a>
  --> 
  <!-- <span class="font-semibold tracking-tight"></span>arT.io</a> -->
         </div>
         
-        <div class="flex-shrink items-center p-2 text-md text-right">
+        <div class="z-20 flex-shrink items-center p-2 text-md text-right">
                     
                 @guest
                 <a class="no-underline text-gray-600 hover:text-red-300 text-sm p-3" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -71,6 +71,12 @@
                     <div class="z-10 absolute right-0 shadow-2xl mt-1 bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap">
 
                     <li class="hover:text-gray-200 px-2"><a href="{{action('UserController@show', Auth::User())}}">Profile</li>
+
+<!--                     @if ( Auth::User()->hasRole('student'))
+ -->                    <li class="hover:text-gray-200 px-2"><a href="{{ url('/enroll')}}">Join another class</a></li>
+                   <!--  @else
+                    @endif -->
+                    
                     <li class="hover:text-gray-200 px-2"><a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">Logout</a></li>
@@ -116,6 +122,21 @@
     }
     </script>
 
+
+    <script type="text/javascript">
+
+    document.getElementById('file').onchange = uploadOnChange;
+
+    function uploadOnChange() {
+      var filename = this.value;
+      var lastIndex = filename.lastIndexOf("\\");
+      if (lastIndex >= 0) {
+        filename = filename.substring(lastIndex + 1);
+      }
+      document.getElementById('filename').innerHTML = filename;
+    }
+
+    </script>
 
 
 

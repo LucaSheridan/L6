@@ -146,14 +146,16 @@
         
         {{-- Artifacts List --}}
    
-            <div class="flex flex-wrap items-center items-stretch bg-white p-2 rounded-tl-lg rounded-bl-lg rounded-br-lg mb-4">
-
+            <div class="flex flex-wrap h-1/4 w-lg overflow-x-scroll items-center items-stretch bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg mb-4">
+<!--             <div class="w-xl bg-white p-2 h-1/2 overflow-x-scroll p-2 rounded-tl-lg rounded-bl-lg rounded-br-lg mb-4">
+ -->
         @if ($artifacts->count() >0) 
 
         @foreach ($artifacts as $artifact) 
             
-            <div class="p-2 w-1/3 sm:w-1/3 md:w-1/4 lg:w-1/6 opacity-100 hover:opacity-75">
-        
+            <div class="inline-block p-2 w-1/3 sm:w-1/3 md:w-1/4 lg:w-1/6 opacity-100 hover:opacity-75">
+<!--             <div class="float-left p-2 opacity-100 hover:opacity-75">
+ -->        
                 <a href="{{action('ArtifactController@show', $artifact->id)}}">
                     <img class="rounded-lg" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_thumb}}">
                 </a>      
@@ -263,6 +265,4 @@
     @endif
     </div>
 
-    
-    
 @endsection

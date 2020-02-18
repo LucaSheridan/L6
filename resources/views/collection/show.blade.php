@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    
+
     <div class="flex flex-col items-center items-stretch bg-white m-10 rounded-lg p-0">
    
     {{-- Options --}}
@@ -69,31 +69,34 @@
 
           <div class="relative w-full border-white border-4 rounded">
 
-
                     <a href="{{action('ArtifactController@show', $artifact->id)}}">
-                    <img class="w-full border border-gray-800" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_thumb}}">
+                    
+                        <img class="w-full border border-gray-800" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
+                    </a>
 
-                        <div class="flex relative p-2 text-left text-xs text-gray-700">
+                            <div class="flex relative p-2 text-left text-xs text-gray-700">
                         
-                        <ul class="leading-tight">
+                            <ul class="leading-tight">                        
+                        
+                           <Li class="font-semibold">{{$artifact->pivot->artist}}</li>
+                           <li class="italic">{{$artifact->pivot->title}}</li>
+                           <li>{{$artifact->pivot->medium}}</li>
+                           <li>{{$artifact->pivot->year}}</li>
+                           <li>
+                          
+                           {{$artifact->pivot->dimensions_height}}
+                           
+                           @if(is_null($artifact->pivot->dimensions_width))
+                           @else
+                           x {{$artifact->pivot->dimensions_width}}
+                           @endif
 
-<!--                             <Li>{{$artifact->user->fullName}}</li>
- -->                            <Li class="font-semibold">{{$artifact->artist}}</li>
-                            
-                                <li><span class="italic">{{$artifact->title}}</span></li> 
-                                                           <!--  <li>{{$artifact->pivot->medium}}</li>c-->                        
-                            
-                            <li>{{$artifact->medium}}</li>
-
-<!--                             <li>{{$artifact->pivot->year}}</li>
- -->                            
-                            <!--  <li>{{$artifact->pivot->dimensions_height}} x {{$artifact->pivot->dimensions_width}}
-                                @if ($artifact->pivot->dimensions_depth)
-                                x {{$artifact->pivot->dimensions_depth}}
-                                @else
-                                @endif
-                                {{$artifact->pivot->dimensions_units}}
-                            </li> -->
+                           @if (is_null($artifact->pivot->dimensions_depth))
+                           @else
+                           x{{$artifact->pivot->dimensions_depth}}
+                           @endif
+                                  
+                            </li>
 
                         </ul>
             
@@ -102,8 +105,63 @@
                     <div class="absolute z-10 top-0 left-0 p-1 text-gray-100 text-xs">{{$artifact->pivot->position}}</div>
 
                     </a>
+
+                               <div class="flex"> 
+
+                            <div class="flex bg-green-200">
+
+                                <form  id="add_label" method="GET" action="{{ action('CollectionController@addLabel',['collection' => $collection->id ,'artifact' => $artifact->id ]) }}">
+                            
+                                    {{ csrf_field() }}
+
+                                    <input type="hidden" name="position" value="{{$artifact->pivot->position}}">
+                                    <input type="hidden" name="artist" value="{{$artifact->artist}}">
+                                    <input type="hidden" name="title" value="{{$artifact->title}}">
+                                    <input type="hidden" name="medium" value="{{$artifact->medium}}">
+                                    <input type="hidden" name="year" value="{{$artifact->year}}">
+                                    <input type="hidden" name="dimensions_height" value="{{$artifact->dimensions_height}}">
+                                    <input type="hidden" name="dimensions_width" value="{{$artifact->dimensions_width}}">
+                                    <input type="hidden" name="dimensions_depth" value="{{$artifact->dimensions_depth}}">
+                                    <input type="hidden" name="dimensions_units" value="{{$artifact->dimensions_units}}">
+                                    <input type="hidden" name="annotation" value="{{$artifact->annotation}}">
+                                    
+                                   
+                                    <button type="submit" class="bg-gray-300 p-2 rounded">
+                                    @icon('plus-circle', ['class' => 'float-right text-gray-600 hover:text-red-400 h-5 w-5'])
+                                    </button>
+                                
+                                </form>
+
+                                    </div>           
+                                     <div class="flex bg-red-200">
+
+
+                            <form id="edit_label" method="GET" action="{{ action('CollectionController@editLabel',['collection' => $collection->id ,'artifact' => $artifact->id ]) }}">
+                                
+                            {{ csrf_field() }}
+
+                            <input type="hidden" name="position" value="{{$artifact->pivot->position}}">
+                            <input type="hidden" name="title" value="{{$artifact->pivot->title}}">
+                            <input type="hidden" name="medium" value="{{$artifact->pivot->medium}}">
+                            <input type="hidden" name="year" value="{{$artifact->pivot->year}}">
+                            <input type="hidden" name="dimensions_height" value="{{$artifact->pivot->dimensions_height}}">
+                            <input type="hidden" name="dimensions_width" value="{{$artifact->pivot->dimensions_width}}">
+                            <input type="hidden" name="dimensions_depth" value="{{$artifact->pivot->dimensions_depth}}">
+                            <input type="hidden" name="dimensions_units" value="{{$artifact->pivot->dimensions_units}}">
+
+                            <input type="hidden" name="description" value="{{$artifact->pivot->description}}">
+                            
+
+                                            <button type="submit" class="bg-gray-300 p-2 rounded">
+                                            @icon('edit', ['class' => 'float-right text-gray-600 hover:text-red-400 h-5 w-5'])
+                                            </button>
+                                </form>
+                                </div>
+                            </div>
                
          </div>
+
+
 
     </div>
 

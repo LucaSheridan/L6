@@ -81,10 +81,10 @@
                 <dropdown>
                 
                     <template v-slot:trigger>
-                    @icon('menu', ['class' => ' w-5 h-5 text-gray-200'])
+                    @icon('menu', ['class' => ' w-5 h-5 text-gray-500'])
                     </template>
                     
-                    <div class="z-10 absolute top-0 right-0 shadow-2xl bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap">
+                   <!--  <div class="z-10 absolute top-0 right-0 shadow-2xl bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap">
 
                         <li class="hover:text-gray-300 px-3">
                         <div class="flex items-center">
@@ -94,7 +94,7 @@
                         </div>
                         </li>
                
-                    </div>
+                    </div> -->
 
                 </dropdown>
             </div>
@@ -103,7 +103,7 @@
 
             @if ($activeSection->students->count() > 0)
 
-                 <div class="bg-gray-100 rounded-lg p-2 text-sm">
+                 <div class="bg-gray-100 rounded-lg p-2 text-sm h-1/4 md:h-1/2 lg:h-3/4 overflow-scroll">
                     <ul class="leading-snug text-sm no-underline text-gray-700">
                                     
                         @foreach ($activeSection->students as $student)
@@ -156,7 +156,7 @@
                     <div class="z-10 absolute top-0 right-0 shadow-2xl bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap">
 
                         <li class="hover:text-gray-300 px-3">
-                        <a class=""href="{{action('SectionController@edit', $activeSection)}}">
+                        <a class=""href="{{action('AssignmentController@create', $activeSection)}}">
                         <div class="flex items-center">
                         <div class="pr-2 text-gray-500">
                         @icon('plus-circle', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>

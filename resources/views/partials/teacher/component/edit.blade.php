@@ -50,10 +50,12 @@
                     
                     <div class="mt-4 text-center">
 
-                          <a href="{{ url()->previous() }}" class="inline-block border-gray-400 border-2 mb-1 md:mb-0 bg-gray-100 hover:bg-gray-400 text-gray-700 hover:text-white px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">Cancel</a>
+                          <a href="{{ url()->previous() }}" class="inline-block border-gray-400 mb-1 md:mb-0 bg-gray-400 hover:bg-gray-500 text-gray-700 hover:text-white px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">Cancel</a>
 
-                          <button type="submit" class="mb-1 md:mb-0 border-green-400 border-2 hover:bg-green-500 text-gray-700 hover:text-green-100 px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">Update</button>
+                          <button type="submit" class="mb-1 md:mb-0 bg-gray-400 hover:bg-green-500 text-gray-700 hover:text-green-100 px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">UPdate</button>
 
+                         
+                         
                     </div>
                     </div>
                 

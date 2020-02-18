@@ -40,17 +40,13 @@ Route::get('/dropdown', function () {
 
 // Index
 
-Route::get('/site', 'SiteController@index');
-Route::get('/user', 'UserController@index');
-Route::get('/section', 'SectionController@index');
-Route::get('/collection', 'CollectionController@index');
-Route::get('/assignment', 'AssignmentController@index');
-Route::get('/component', 'ComponentController@index');
-Route::get('/artifact', 'ArtifactController@index');
-
-//Explore 
-
-Route::get('/test/{collection}', 'ExploreController@test');
+// Route::get('/site', 'SiteController@index');
+// Route::get('/user', 'UserController@index');
+// Route::get('/section', 'SectionController@index');
+// Route::get('/collection', 'CollectionController@index');
+// Route::get('/assignment', 'AssignmentController@index');
+// Route::get('/component', 'ComponentController@index');
+// Route::get('/artifact', 'ArtifactController@index');
 
 // AXIOS UPLOAD
 
@@ -62,14 +58,17 @@ Route::post('/file-progress', 'UploadController@UploadSingleFile');
 
 Auth::routes();
 
+// Enroll student in a new Section
+
+Route::get('/enroll', ['middleware' => 'auth', 'uses' => 'EnrollmentController@show']);
+Route::post('/enroll', ['middleware' => 'auth', 'uses' => 'EnrollmentController@store'])->name('addClass');
+
 // ALL 
 
 	// Home
-
 	Route::get('/home/{currentSection?}', 'HomeController@index')->name('home');
 
 	// User
-
 	Route::get('/user/{user}', 'UserController@show');
 	Route::get('/user/{user}/edit', 'UserController@edit');
 
@@ -108,6 +107,12 @@ Auth::routes();
 	Route::get('/collection/{collection}/delete', 'CollectionController@delete');
 	Route::delete('/collection/{collection}', 'CollectionController@destroy');
 	Route::post('/collection/addArtifact/{artifact}', 'CollectionController@addArtifact');
+	Route::get('/collection/{collection}/artifact/{artifact}/addLabel', 'CollectionController@addLabel');
+	Route::post('/collection/{collection}/artifact/{artifact}/saveLabel', 'CollectionController@saveLabel');
+	Route::get('/collection/{collection}/artifact/{artifact}/editLabel', 'CollectionController@editLabel');
+	Route::patch('/collection/{collection}/artifact/{artifact}/updateLabel', 'CollectionController@updateLabel');
+
+
 	Route::delete('/collection/deleteArtifact/{artifact}', 'CollectionController@removeArtifact');
 	
 	Route::get('collection/{collection}/slideshow', 'CollectionController@slideshow');
@@ -145,18 +150,16 @@ Route::group(['middleware' => ['role:teacher']], function () {
 
 	// Assignments
 
-	Route::get('/teacher/section/{section}/assignment/create', 'AssignmentController@create');
-	Route::post('/teacher/section/{section}/assignment', 'AssignmentController@store');
-	Route::get('/teacher/section/{section}/assignment/{assignment}', 'AssignmentController@show');
-	Route::get('/teacher/section/{section}/assignment/{assignment}/edit', 'AssignmentController@edit');
-	Route::patch('/teacher/section/{section}/assignment/{assignment}/update', 'AssignmentController@update');
-	Route::delete('/teacher/section/{section}/assignment/{assignment}', 'AssignmentController@destroy');
-	Route::get('/teacher/section/{section}/assignment/{assignment}/gallery', 'AssignmentController@gallery');
+		Route::get('/teacher/section/{section}/assignment/create', 'AssignmentController@create');
+		Route::post('/teacher/section/{section}/assignment', 'AssignmentController@store');
+		Route::get('/teacher/section/{section}/assignment/{assignment}', 'AssignmentController@show');
+		Route::get('/teacher/section/{section}/assignment/{assignment}/edit', 'AssignmentController@edit');
+		Route::patch('/teacher/section/{section}/assignment/{assignment}/update', 'AssignmentController@update');
+		Route::get('/teacher/section/{section}/assignment/{assignment}/delete', 'AssignmentController@delete');
+		Route::delete('/teacher/section/{section}/assignment/{assignment}', 'AssignmentController@destroy');
+		Route::get('/teacher/section/{section}/assignment/{assignment}/gallery', 'AssignmentController@gallery');
 
-	
-
-	
-    // Components
+	// Components
 
 		Route::get('/teacher/section/{section}/assignment/{assignment}/component/create', 'ComponentController@create');
 		Route::post('/teacher/section/{section}/assignment/{assignment}/component', 'ComponentController@store');
@@ -168,10 +171,6 @@ Route::group(['middleware' => ['role:teacher']], function () {
 		Route::patch('/teacher/section/{section}/assignment/{assignment}/component/{component}/update', 'ComponentController@update');
 		Route::get('/teacher/section/{section}/assignment/{assignment}/component/{component}/delete', 'ComponentController@delete');
 		Route::delete('/teacher/section/{section}/assignment/{assignment}/component/{component}/delete', 'ComponentController@destroy');
-
-	// Artifacts
-	
-	Route::get('/artifact', 'ArtifactController@index');
 
 	});
 

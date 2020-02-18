@@ -192,15 +192,18 @@ class ComponentController extends Controller
     public function destroy(Request $request, Section $section, Assignment $assignment, Component $component)
     {
         
+        //dd($section);
+        //dd($assignment);
+        //dd($component);
+
         if ($assignment->components->count() >= 2 ) {
 
-        $component->delete();
+            $component->delete();
 
-        //$sectionAssignments = $section->assignments;
+            flash('Component deleted successfully!', 'success');
 
-        flash('Component deleted successfully!', 'success');
+        return redirect()->action( 'AssignmentController@show', [ 'section' => $section, 'assignment' => $assignment]);
 
-        return redirect()->action('AssignmentController@show')->with(['section' => $section->id, 'assignment' => $assignment->id ]);
 
         }
 

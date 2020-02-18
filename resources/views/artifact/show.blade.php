@@ -7,7 +7,7 @@
 
         {{-- Artifact Column --}}
         
-        <div class="flex md:w-2/3 items-start ml-4 md:ml-0 md:pl-4 lg:pl-0 relative">
+        <div class="flex md:w-1/2 lg:w-2/3 items-start ml-4 md:ml-0 md:pl-4 lg:pl-0 relative">
 
         {{-- Artifact Image --}}
         <a class="cursor-zoom-in pr-10" href="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
@@ -99,11 +99,11 @@
 
 {{-- Begin Column 2 --}}
   
-                <div class="w-full md:w-1/3 pr-4 xl:pr-0 text-sm relative">   
+                <div class="w-full md:w-1/2 lg:w-1/3 pr-4 xl:pr-0 text-sm relative">   
                     
 {{-- Widget 1 - Info --}}
             
-                <div id="Info" class="relative flex">
+                <div id="Info" class="relative flex mt-2 md:mt-0 ">
                     
                 <div class="text-gray-500 font-semibold text-lg uppercase mb-1 px-4 py-1">Info</div>
              
@@ -160,50 +160,54 @@
 
             {{-- Artist | Editable --}}
             
-                <div class="font-semibold ">
+                <div>
+                    <span class="font-semibold">Artist:</span>
                     @if (is_null($artifact->artist))
-                    {{ $artifact->user->fullName }}
                     @else
                     {{ $artifact->artist }}
                     @endif
                 </div>
-            {{-- Title | Editable --}}
 
-                  @if (is_null($artifact->title))
-                    Untitled
-                  @else
-                    <div class="italic text-md">{{ $artifact->title }}</div>
-                  @endif
-            {{-- Medium | Editable --}}
+            {{-- Uploaded by  | Permanent --}}
+            
+                <div>
+                    <span class="font-semibold">Uploaded by:</span>
+                     {{ $artifact->user->fullName }}
+                </div>
+            
+             {{-- Course | Permanent --}}
 
-                    @if (is_null($artifact->medium))
+                    <!-- Pre-L6 check because section_id field wasn't included in artifact model -->
+                    @if (is_null($artifact->section))
                     @else
-                        <div>{{ $artifact->medium }} </div>
+                        <div class="mt-4">
+                            <span class="font-semibold">Course: </span>{{ $artifact->section->course->title }}
+                        </div>
                     @endif
-            {{-- Year | Editable --}}
-                    @if (is_null($artifact->year))
-                    @else
-                        <div>{{ $artifact->year }}</div>
-                    @endif
-            {{-- Annotation | Editable --}}
-           
-                    @if (is_null($artifact->annotation))
-                    @else
-                        <div class="my-4">{{$artifact->annotation}}</div>
-                    @endif
-            {{-- Course | Permanent --}}
+
+            {{-- Section | Permanent --}}
 
                     @if (is_null($artifact->section))
                     @else
-                        <div>{{ $artifact->section->course->name }}</div>
+                        <div>
+                            <span class="font-semibold">Section: </span>{{ $artifact->section->title }}
+                        </div>
                     @endif
+            
             {{-- Assignment | Permanent --}}
 
                     @if (is_null($artifact->assignment))
                     @else
                         <div>
+                            <span class="font-semibold">Assignment: </span>
+                            
+                            @if (Auth::User()->hasRole('teacher'))
+                            <a href="{{ action('AssignmentController@show', ['section' => $artifact->assignment->section, 'assignment' => $artifact->assignment_id] )}}">
+                            {{ $artifact->assignment->title }}</a>
+                            @else
                             <a href="{{ action('AssignmentController@showStudent', ['section' => $artifact->assignment->section, 'assignment' => $artifact->assignment_id] )}}">
                             {{ $artifact->assignment->title }}</a>
+                            @endif
                         </div>
                     @endif
 
@@ -212,22 +216,75 @@
                     @if (is_null($artifact->component))
                     @else
                         <div>
-                        {{ $artifact->component->title }}
+                            <span class="font-semibold">Component:</span>
+                    {{ $artifact->component->title }}
                         </div>
                     @endif
+
+                    {{-- Title | Editable --}}
+
+                  @if (is_null($artifact->title))
+                  @else
+                    <div>
+                        <span class="font-semibold">Title: </span><span class="italic">{{ $artifact->title }}</span>
+                    </div>
+                  @endif
+            {{-- Medium | Editable --}}
+
+                    @if (is_null($artifact->medium))
+                    @else
+                        <div>
+                             <span class="font-semibold">Medium: </span>{{ $artifact->medium }}
+                        </div>
+                    @endif
+            {{-- Year | Editable --}}
+                    @if (is_null($artifact->year))
+                    @else
+                        <div>
+                            <span class="font-semibold">Year: </span>{{ $artifact->year }}
+                        </div>
+                    @endif
+
+             {{-- Dimensions  | Editable --}}
+                            
+                   {{$artifact->dimensions_height}}
+                   @if(is_null($artifact->dimensions_width))
+                   @else
+                   x{{$artifact->dimensions_width}}
+                   @endif
+
+                   @if (is_null($artifact->dimensions_depth))
+                   @else
+                   x{{$artifact->dimensions_depth}}
+                   @endif
+
+
+            {{-- Annotation | Editable --}}
+           
+                    @if (is_null($artifact->annotation))
+                    @else
+                        <div class="my-4">
+                            <span class="font-semibold">Annotation:</span> {{$artifact->annotation}}
+                        </div>
+                    @endif
+
         </div>
 
- {{-- End Widget 1 - Info --}}
+
+{{-- End Widget 1 - Info --}}
+
+
 
 {{-- Widget 2 --}}
             
-                <div id="Comments" class="relative flex">
-                    
-                <div class="text-gray-500 font-semibold text-lg uppercase mb-1 px-4 py-1">Comments</div>
-             
+    <div id="Comments" class="relative flex">
+        
+    <div class="text-gray-500 font-semibold text-lg uppercase mb-1 px-4 py-1">Comments</div>
+ 
 {{-- Widget 2 - Comments - Menu Trigger --}}
 
     <div class="absolute right-0">
+        
         <dropdown>
 
            <template v-slot:trigger>
@@ -264,11 +321,11 @@
             
                 @foreach ($artifact->comments as $comment)
             
-                    <div class="mb-2">
-                        <div class="flex bg-yellow-200 px-2 pt-2 text-sm tracking-tight">
+                    <div class="mb-2 shadow-lg">
+                        <div class="flex bg-green-200 px-2 pt-2 text-sm tracking-tight">
                     
                         {{-- Commentor--}}
-                        <div class="flex flex-grow font-semibold pt-2">{{$comment->user->fullName}}</div>
+                        <div class="flex flex-grow font-semibold pl-1 pt-1">{{$comment->user->fullName}}</div>
                             
                         {{-- Comment Editing --}}
                         <div class="flex">
@@ -295,7 +352,7 @@
                     </div>
                     </div>
 
-                    <div class="px-2 pb-2 pt-1 bg-yellow-200 text-sm tracking-tight leading-regular">{{$comment->body}}</div>
+                    <div class="px-4 pb-4 pt-1 bg-yellow-200 text-sm tracking-tight leading-regular">{{$comment->body}}</div>
                 </div>
 
              @endforeach

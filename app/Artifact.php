@@ -3,8 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Label;
-
 
 class Artifact extends Model
 {
@@ -72,7 +70,7 @@ class Artifact extends Model
 
         // return $this->belongsToMany(Collection::class)->using('App\Label')->withPivot('position','description','dimensions_height','dimensions_width','dimensions_depth','dimensions_units');
 
-        return $this->belongsToMany(Collection::class)->withPivot('position','dimensions_height','dimensions_width','dimensions_depth','dimensions_units');
+        return $this->belongsToMany(Collection::class)->withPivot('position','artist','title','medium','year','dimensions_height','dimensions_width','dimensions_depth','dimensions_units','label_text');
 
     }
 
