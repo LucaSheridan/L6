@@ -121,9 +121,9 @@
             
                     <div class="mb-2">
 
-                        <label for="description" class="w-full font-semibold text-gray-600 text-sm pt-2 pr-3 align-middle">Description</label>
+                        <label for="description" class="w-full font-semibold text-gray-600 text-sm pt-2 pr-3 align-middle">Label Text</label>
 
-                        <textarea id="label_text" class="w-full mt-2 rounded p-2 border text-gray-600 text-sm leading-tight {{ $errors->has('label_text') ? 'border-red-500' : 'border' }}" name="label_text" value="{{ $label_text}}" tabIndex="8"></textarea>
+                        <textarea id="label_text" class="w-full mt-2 rounded p-2 border text-gray-600 text-sm leading-tight {{ $errors->has('label_text') ? 'border-red-500' : 'border' }}" name="label_text" tabIndex="8">{{ $label_text}}</textarea>
 
                     </div>
        

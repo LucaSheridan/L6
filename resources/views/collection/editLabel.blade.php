@@ -23,14 +23,25 @@
             
                     <input id="artifact" type="hidden" name="artifact" value="{{ $artifact->id }}">
 
-                    {{-- Begin Title Input--}}
+                    {{-- Begin Position Input--}}
             
                     <div class="mb-2">
 
                         <label for="position" class="w-full md:mb-0 font-semibold text-gray-600 text-sm pt-2 pr-3 align-middle">Position</label>
 
-                        <input id="position" type="text" class="w-full mt-2 rounded h-8 px-2 border text-gray-600 text-md p-1 {{ $errors->has('position') ? 'border-red-500' : 'border' }}" name="position" value="{{$position}}" autofocus tabIndex="1">
+                        <input id="position" type="text" class="w-full mt-2 rounded h-8 px-2 border text-gray-600 text-md p-1 {{ $errors->has('position') ? 'border-red-500' : 'border' }}" name="position" value="{{$position}}" autofocus tabIndex="">
                         {!! $errors->first('position', '<span class="text-red-500 text-sm mt-2">:message</span>') !!}
+
+                    </div>
+
+                    {{-- Begin Artist Input--}}
+            
+                    <div class="mb-2">
+
+                        <label for="artist" class="w-full md:mb-0 font-semibold text-gray-600 text-sm pt-2 pr-3 align-middle">Artist</label>
+
+                        <input id="artist" type="text" class="w-full mt-2 rounded h-8 px-2 border text-gray-600 text-md p-1 {{ $errors->has('artist') ? 'border-red-500' : 'border' }}" name="artist" value="{{$artist}}" autofocus tabIndex="1">
+                        {!! $errors->first('artist', '<span class="text-red-500 text-sm mt-2">:message</span>') !!}
 
                     </div>
 
@@ -38,7 +49,7 @@
 
                         <label for="title" class="w-full md:mb-0 font-semibold text-gray-600 text-sm pt-2 pr-3 align-middle">Title</label>
 
-                        <input id="title" type="text" class="w-full mt-2 rounded h-8 px-2 border text-gray-600 text-md p-1 {{ $errors->has('title') ? 'border-red-500' : 'border' }}" name="title" value="{{$title}}" autofocus tabIndex="1">
+                        <input id="title" type="text" class="w-full mt-2 rounded h-8 px-2 border text-gray-600 text-md p-1 {{ $errors->has('title') ? 'border-red-500' : 'border' }}" name="title" value="{{$title}}" autofocus tabIndex="2">
                         {!! $errors->first('title', '<span class="text-red-500 text-sm mt-2">:message</span>') !!}
 
                     </div>
@@ -110,9 +121,9 @@
             
                     <div class="mb-2">
 
-                        <label for="description" class="w-full font-semibold text-gray-600 text-sm pt-2 pr-3 align-middle">Description</label>
+                        <label for="description" class="w-full font-semibold text-gray-600 text-sm pt-2 pr-3 align-middle">Label Text</label>
 
-                        <textarea id="description" class="w-full mt-2 rounded p-2 border text-gray-600 text-sm leading-tight {{ $errors->has('description') ? 'border-red-500' : 'border' }}" name="description" value="{{ old('description') }}" tabIndex="8"></textarea>
+                        <textarea id="label_text" class="w-full my-2 rounded p-2 border text-gray-600 text-sm leading-tight {{ $errors->has('label_text') ? 'border-red-500' : 'border' }}" name="label_text" tabIndex="8">{{$label_text}}</textarea>
 
                     </div>
        
@@ -120,7 +131,7 @@
 
                           <a href="{{url('/home')}}" class="inline-block mb-1 md:mb-0 bg-gray-400 hover:bg-red-500 text-gray-700 hover:text-white px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">Cancel</a>
 
-                          <button type="submit" class="mb-1 md:mb-0 bg-gray-400 hover:bg-green-500 text-gray-700 hover:text-green-100 px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded" tabIndex="10">Submit</button>
+                          <button type="submit" class="mb-1 md:mb-0 bg-gray-400 hover:bg-green-500 text-gray-700 hover:text-green-100 px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded" tabIndex="9">Update</button>
 
                     </div>
                     </div>

@@ -114,7 +114,7 @@
     <script src="https://unpkg.com/flickity-fullscreen@1/fullscreen.js"></script>
 
     <script type="text/javascript">
-    // close the div in 4 secs
+    // close flash message div after 4 seconds
     window.setTimeout("hideMessage();", 4000);
 
     function hideMessage(){
@@ -124,7 +124,7 @@
 
 
     <script type="text/javascript">
-
+    // show selected file when selected for file upload
     document.getElementById('file').onchange = uploadOnChange;
 
     function uploadOnChange() {

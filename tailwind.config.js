@@ -6,7 +6,6 @@ module.exports = {
         link: 'bg-white px-3 py-1 border-r border-t border-b text-black no-underline',
         wrapper: 'inline-flex mt-4 shadow rounded',
 
-
         }),
 
     height: {

@@ -107,13 +107,12 @@ Route::post('/enroll', ['middleware' => 'auth', 'uses' => 'EnrollmentController@
 	Route::get('/collection/{collection}/delete', 'CollectionController@delete');
 	Route::delete('/collection/{collection}', 'CollectionController@destroy');
 	Route::post('/collection/addArtifact/{artifact}', 'CollectionController@addArtifact');
-	Route::get('/collection/{collection}/artifact/{artifact}/addLabel', 'CollectionController@addLabel');
-	Route::post('/collection/{collection}/artifact/{artifact}/saveLabel', 'CollectionController@saveLabel');
-	Route::get('/collection/{collection}/artifact/{artifact}/editLabel', 'CollectionController@editLabel');
+
+	Route::delete('/collection/{collection}/artifact/{artifact}/removeArtifact', 'CollectionController@removeArtifact');
+	//Route::get('/collection/{collection}/artifact/{artifact}/addLabel', 'CollectionController@addLabel');
+	//Route::post('/collection/{collection}/artifact/{artifact}/saveLabel', 'CollectionController@saveLabel');
+	Route::post('/collection/{collection}/artifact/{artifact}/editLabel', 'CollectionController@editLabel');
 	Route::patch('/collection/{collection}/artifact/{artifact}/updateLabel', 'CollectionController@updateLabel');
-
-
-	Route::delete('/collection/deleteArtifact/{artifact}', 'CollectionController@removeArtifact');
 	
 	Route::get('collection/{collection}/slideshow', 'CollectionController@slideshow');
 

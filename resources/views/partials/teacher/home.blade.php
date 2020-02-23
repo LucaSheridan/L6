@@ -16,7 +16,7 @@
 
 {{--  Classes Section: Menu --}}
 
-            <div class="flex relative text-left">
+            <div class="flex relative text-left bg-red-400 ">
                 <dropdown>
     
                     <template v-slot:trigger>

@@ -85,11 +85,7 @@ class ArtifactController extends Controller
     public function removeFromCollection(Artifact $artifact, Collection $collection)
     
     {
-        
-        //dd($artifact);
-
         $artifact->collections()->detach($collection->id); 
-//        $collection->save();
 
         return redirect()->action('ArtifactController@show');
     }
@@ -119,7 +115,6 @@ class ArtifactController extends Controller
         
         {
 
-        // create valiadator
         $this->validate($request, [
         
             'file' => 'required|image',
@@ -145,11 +140,7 @@ class ArtifactController extends Controller
             $imageFileName = $fileName.'.'. $image->getClientOriginalExtension();
             $thumbFileName = $fileName.'.thumb.'. $image->getClientOriginalExtension();
 
-            // // create a new Image/Intervention instance
-            // $image = Image::make($image)->orientate();
-
             // create a new Image/Intervention instance from file system
-            
             $image = Image::make($realPath)->orientate();
 
             // set storage
@@ -232,8 +223,6 @@ class ArtifactController extends Controller
 
             $artifact->save();
 
-            //dd($artifact);
-            
             // return redirect()->action('ArtifactsController@show', $artifact->assignment_id);
 
             // return redirect()->action('AssignmentController@index');

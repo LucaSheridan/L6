@@ -75,7 +75,7 @@
                             </select>
 
                         @else
-                            <div class="block sm:hidden px-2 py-2 pr-8 mb-4 bg-gray-300 w-full text-lg rounded-lg text-gray-600 rounded-none">No projects assigned</div>
+                            <div class="block sm:hidden p-3 pr-8 mb-4 bg-gray-300 w-full text-lg rounded-lg text-gray-600">No assignments yet!</div>
 
                         @endif
             @endif
@@ -114,7 +114,7 @@
                         <ul>
                     
                     @else
-                    <div class="text-sm">No projects assigned</div>
+                    <div class="p-2 text-lg rounded-lg text-gray-600">No assignments yet</div>
                     @endif
                 
                 @endif

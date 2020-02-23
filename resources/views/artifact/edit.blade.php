@@ -63,7 +63,7 @@
 
                         <label for="year" class="w-full md:mb-0 font-semibold text-gray-600 text-sm pt-2 pr-3 align-middle">Year</label>
 
-                        <input id="year" type="text" class="w-full mt-2 rounded h-8 p-1 border text-gray-600 text-sm {{ $errors->has('year') ? 'border-red-500' : 'border' }}" name="year" value="{{ $artifact->created_at}}" autofocus tabIndex="3">
+                        <input id="year" type="text" class="w-full mt-2 rounded h-8 p-1 border text-gray-600 text-sm {{ $errors->has('year') ? 'border-red-500' : 'border' }}" name="year" value="{{ $artifact->year}}" autofocus tabIndex="3">
                         {!! $errors->first('year', '<span class="text-red-500 text-sm mt-2">:message</span>') !!}
 
                     </div>

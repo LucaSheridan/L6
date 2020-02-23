@@ -322,7 +322,7 @@
                 @foreach ($artifact->comments as $comment)
             
                     <div class="mb-2 shadow-lg">
-                        <div class="flex bg-green-200 px-2 pt-2 text-sm tracking-tight">
+                        <div class="flex bg-yellow-200 px-2 pt-2 text-sm tracking-tight">
                     
                         {{-- Commentor--}}
                         <div class="flex flex-grow font-semibold pl-1 pt-1">{{$comment->user->fullName}}</div>
@@ -418,7 +418,7 @@
  </div>
 
  @if (count($artifact->collections) > 0) 
-  <div class="border-2 ml-4 p-1 leading-snug bg-gray-100">
+  <div class="border-0 ml-4 p-0 leading-snug">
             
            @foreach ($artifact->collections as $collection)
                 
@@ -428,7 +428,7 @@
 
                     {{ csrf_field() }}
 
-                         <div class="flex mt-1 justify-between rounded-lg bg-gray-200 items-center text-sm">
+                         <div class="flex mt-1 justify-between border-2 rounded-lg bg-gray-100 items-center text-sm">
 
                             <div class="flex">
                                 <a class="px-2" href="{{action('CollectionController@show', $collection)}}">{{ $collection->title }}</a>
