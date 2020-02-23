@@ -178,12 +178,12 @@
              {{-- Course | Permanent --}}
 
                     <!-- Pre-L6 check because section_id field wasn't included in artifact model -->
-                    <!-- @if (is_null($artifact->section))
+                    {{-- @if (is_null($artifact->section))
                     @else
                         <div class="mt-4">
                             <span class="font-semibold">Course: </span>{{ $artifact->section->course->title }}
                         </div>
-                    @endif -->
+                    @endif --}}
 
             {{-- Section | Permanent --}}
 
