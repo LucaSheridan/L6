@@ -2,58 +2,70 @@
 
 @section('content')
 
-    <div class="flex flex-col items-center items-stretch bg-white m-10 rounded-lg p-0">
-   
-    {{-- Options --}}
+    <div class="flex flex-col items-center items-stretch mt-6 ml-3">
 
-        <span class="text-red-400 font-sembibold text-2xl uppercase roman ">{{$collection->title}}</span>
- 
+    {{--  Collection Title --}}
 
-    <div class="inline-flex justify-end rounded-lg ">
-                
-                    <a href="{{action('CollectionController@slideshow', $collection->id)}}">
-                        <div class="flex justify-end p-2 bg-gray-200 rounded-tl-lg ">
-                        
-                            <div>@icon('play-circle', ['class' => 'float-right text-gray-600 hover:text-red-400 h-5 w-5'])</div>
+    <div class="flex items-center bg-gray-100 mr-3 ">
+           
+        <div class="pt-3 bg-gray-100 flex-grow pl-4 text-left font-normal text-2xl text-red-400 uppercase">{{$collection->title}}</div>
 
-                            <div class="flex pt-1 px-1 text-gray-600 hover:text-red-400">Play</div>
+         {{--  Classes Menu --}}
+
+        <div class="flex relative text-left mr-4 bg-gray-100">
+        <dropdown>
+    
+            <template v-slot:trigger>
+            @icon('menu', ['class' => ' w-6 h-6 text-gray-400 rounded-lg bg-gray-100 hover:text-gray-500'])
+            </template>
+
+                    <div class="z-10 absolute top-0 right-0 shadow-2xl bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap">
+
+                        <li class="hover:text-gray-300 px-3">
+                        <a href="{{action('CollectionController@slideshow', $collection->id)}}">
+                        <div class="flex items-center">
+                        <div class="pr-2 text-gray-500">
+                        @icon('play-circle', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                         <div>Start Slideshow</div>
                         </div>
-                    </a>
+                        </a>
+                        </li>
 
-                    {{-- Edit --}}
-
-                    <a href="{{action('CollectionController@edit', $collection )}}">
-                        <div class="flex justify-end p-2 bg-gray-200 rounded-tl-lg ">
-                        
-                            <div class="text-xl">
-                                @icon('edit', ['class' => 'float-right text-gray-600 hover:text-red-400 h-5 w-5'])
-
-                             <i class="text-gray-600 fa fa-edit mt-1" aria-hidden="true"></i>
-                            
-                            </div>
-
-                            <div class="flex pt-1 px-1 text-gray-600 hover:text-red-400">Edit!</div>
+                        <li class="hover:text-gray-300 px-3">
+                        <a class=""href="{{action('CollectionController@edit', $collection)}}">
+                        <div class="flex items-center">
+                        <div class="pr-2 text-gray-500">
+                        @icon('edit', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                         <div>Edit Collection</div>
                         </div>
-                    </a>
+                        </a>
+                        </li>
 
-                    {{-- Delete --}}
-
-                    <a href="{{action('CollectionController@delete', $collection )}}">
-                        <div class="flex flex-end p-2 bg-gray-200 rounded-tr-lg">
+                        <li class="hover:text-gray-300 px-3">
                         
-                            <div>@icon('x-circle', ['class' => 'float-right text-gray-600 hover:text-red-400 h-5 w-5'])</div>
+                        <form action="{{action('CollectionController@destroy', $collection)}}" method="POST">
 
-                            <div class="flex pt-1 px-1 text-gray-600 hover:text-red-400">Delete</div>
+                        {{ csrf_field() }}
+                        <input type="hidden" name="_method" value="DELETE">
+                        <div class="flex items-center">
+                        <div class="pr-2 text-gray-500">
+                        <button>@icon('x-circle', ['class' => 'w-5 h-5 hover:text-gray-200'])</button></div>
+                        <div><button>Delete Collection</button></div>
                         </div>
-                    </a>
+                        </form>
+                        </li>
+               
+                    </div>
 
+                </dropdown>
                 </div>
+    </div>
 
-    {{-- Collection Description --}}
+{{-- Collection Description --}}
 
-        <div class="w-full bg-gray-200 p-2 pl-4 mb-2 border">              
+        <div class="p-4 bg-gray-100 mr-3">              
 
-            <p class=" italic mt-2 text-md text-gray-600 leading-normal rounded-lg">{{$collection->description}}</p>
+        <p class="italic text-md text-gray-600 leading-normal">{{$collection->description}}</p>
 
         </div>
 
@@ -77,13 +89,12 @@
                        
                            <div class="flex mt-0 relative text-left text-sm text-gray-700">
                         
-                             <div class="w-full p-0 relative">
+                             <div class="w-full p-0 relative border-t-0 rounded-b-lg border-2">
 
-                             <ul class="leading-tight p-2 border-t-0 rounded-b-lg border-2">      
-
+                             <ul class="leading-tight p-2 mb-1 w-11/12">      
+<!-- 
                              @if (
 
-                                is_null($artifact->pivot->artist) && 
                                 is_null($artifact->pivot->title) &&  
                                 is_null($artifact->pivot->medium) && 
                                 is_null($artifact->pivot->year) &&
@@ -98,9 +109,9 @@
                               No label information
                            
                             @else
-                            @endif
+                            @endif -->
 
-                            <Li class="font-semibold">{{$artifact->pivot->artist}}</li>
+                            <li class="font-semibold">{{$artifact->pivot->artist}}</li>
                             <li class="italic">{{$artifact->pivot->title}}</li>
                             <li>{{$artifact->pivot->medium}}</li>
                             <li>{{$artifact->pivot->year}}</li>
@@ -118,12 +129,13 @@
                            x {{$artifact->pivot->dimensions_depth}}
                            @endif
                            {{$artifact->pivot->dimensions_units}}
-                                  
                            </li>
+                           
+                           @if (is_null($artifact->pivot->label_text))
+                           @else
                            <li class="mt-4">{{$artifact->pivot->label_text}}</li>
-                       
-                       </ul>
-
+                           @endif
+                           </ul>
                    </div>
 
             <div class="absolute top-0 right-0"> 
@@ -190,11 +202,7 @@
                                 </form>
 
                                </div>
-
-                                     
-                          
-                            </li>
-
+                        </li>
                         
                         <li class="hover:text-gray-300 px-2">
                                                     
@@ -231,10 +239,7 @@
 
                           </div>
                         
-                        </div>
-
-                                                            </button>
-
+                        </div> </button>
                         </li>
                
                     </div>

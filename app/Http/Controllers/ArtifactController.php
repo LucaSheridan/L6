@@ -9,6 +9,7 @@ use App\Assignment;
 use App\Collection;
 use App\Component;
 use App\Section;
+use App\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -36,8 +37,26 @@ class ArtifactController extends Controller
 
         }
 
+     /**
+     * Show a users artifacts
+     *
+     * @param  \App\Artifact  $artifact
+     * @return \Illuminate\Http\Response
+     */
+
+     public function showUserArtifacts (User $user)
+
+     {
+        $artifacts = Artifact::where('user_id', $user->id)->get();
+
+        //dd($artifacts);
+
+        return view('user.profile.artifacts')->with('artifacts', $artifacts);
+
+     }
+
     /**
-     * Add artifact to a Collection
+     * Show artifact to a Collection
      *
      * @param  \App\Artifact  $artifact
      * @return \Illuminate\Http\Response
@@ -220,6 +239,7 @@ class ArtifactController extends Controller
 
             $artifact->is_published = 0;
             $artifact->is_public = 1;
+            $artifact->artist = Auth::User()->fullName;
 
             $artifact->save();
 
@@ -368,6 +388,8 @@ class ArtifactController extends Controller
 
             $artifact->is_published = 0;
             $artifact->is_public = 1;
+            $artifact->from_URL = 1;
+            $artifact->artist = "Unattributed";
 
             $artifact->save();
 

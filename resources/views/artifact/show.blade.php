@@ -11,7 +11,7 @@
 
         {{-- Artifact Image --}}
         <a class="cursor-zoom-in pr-10" href="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
-         <img class="w-full border-4" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
+         <img class="w-full" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
         </a>  
 
         {{-- Artifact Menu Trigger | pinned to right of Artifact Column --}} 
@@ -162,18 +162,18 @@
             
                 <div>
                     <span class="font-semibold">Artist:</span>
-                    @if (is_null($artifact->artist))
-                    @else
+                    @if ($artifact->from_URL)
                     {{ $artifact->artist }}
+                    @else
+                    {{ $artifact->user->fullName }}
                     @endif
                 </div>
 
-            {{-- Uploaded by  | Permanent --}}
             
-                <div>
+                <!-- <div>
                     <span class="font-semibold">Uploaded by:</span>
                      {{ $artifact->user->fullName }}
-                </div>
+                </div> -->
             
              {{-- Course | Permanent --}}
 

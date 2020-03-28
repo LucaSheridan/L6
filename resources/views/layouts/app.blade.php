@@ -12,9 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="/path/to/flickity.css" media="screen">
+   <!--  <link rel="stylesheet" href="/path/to/flickity.css" media="screen">
     <link rel="stylesheet" href="https://unpkg.com/flickity-fullscreen@1/fullscreen.css">
- 
+  -->
 
 </head>
 
@@ -36,11 +36,11 @@
 
         <div class="flex-grow">
         
-        <a href="{{ url('/home') }}" class="tracking-wide font-thin logo text-4xl md:text-5xl text-gray-600 hover:text-gray-500 no-underline outline-none" tabIndex="-1">
+        <a href="{{ url('/home') }}" class="tracking-wide font-thin logo text-4xl md:text-5xl text-gray-600 hover:text-gray-500 no-underline outline-none" >
         
         {{-- AlTERNATE NAMES --}}
 
-        <span class="ml-10 font-semibold tracking-tight text-gray-600">ART</span><span class="text-gray-500">IFACTS</span></a>
+        <span class="ml-10 font-medium tracking-tight text-gray-500">ART</span><span class="text-gray-500">IFACTS</span></a>
 
 <!-- <span class="font-semibold tracking-tight">BSGE</span>ART</a>
  --> 
@@ -62,7 +62,7 @@
         
                     <template v-slot:trigger>
                     
-                        <div class="p-2 bg-red-400 rounded-full">
+                        <div class="p-2 bg-gray-400 rounded-full">
                         {{ Auth::User()->initials }}
                         </div>
 
@@ -110,8 +110,8 @@
     <!-- Scripts -->
    <script src="{{ mix('js/app.js') }}"></script>
 
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <script src="https://unpkg.com/flickity-fullscreen@1/fullscreen.js"></script>
+<!--     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script src="https://unpkg.com/flickity-fullscreen@1/fullscreen.js"></script> -->
 
     <script type="text/javascript">
     // close flash message div after 4 seconds

@@ -27,11 +27,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/imagediv', function () {
-    return view('imagediv');
-});
-Route::get('/modal', function () {
-    return view('modaltest');
+Route::get('/alpine', function () {
+    return view('alpine');
 });
 
 Route::get('/dropdown', function () {
@@ -54,7 +51,6 @@ Route::post('/single-file', 'UploadController@UploadSingleFile');
 Route::post('/multiple-files', 'UploadController@UploadMultipleFiles');
 Route::post('/select-files', 'UploadController@UploadSelectFiles');
 Route::post('/file-progress', 'UploadController@UploadSingleFile');
-    
 
 Auth::routes();
 
@@ -73,6 +69,11 @@ Route::post('/enroll', ['middleware' => 'auth', 'uses' => 'EnrollmentController@
 	Route::get('/user/{user}/edit', 'UserController@edit');
 
 	// Artifacts 
+
+	Route::get('/artifacts/user/{user}', 'ArtifactController@showUserArtifacts');
+	Route::get('/sections/user/{user}', 'SectionController@showUserSections');
+	Route::get('/collections/user/{user}', 'CollectionController@showUserCollections');
+
 
 	Route::get('/artifact/create/{section?}/{assignment?}/{component?}', 'ArtifactController@create');
 	Route::post('/artifact/create', 'ArtifactController@store');

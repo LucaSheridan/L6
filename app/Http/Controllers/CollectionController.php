@@ -22,7 +22,23 @@ class CollectionController extends Controller
         $this->middleware('auth');
     }
 
-    /**
+     /**
+     * Show a users artifacts
+     *
+     * @param  \App\Artifact  $artifact
+     * @return \Illuminate\Http\Response
+     */
+
+     public function showUserCollections (User $user)
+
+     {
+        $collections = User::find($user->id)->collections()->get();
+
+        return view('user.profile.collections')->with('collections', $collections);
+
+     }
+
+     /**
      * Show the form for creating a new collection.
      *
      * @return \Illuminate\Http\Response

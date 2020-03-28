@@ -19,6 +19,24 @@ class SectionController extends Controller
 {
 
     /**
+     * Show a users artifacts
+     *
+     * @param  \App\Artifact  $artifact
+     * @return \Illuminate\Http\Response
+     */
+
+     public function showUserSections (User $user)
+
+     {
+        $sections = User::find($user->id)->sections()->get();
+
+        //dd($sections);
+
+        return view('user.profile.sections')->with('sections', $sections);
+
+     }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

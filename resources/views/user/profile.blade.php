@@ -6,8 +6,7 @@
 
 <div class="flex items-center p-4 bg-gray-500">
 
-
-    <div class="w-full m-0 p-0 border">
+    <div class="w-full m-0 p-0">
 
     {{-- Begin Class Header --}} 
             
@@ -15,45 +14,31 @@
 
         {{-- Class Title --}}
         
-        <div class="flex-grow p-2 text-left text-2xl rounded-br-lg text-gray-300 mb-2">
+        <div class="flex-grow py-2 text-left text-2xl rounded-br-lg text-gray-300 mb-2">
 
-            <span class="float-right h-12 inline-block w-10 rounded-full bg-gray-700 p-2">LS</span>
+        {{strtoupper($user->fullName)}}</div>
 
-        {{ $user->fullName}}</div>
-
-         {{-- Class Option --}}
-
-            <div class="flex ">
-                  
-                   {{--    <a class=""href="{{action('SectionController@edit', $activeSection)}}">
-                        <div class="flex justify-end p-1 bg-gray-400 hover:bg-gray-300 rounded-t-lg">
-                        
-                            <div>@icon('icon-plus-circle', ['class' => 'text-gray-500 hover:text-red-400 fill-current'])</div>
-
-                             <div class="flex pt-1 px-1 text-gray-600">Edit</div>
- 
-                        </div>
-
-                     </a> --}}  
-                
-            </div>
-        </div>
-        <div class="text-2xl mb-2 ml-4">
-        CLASSES: 
-        </div/>
+                    </div>
 
         <div class="border-2 p-4 bg-gray-100 rounded-lg leading-snug">
 
-        <table class="leading-tight">
+        <table class="leading-tight w-full">
+
+       <th colspan="7" class="text-left py-2 font-reg text-gray-600">CLASSES</th> 
 
        <tr class="border">
-            <td class="p-2 ">Title</td>
-            <td class="p-2 ">Site</td>
-            <td class="p-2 ">Year</td>
-            <td class="p-2 text-center">Status</td>
-            <td class="p-2 text-center">Enrollment</td>
-            <td class="p-2 text-center">Roster</td>
-            <td class="p-2 ">Enrollment Code</td>
+            <td class="py-2 px-1">Title</td>
+            <td class="py-2 px-1">Site</td>
+            <td class="py-2 px-1">Year</td>
+            
+            @unlessrole('student')
+            <td class="py-2 px-1 text-center">Status</td>
+            <td class="py-2 px-1 text-center">Roster</td>
+            <td class="py-2 px-1 text-center">Enrollment</td>
+            <td class="py-2 ">Enrollment Code</td>
+            @else
+            @endunlessrole
+
         </tr>
 
         @foreach ($sections as $section)
@@ -89,115 +74,46 @@
 
         </td>
 
-    {{-- Status --}}
+         @unlessrole('student')
 
-
-            <td class="border text-center p-1 px-4">
-
- {{-- Begin Form --}} 
-
-                    <form id="edit_section" method="POST" action="{{ action('SectionController@update', $section) }}">
-                    
-                    {{ csrf_field() }}
-                    
-                    <input type="hidden" name="_method" value="PATCH">
-
-
-
-                    <div class="mb-6">
-
-                        @if( $section->is_active)
-                        
-                        <label class="inline-flex items-center">
-                        
-                        <input type="radio" class="form-checkbox mr-2" checked name="active" value="true"
-                        >Active
-                        </label>
-
-                        <label class="inline-flex items-center">
-                        <input type="radio" class="form-checkbox mr-2" name="active" value="false">Inactive
-                        </label>
-
-                        @else
-
-                        <label class="inline-flex items-center">
-                        <input type="radio" class="form-checkbox mr-2" name="active" value="true"
-                        >Active
-                        </label>
-
-                        <label class="inline-flex items-center">
-                        <input type="radio" class="form-checkbox mr-2" checked name="active" value="false">Inactive
-                        </label>
-
-                        @endif
-                    
-                    </div>
-
-                    <div class="mb-6">
-
-                        @if( $section->is_open)
-                        
-                            <label class="inline-flex items-center">
-                            
-                            <input type="radio" class="form-checkbox mr-2" checked name="open" value="true"
-                            >Registration is Open
-                            </label>
-
-                            <label class="inline-flex items-center">
-                            <input type="radio" class="form-checkbox mr-2" name="open" value="false">Registration is Closed
-                            </label>
-
-                        @else
-
-                            <label class="inline-flex items-center">
-                            <input type="radio" class="form-checkbox mr-2" name="open" value="true"
-                            >Registration is Open
-                            </label>
-
-                            <label class="inline-flex items-center">
-                            <input type="radio" class="form-checkbox mr-2" checked name="open" value="false">Registration is Closed
-                            </label>
-
-                        @endif
-                    
-                    </div>
-
-                          <button type="submit" class="mb-1 md:mb-0 bg-gray-400 hover:bg-green-500 text-gray-700 hover:text-green-100 px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">Save</button>
-
-                    </div>
+        {{-- Status --}}
+        <td class="border text-center p-1 px-4">
                 
-                </form>
+            @if( $section->is_active)
+                        
+                Active
+                       
+                    @else
 
+                        Inactive
+
+                    @endif
         </td>
 
-
-   {{-- Roster --}} 
-        
-            <td class="border text-center px-1">
+        {{-- Roster --}} 
+        <td class="border text-center px-1">
 
         {{$section->students->count()}}
 
         </td>
 
-     {{-- Enrollment --}}
-
-            <td class="border text-center p-1">
+        {{-- Enrollment --}}
+        <td class="border text-center p-1">
 
             @if ( $section->is_open === 1 )
 
-open
+                    Open
             @else 
 
-closed
+                    Closed
             @endif
 
         </td>
 
-
-    {{-- Enrollment Code --}}
-
-            <td class="border p-1">{{ $section->registrationCode }}</td>
-
+        {{-- Enrollment Code --}}
+        <td class="border p-1">{{ $section->registrationCode }}</td>
+        @else
+        @endunlessrole
     </tr>
 
         @endforeach

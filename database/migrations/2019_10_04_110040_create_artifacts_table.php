@@ -31,6 +31,8 @@ class CreateArtifactsTable extends Migration
             $table->string('dimensions_units')->nullable();
             $table->boolean('is_published');
             $table->boolean('is_public');
+            $table->boolean('from_URL')->default(0);
+
 
 
 

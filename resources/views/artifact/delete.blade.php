@@ -14,7 +14,7 @@
                     </div>
 
                     <div class="flex justify-center mt-4">
-                        <img class="border-4 w-64 border-white rounded-lg" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
+                        <img class="border-4 w-64 border-white rounded-lg" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_thumb}}">
                     </div>
 
                 {{-- Begin Form --}} 
