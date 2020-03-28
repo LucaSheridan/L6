@@ -16,7 +16,7 @@
         
         <div class="flex-grow py-2 text-left text-2xl rounded-br-lg text-gray-300 mb-2">
 
-        {{strtoupper($user->fullName)}}</div>
+        {{$user->fullName}}</div>
 
                     </div>
 

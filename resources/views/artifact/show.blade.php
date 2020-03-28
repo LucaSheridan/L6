@@ -103,7 +103,7 @@
                     
 {{-- Widget 1 - Info --}}
             
-                <div id="Info" class="relative flex mt-2 md:mt-0 ">
+                <div id="Info" class="relative flex mt-2 md:mt-0">
                     
                 <div class="text-gray-500 font-semibold text-lg uppercase mb-1 px-4 py-1">Info</div>
              
@@ -178,12 +178,16 @@
              {{-- Course | Permanent --}}
 
                     <!-- Pre-L6 check because section_id field wasn't included in artifact model -->
+                    
                     {{-- @if (is_null($artifact->section))
-                    @else
-                        <div class="mt-4">
-                            <span class="font-semibold">Course: </span>{{ $artifact->section->course->title }}
-                        </div>
-                    @endif --}}
+                    
+                        @else
+                            <div class="mt-4">
+                                <span class="font-semibold">Course: </span>{{ $artifact->section->course->title }}
+                            </div>
+                        @endif 
+
+                    --}}
 
             {{-- Section | Permanent --}}
 
