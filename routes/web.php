@@ -65,7 +65,7 @@ Route::post('/enroll', ['middleware' => 'auth', 'uses' => 'EnrollmentController@
 	Route::get('/home/{currentSection?}', 'HomeController@index')->name('home');
 
 	// User
-	// Route::get('/user/{user}', 'UserController@show');
+	//Route::get('/user/{user}', 'UserController@show');
 	Route::get('/user/{user}', 'HomeController@profile');
 	Route::get('/user/{user}/edit', 'UserController@edit');
 

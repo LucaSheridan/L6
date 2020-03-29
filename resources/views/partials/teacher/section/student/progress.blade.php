@@ -143,7 +143,7 @@
                 {{-- Begin Progress Content --}}
 
                  <div class="text-gray-600 text-xl pt-2 pl-2 ">
-                <a href="{{action('UserController@show', $user)}}">{{$user->fullName}}</a>
+                <a href="{{action('HomeController@profile', $user)}}">{{$user->fullName}}</a>
                 </div>
 
 
