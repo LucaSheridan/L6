@@ -70,7 +70,7 @@
 
                     <div class="z-10 absolute right-0 shadow-2xl mt-1 bg-gray-700 text-gray-400 rounded py-1 list-none text-left leading-normal whitespace-no-wrap">
 
-                    <li class="hover:text-gray-200 px-2"><a href="{{action('UserController@show', Auth::User())}}">Profile</li>
+                    <li class="hover:text-gray-200 px-2"><a href="{{action('HomeController@profile', Auth::User())}}">Profile</li>
 
 <!--                     @if ( Auth::User()->hasRole('student'))
  -->                    <li class="hover:text-gray-200 px-2"><a href="{{ url('/enroll')}}">Join another class</a></li>
