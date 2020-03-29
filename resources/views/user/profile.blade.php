@@ -14,7 +14,7 @@
 
         {{-- Class Title --}}
         
-        <div class="flex-grow py-2 text-left text-2xl rounded-br-lg text-gray-300 mb-2">
+        <div class="flex-grow py-2 text-left mb-2">
 
         {{$user->fullName}}</div>
 
