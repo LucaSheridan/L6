@@ -281,6 +281,33 @@ class CollectionController extends Controller
 
     }
 
+    /**
+     * Store a newly created collection  to the database.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function makeIBExhibition(Request $request, User $user)
+    {
+
+        $artifacts = $user->artifacts()->where('is_published')->get();
+
+            dd($artifacts);
+
+            $collection = New Collection;
+            $collection->title = $request->input('title');
+            $collection->description = $request->input('description');
+            $collection->save();
+            $collection->curators()->attach(Auth::User()->id);
+            $collection->artifacts()->attach($artifact, [ 'position' => 1 ]);
+
+            $collection->save();
+
+            flash('You created a collection called '.$collection->title.'!', 'success');
+
+            return redirect()->action('HomeController@index');
+     }
+
 
 
 }

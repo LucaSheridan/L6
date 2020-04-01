@@ -14,7 +14,7 @@
 
         {{-- Class Title --}}
         
-        <div class="flex-grow py-2 text-left mb-2">
+        <div class="flex-grow py-2 text-left text-gray-300 mb-2">
 
         {{$user->fullName}}</div>
 
@@ -126,13 +126,13 @@
         </div>
 
 
-      <!--   <h4>Collections</h4>
+      <h4>Collections</h4>
 
         @foreach ($user->collections as $collection)
 
         {{ $collection->title}} | {{ $collection->artifacts->count()}} Artifacts</br/></br/>
 
-             @endforeach -->
+             @endforeach
 
 
         </div>
