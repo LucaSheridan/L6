@@ -12,7 +12,7 @@
 
         <div class="flex items-center mb-1">
            
-            <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-200">
+            <div class="flex-grow px-2 text-left text-2xl rounded-br-lg text-gray-500">
             CLASS
             </div>
 
@@ -49,6 +49,16 @@
                         <div><button>Delete Class</button></div>
                         </div>
                         </form>
+                        </li>
+
+                        <li class="hover:text-gray-300 px-3">
+                        <a class=""href="{{action('CollectionController@makeIBExhibitions', $activeSection)}}">
+                        <div class="flex items-center">
+                        <div class="pr-2 text-gray-500">
+                        @icon('edit', ['class' => 'w-5 h-5 hover:text-gray-200'])</div>
+                         <div>Make IB Exhibit Class</div>
+                        </div>
+                        </a>
                         </li>
                
                     </div>
@@ -109,8 +119,15 @@
                         @foreach ($activeSection->students as $student)
                         
                         <a href="{{action('SectionController@studentProgress', ['section'=> $activeSection, 'user' => $student])}}">
+                        
                         <li class="pl-2 rounded-sm text-gray-600 text-sm bg-gray-100 hover:bg-gray-200 hover:text-red-500">
-                        {{ $student->fullName}}</li>
+                        
+                        {{$student->fullName}} - 
+                            @foreach ($student->collections as $collection)
+                            <a href="{{action('CollectionController@show', $collection)}}">{{ $collection->title }}</a>
+                            @endforeach
+                        </li>
+
                         </a>
                         
                         @endforeach

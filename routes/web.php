@@ -70,7 +70,7 @@ Route::post('/enroll', ['middleware' => 'auth', 'uses' => 'EnrollmentController@
 	Route::get('/user/{user}/edit', 'UserController@edit');
 
 	// MAKE IB EXHIBITION
-	Route::get('/ibexhibit/{user}', 'CollectionController@makeIBExhibition');
+	Route::get('/section/{section}/ibexhibit', 'CollectionController@makeIBExhibitions');
 
 	// Artifacts 
 

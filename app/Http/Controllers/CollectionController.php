@@ -287,23 +287,30 @@ class CollectionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function makeIBExhibition(Request $request, User $user)
+    public function makeIBExhibitions(Request $request, Section $section)
     {
 
-        $artifacts = $user->artifacts()->where('is_published', 1,)->get();
+        foreach ($section->students as $student) {
 
-            dd($artifacts);
+            $artifacts = $student->artifacts()->where('is_published', 1,)->get();
+            $position = 1;
 
             $collection = New Collection;
-            $collection->title = $request->input('title');
+            $collection->title = "IB Exhibition";
             $collection->description = $request->input('description');
             $collection->save();
-            $collection->curators()->attach(Auth::User()->id);
-            $collection->artifacts()->attach($artifact, [ 'position' => 1 ]);
+            $collection->curators()->attach($student->id);
+            
+                foreach ($artifacts as $artifact) {
 
-            $collection->save();
+                $collection->artifacts()->attach($artifact, [ 'position' => $position ]);
+                $position = $position +1; 
 
-            flash('You created a collection called '.$collection->title.'!', 'success');
+                }
+                
+                $collection->save();
+
+            }
 
             return redirect()->action('HomeController@index');
      }
