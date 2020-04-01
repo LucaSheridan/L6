@@ -303,7 +303,21 @@ class CollectionController extends Controller
             
                 foreach ($artifacts as $artifact) {
 
-                $collection->artifacts()->attach($artifact, [ 'position' => $position ]);
+                $collection->artifacts()->attach($artifact, [
+
+                    'position' => $position,
+                    'artist' => $artifact->artist,
+                    'title' => $artifact->title,
+                    'medium' => $artifact->medium,
+                    'year' => $artifact->year,
+                    'dimensions_height' => $artifact->dimensions_height,
+                    'dimensions_width' => $artifact->dimensions_width,
+                    'dimensions_depth' => $artifact->dimensions_depth,
+                    'dimensions_units' => $artifact->dimensions_units,
+                    'label_text' => $artifact->annotation
+        
+                    ]); 
+        
                 $position = $position +1; 
 
                 }
