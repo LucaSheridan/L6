@@ -290,7 +290,7 @@ class CollectionController extends Controller
     public function makeIBExhibition(Request $request, User $user)
     {
 
-        $artifacts = $user->artifacts()->where('is_published')->get();
+        $artifacts = $user->artifacts->get();
 
             dd($artifacts);
 
