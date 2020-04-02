@@ -29,11 +29,13 @@
         </div>
     @endif
 
-    <div class="min-h-screen flex items-center justify-center">
-        <div class="flex flex-col justify-around h-full">
+    <div class="min-h-screen flex items-center justify-center bg-gray-300">
+        <div class="flex flex-col justify-around p-4 mb-10 rounded shadow-xl border-2 bg-gray-100">
             <div>
- <h1 class="text-gray-600 text-center font-light tracking-wider text-5xl mb-6">ARTIFACTS</h1>
-<h3 class="text-gray-600 text-center">Alpha - Laravel 6</h3>
+<h1 class="text-gray-600 text-center font-light tracking-wider text-5xl mb-2">
+<span class="font-medium tracking-tight">ART</span>IFACTS</a></h1>
+
+<div class="text-gray-600 text-center">Art Education Tools</div>
             </div>
         </div>
     </div>
