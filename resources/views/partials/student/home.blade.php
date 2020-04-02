@@ -129,57 +129,6 @@
 
     <div class="w-full sm:w-2/3 md:w-3/4 bg-gray-300 p-4">
 
-    <div class="flex">
-           
-        {{-- Artifacts Title --}}
-
-            <div class="flex-grow px-2 pt-2 text-left text-2xl rounded-br-lg text-gray-600">ARTIFACTS</div>
-            
-            <div class="flex">
-                    
-                {{-- Options Tab Begin--}}
-
-                    <a class="" href="{{action('ArtifactController@create')}}">
-                        
-                        <div class="flex justify-end p-2 bg-gray-200 rounded-t-lg">
-                        
-                            <div>@icon('plus-circle', ['class' => 'float-right text-gray-500 hover:text-red-400'])</div>
-
-                            <div class="flex pt-1 px-1 text-gray-600">Create</div>
-
-                        </div>
-                     </a>
-
-                {{-- Option Tab End--}}
-
-            </div>
-            </div>
-        
-        {{-- Artifacts List --}}
-   
-            <div class="flex flex-wrap items-center items-stretch bg-white p-2 rounded-tl-lg rounded-bl-lg rounded-br-lg mb-4">
-
-        @foreach (Auth::User()->artifacts as $artifact) 
-            
-            <div class="flex items-center text-center relative p-2 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5">
-        
-          {{-- Begin Individual Artifacts Container--}}
-
-          <div class="relative w-full">
-                   
-                <a href="{{action('ArtifactController@show', $artifact->id)}}">
-                    <img class="w-full rounded-lg shadow-lg hover:shadow-xl" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_thumb}}">
-                </a>      
-         
-          </div>
-        
-        </div>
-
-
-        @endforeach
-
-   </div>
-
 {{-- COLLECTIONS --}}
 
  {{-- Collections Title --}}
@@ -268,6 +217,59 @@
 
     @endforeach
     </div>
+
+     <div class="flex">
+           
+        {{-- Artifacts Title --}}
+
+            <div class="flex-grow px-2 pt-2 text-left text-2xl rounded-br-lg text-gray-600">ARTIFACTS</div>
+            
+            <div class="flex">
+                    
+                {{-- Options Tab Begin--}}
+
+                    <a class="" href="{{action('ArtifactController@create')}}">
+                        
+                        <div class="flex justify-end p-2 bg-gray-200 rounded-t-lg">
+                        
+                            <div>@icon('plus-circle', ['class' => 'float-right text-gray-500 hover:text-red-400'])</div>
+
+                            <div class="flex pt-1 px-1 text-gray-600">Create</div>
+
+                        </div>
+                     </a>
+
+                {{-- Option Tab End--}}
+
+            </div>
+
+
+            </div>
+
+             {{-- Artifacts List --}}
+   
+            <div class="flex flex-wrap items-center items-stretch bg-white p-2 rounded-tl-lg rounded-bl-lg rounded-br-lg mb-4">
+
+        @foreach (Auth::User()->artifacts as $artifact) 
+            
+            <div class="flex items-center text-center relative p-2 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5">
+        
+          {{-- Begin Individual Artifacts Container--}}
+
+          <div class="relative w-full">
+                   
+                <a href="{{action('ArtifactController@show', $artifact->id)}}">
+                    <img class="w-full rounded-lg shadow-lg hover:shadow-xl" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_thumb}}">
+                </a>      
+         
+          </div>
+        
+        </div>
+
+
+        @endforeach
+
+   </div>
 
 {{-- END COLUMN 2 --}}
 
