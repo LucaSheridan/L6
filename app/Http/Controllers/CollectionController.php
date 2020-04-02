@@ -82,14 +82,28 @@ class CollectionController extends Controller
             //
             $collections = Collection::all()->count();
             //
-            $artifact = $request->input('artifact');
+            // $artifact = $request->input('artifact');
+            $artifact = Artifact::find($request->input('artifact'));
             
             $collection = New Collection;
             $collection->title = $request->input('title');
             $collection->description = $request->input('description');
             $collection->save();
             $collection->curators()->attach(Auth::User()->id);
-            $collection->artifacts()->attach($artifact, [ 'position' => 1 ]);
+            $collection->artifacts()->attach($artifact, [
+
+            'position' => 1,
+            'artist' => $artifact->artist,
+            'title' => $artifact->title,
+            'medium' => $artifact->medium,
+            'year' => $artifact->year,
+            'dimensions_height' => $artifact->dimensions_height,
+            'dimensions_width' => $artifact->dimensions_width,
+            'dimensions_depth' => $artifact->dimensions_depth,
+            'dimensions_units' => $artifact->dimensions_units,
+            'label_text' => $artifact->annotation
+        
+            ]); 
 
             $collection->save();
 
