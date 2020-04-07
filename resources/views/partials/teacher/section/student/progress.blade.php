@@ -117,7 +117,7 @@
                  
 
              </div>
-             <div class="flex mr-2 bg-gray-600">
+             <div class="flex mr-2 bg-gray-500">
                 <a href="mailto:{{$user->email}}">
                  @icon('mail', ['class' => 'text-gray-300 hover:text-gray-100 w-6 h-6 m-0']) </a>
             </div>
