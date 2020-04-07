@@ -114,25 +114,13 @@
                 {{-- Progress Title --}}
            
                 <div class="flex-grow px-2 pt-1 text-left text-2xl rounded-br-lg text-gray-300 mb-1">PROGRESS 
-                </div>
-            
-                <!-- {{-- Progress Option --}}
+                 
 
-                    <div class="flex ">
-                    
-                    <a class=""href="{{action('AssignmentController@create', $activeSection)}}">
-                        
-                        <div class="flex justify-end p-1 bg-gray-300 bg-gray-400 hover:bg-gray-300 border-b rounded-t-lg text-gray-600">
-                        
-                            <div>@icon('plus-circle', ['class' => 'w-6 h-6 text-gray-500 hover:text-red-400'])</div>
-                            <div class="flex pt-1 px-1">Create</div>
- 
-                        </div>
-                     </a>
-
-                    </div>
-    
-                {{-- End Progress Option Menu --}} -->
+             </div>
+             <div class="flex mr-2 bg-gray-600">
+                <a href="mailto:{{$user->email}}">
+                 @icon('mail', ['class' => 'text-gray-300 hover:text-gray-100 w-6 h-6 m-0']) </a>
+            </div>
 
            </div>
 
@@ -142,14 +130,20 @@
 
                 {{-- Begin Progress Content --}}
 
-                 <div class="text-gray-600 text-xl pt-2 pl-2 ">
+                <div class="">
+
+                <div class="text-gray-600 text-xl pt-2 pl-2 ">
                 <a href="{{action('HomeController@profile', $user)}}">{{$user->fullName}}</a>
                 </div>
+             
 
-
-    <div class="flex flex-wrap items-center items-stretch bg-white rounded-lg p-2">
-
+<!--     <div class="flex bg-white rounded-lg p-2">
+ -->
     <table class="p-2 bg-gray-200 w-full rounded-lg ">
+    
+    {{-- Open Assignment Div --}}
+    <div class="p-2 bg-gray-200 w-full rounded-lg ">
+     
 
     @foreach ($checklist as $checklistItem)
 
@@ -225,15 +219,14 @@
     </td> -->
 
     
-    <td valign="top">
+    <td valign="top p-2">
 
             {{-- Display Preview Image  --}}
 
                 @if (!$checklistItem->artifact_created)
 
-                    <div class="bg-gray-200 border-gray-600 block border-dashed border-2 w-32 h-32 text-center text-sm ">pending
-                    </div>
-
+                     <div class="w-full h-16 inline-block m-0 border-gray-400 border-2 p-4 text-center rounded-lg">
+                    Assigned</div>
                     @else
 
                     <a href="{{ action('ArtifactController@show', $checklistItem->artifact_id)}}">
