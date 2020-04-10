@@ -20,11 +20,12 @@
 
                     </div>
 
-        <div class="border-2 p-4 bg-gray-100 rounded-lg leading-snug">
+       <div class="border-2 p-4 bg-gray-100 rounded-lg leading-snug">
 
-        <table class="leading-tight w-full">
+        <div class="text-left py-2 font-reg text-gray-600">CLASSES</div>
 
-       <th colspan="7" class="text-left py-2 font-reg text-gray-600">CLASSES</th> 
+
+       <table class="leading-tight w-full">
 
        <tr class="border">
             <td class="py-2 px-1">Title</td>
@@ -125,16 +126,21 @@
 
         </div>
 
+    <div class="border-2 mt-4 p-4 bg-gray-100 rounded-lg leading-snug">
 
-      <h4>Collections</h4>
+       <div class="text-left py-2 font-reg text-gray-600">COLLECTIONS</div>
+
+        <ul>
 
         @foreach ($user->collections as $collection)
 
-        {{ $collection->title}} | {{ $collection->artifacts->count()}} Artifacts</br/></br/>
+        <li>
+         <a class="text-gray-600 hover:text-red-400"href="{{action('CollectionController@show', $collection->id)}}">
 
-             @endforeach
+            {{ $collection->title}}</a> | {{ $collection->artifacts->count()}} Artifacts</li>
 
-
+        @endforeach
+        </ul>
         </div>
 
         <div>
