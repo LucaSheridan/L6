@@ -68,8 +68,8 @@
         <p class="italic text-md text-gray-600 leading-normal">{{$collection->description}}</p>
 
         </div>
-
     {{-- Artworks --}}
+
     
     <div class="flex bg-white py-2 flex-wrap">
 
@@ -91,6 +91,29 @@
                         
                              <div class="w-full p-0 relative border-t-0 rounded-b-lg border-2">
 
+ <div class="pl-2 pt-2">
+
+<a class="underline hover:text-red-500" href="{{action('ArtifactController@show', $artifact->id)}}">
+ 
+@if ($artifact->comments->count()  < 1 ) 
+
+Post Feedback
+
+@elseif ($artifact->comments->count()  > 1 )
+
+{{$artifact->comments->count()}} Comments 
+
+@else
+
+{{$artifact->comments->count()}} Comment
+@endif
+
+
+                                        
+ </a>
+                </div>
+        
+
                              <ul class="leading-tight p-2 mb-1 w-11/12">      
 <!-- 
                              @if (
@@ -110,7 +133,6 @@
                            
                             @else
                             @endif -->
-
                             <li class="font-semibold">{{$artifact->pivot->artist}}</li>
                             <li class="italic">{{$artifact->pivot->title}}</li>
                             <li>{{$artifact->pivot->medium}}</li>
