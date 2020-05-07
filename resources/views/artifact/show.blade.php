@@ -435,7 +435,7 @@
                          <div class="flex mt-1 justify-between border-2 rounded-lg bg-gray-100 items-center text-sm">
 
                             <div class="flex">
-                                <a class="px-2" href="{{action('CollectionController@show', $collection)}}">{{ $collection->title }}</a>
+                                <a class="px-2 hover:text-red-500" href="{{action('CollectionController@show', $collection)}}">{{ $collection->title }}</a>
                             </div>
                             
                             <div class="flex bg-gray-200 rounded-lg pr-1">
