@@ -11,19 +11,21 @@
                         Create New Comment
                     </div>
 
+                        <img class="border-4 border-white rounded-lg" src="https://s3.amazonaws.com/artifacts-0.3/{{$artifact->artifact_path}}">
+
                     {{-- Begin Form --}} 
 
                     <form id="create_comment" method="POST" action="{{ action('CommentController@store', $artifact->id) }}">
                      {{ csrf_field() }}
 
-                    <div class="p-3 border-l-2 border-b-0 border-r-2">
+                    <div class="p-3 border-b-0 ">
             
 
                     {{-- Begin Comment Body Input--}}
             
-                    <div class="mb-2">
+                    <div class="">
 
-                        <label for="body" class="w-full font-semibold text-gray-600 text-sm pt-2 pr-3 align-middle">Comment Text</label>
+                        <label for="body" class="w-full font-semibold text-gray-600 text-sm align-middle">Comment Text</label>
 
                         <textarea id="body" class="w-full mt-2 p-2 rounded p-2 border text-gray-600 text-sm leading-snug {{ $errors->has('body') ? 'border-red-500' : 'border' }}" name="body" value="{{ old('body') }}" autofocus tabindex="1">{{ old('body') }}</textarea>
                         {!! $errors->first('body', '<span class="text-red-500 text-sm mt-2">:message</span>') !!}
@@ -38,7 +40,7 @@
                         {{-- Begin Artifact ID Input--}}
                         <input id="artifact_id" type="hidden" name="artifact_id" value="{{$artifact->id}}" >
        
-                    <div class="my-1 text-center">
+                    <div class="my-4 text-center">
 
                           <a href="{{action('ArtifactController@show', $artifact)}}" class="inline-block mb-1 md:mb-0 bg-gray-400 hover:bg-red-500 text-gray-700 hover:text-white px-4 py-2 text-sm uppercase tracking-wide font-semibold rounded">Cancel</a>
 
