@@ -16,8 +16,8 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
-
+    'driver' => env('MAIL_DRIVER', 'mailgun'),
+    
     /*
     |--------------------------------------------------------------------------
     | SMTP Host Address
@@ -41,7 +41,7 @@ return [
     | stay compatible with the Mailgun e-mail application by default.
     |
     */
-
+    // 587
     'port' => env('MAIL_PORT', 587),
 
     /*
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'lsheridan@bsge.org'),
+        'name' => env('MAIL_FROM_NAME', 'Lucas Sheridan, Developer, Artifacts-online.com'),
     ],
 
     /*
