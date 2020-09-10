@@ -27,7 +27,7 @@
     <!-- style="height:100vh; margin-left:5vh; margin-right:5vh;"> -->
 
               
-        <nav class="bg-gray-200 shadow py-1 border-b-2 text-center border-red-400">
+        <nav class="bg-gray-200 shadow py-1 border-b-0 text-center border-red-400">
   <!--  <nav class="bg-blue-900 shadow mb-8 py-6"> -->            
  
         <div class="mx-auto px-4">
@@ -40,7 +40,7 @@
         
         {{-- AlTERNATE NAMES --}}
 
-        <span class="ml-10 font-medium tracking-tight text-gray-500">ART</span><span class="text-gray-500">IFACTS</span></a>
+        <span class="ml-10tracking-tight text-gray-500">ARTIFACTS</span></a>
 
 <!-- <span class="font-semibold tracking-tight">BSGE</span>ART</a>
  --> 
@@ -103,6 +103,10 @@
         </div>
 
         @yield('content')
+
+        
+
+       
 
     </div>
     
