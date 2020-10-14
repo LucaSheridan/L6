@@ -466,7 +466,7 @@ class ArtifactController extends Controller
         // 'dimensions_width' => 'required',
         // 'dimensions_depth' => 'required',
         // 'dimensions_units' => 'required',
-        'annotation' => 'max:500'
+        'annotation' => 'max:750'
 
         ]);
 
